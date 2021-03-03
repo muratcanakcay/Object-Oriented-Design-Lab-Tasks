@@ -1,0 +1,11 @@
+C:\CodeBase\VS19\OOD\Lab02\Xml.Console\bin\Debug\Xml.Console.exe.config
+C:\CodeBase\VS19\OOD\Lab02\Xml.Console\bin\Debug\Xml.Console.exe
+C:\CodeBase\VS19\OOD\Lab02\Xml.Console\bin\Debug\Xml.Console.pdb
+C:\CodeBase\VS19\OOD\Lab02\Xml.Console\bin\Debug\Xml.Data.dll
+C:\CodeBase\VS19\OOD\Lab02\Xml.Console\bin\Debug\Xml.Data.pdb
+C:\CodeBase\VS19\OOD\Lab02\Xml.Console\obj\Debug\Xml.Console.csprojAssemblyReference.cache
+C:\CodeBase\VS19\OOD\Lab02\Xml.Console\obj\Debug\Xml.Console.csproj.CoreCompileInputs.cache
+C:\CodeBase\VS19\OOD\Lab02\Xml.Console\obj\Debug\Xml.Console.csproj.CopyComplete
+C:\CodeBase\VS19\OOD\Lab02\Xml.Console\obj\Debug\Xml.Console.exe
+C:\CodeBase\VS19\OOD\Lab02\Xml.Console\obj\Debug\Xml.Console.pdb
+C:\CodeBase\VS19\OOD\Lab02\Xml.Console\bin\Debug\library.xml

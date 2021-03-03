@@ -9,3 +9,4 @@ C:\CodeBase\VS19\OOD\Lab02\Xml.Console\obj\Debug\Xml.Console.csproj.CopyComplete
 C:\CodeBase\VS19\OOD\Lab02\Xml.Console\obj\Debug\Xml.Console.exe
 C:\CodeBase\VS19\OOD\Lab02\Xml.Console\obj\Debug\Xml.Console.pdb
 C:\CodeBase\VS19\OOD\Lab02\Xml.Console\bin\Debug\library.xml
+C:\CodeBase\VS19\OOD\Lab02\Xml.Console\bin\Debug\library.xsd

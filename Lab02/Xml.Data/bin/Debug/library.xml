@@ -4,7 +4,7 @@
     <book>
       <title>book1</title>
       <year>1945</year>
-      <lang>en</lang>
+      <lang>EN</lang>
       <authors>
 		<author>
           <names>
@@ -18,7 +18,7 @@
     <book>
       <title>book2</title>
       <year>1942</year>
-      <lang>fr</lang>
+      <lang>PL</lang>
 	  <authors>
 	   	<author>
           <names>
@@ -39,7 +39,7 @@
     <book>
       <title>book3</title>
       <year>1992</year>
-      <lang>epl</lang>
+      <lang>EN</lang>
       <authors>
 		<author>
           <names>

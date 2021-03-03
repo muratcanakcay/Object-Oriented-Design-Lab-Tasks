@@ -2,54 +2,54 @@
 <library xmlns="http://example.org/mca/library.v2">
   
     <authors>
-			<author authorId="1">
-				<name>author1name1</name>
-				<surname>author1surname</surname>
-			</author>
-			<author authorId="2">
-				<name>author2name1</name>
-				<name>author2name2</name>
-				<surname>author2surname</surname>
-			</author>
-			<author authorId="3">
-				<name>author3name1</name>
-				<name>author3name2</name>
-				<surname>author3surname</surname>
-			</author>
-			<author authorId="4">
-				<name>author4name1</name>
-				<name>author4name2</name>
-				<surname>author4surname</surname>
-			</author>
-	  </authors>
+		<author authorId="1">
+			<name>author1name1</name>
+			<surname>author1surname</surname>
+		</author>
+		<author authorId="2">
+			<name>author2name1</name>
+			<name>author2name2</name>
+			<surname>author2surname</surname>
+		</author>
+		<author authorId="3">
+			<name>author3name1</name>
+			<name>author3name2</name>
+			<surname>author3surname</surname>
+		</author>
+		<author authorId="4">
+			<name>author4name1</name>
+			<name>author4name2</name>
+			<surname>author4surname</surname>
+		</author>
+	</authors>
 
-		<books>
-			<book>
-				<title>book1</title>
-				<year>1945</year>
-				<lang>en</lang>
-				<authors>
-          <authorIdref>1</authorIdref>
-				</authors>
-			</book>
-			<book>
-				<title>book2</title>
-				<year>1942</year>
-				<lang>fr</lang>
-				<authors>
-          <authorIdref>1</authorIdref>
-          <authorIdref>2</authorIdref>
-        </authors>
-			</book>
-			<book>
-				<title>book3</title>
-				<year>1992</year>
-				<lang>pl</lang>
-				<authors>
-          <authorIdref>3</authorIdref>
-          <authorIdref>4</authorIdref>
-        </authors>
-			</book>
+	<books>
+		<book>
+			<title>book1</title>
+			<year>1945</year>
+			<lang>EN</lang>
+			<authors>
+				<authorIdref>1</authorIdref>
+			</authors>
+		</book>
+		<book>
+			<title>book2</title>
+			<year>1942</year>
+			<lang>fr</lang>
+			<authors>
+				<authorIdref>1</authorIdref>
+				<authorIdref>2</authorIdref>
+			</authors>
+		</book>
+		<book>
+			<title>book3</title>
+			<year>1992</year>
+			<lang>pl</lang>
+			<authors>
+				<authorIdref>3</authorIdref>
+				<authorIdref>4</authorIdref>
+			</authors>
+		</book>
     </books>
   
 </library>

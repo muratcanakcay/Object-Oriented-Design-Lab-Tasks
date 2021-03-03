@@ -50,7 +50,7 @@ namespace Library {
         
         private string yearField;
         
-        private string langField;
+        private langType langField;
         
         private authorType[] authorsField;
         
@@ -76,7 +76,7 @@ namespace Library {
         }
         
         /// <remarks/>
-        public string lang {
+        public langType lang {
             get {
                 return this.langField;
             }
@@ -95,6 +95,22 @@ namespace Library {
                 this.authorsField = value;
             }
         }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://example.org/mca/library")]
+    public enum langType {
+        
+        /// <remarks/>
+        EN,
+        
+        /// <remarks/>
+        PL,
+        
+        /// <remarks/>
+        TLH,
     }
     
     /// <remarks/>

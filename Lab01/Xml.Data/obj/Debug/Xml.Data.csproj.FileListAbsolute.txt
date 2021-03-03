@@ -1,0 +1,7 @@
+C:\CodeBase\VS19\OOD\Lab01\Xml.Data\obj\Debug\Xml.Data.csprojAssemblyReference.cache
+C:\CodeBase\VS19\OOD\Lab01\Xml.Data\obj\Debug\Xml.Data.csproj.CoreCompileInputs.cache
+C:\CodeBase\VS19\OOD\Lab01\Xml.Data\bin\Debug\Xml.Data.dll
+C:\CodeBase\VS19\OOD\Lab01\Xml.Data\bin\Debug\Xml.Data.pdb
+C:\CodeBase\VS19\OOD\Lab01\Xml.Data\obj\Debug\Xml.Data.dll
+C:\CodeBase\VS19\OOD\Lab01\Xml.Data\obj\Debug\Xml.Data.pdb
+C:\CodeBase\VS19\OOD\Lab01\Xml.Data\bin\Debug\library.xml

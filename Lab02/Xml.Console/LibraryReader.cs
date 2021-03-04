@@ -1,10 +1,8 @@
 ﻿using System.IO;
-using System.Reflection;
 using System.Xml.Serialization;
 using System.Xml;
 using System.Xml.Schema;
 using System.Collections.Generic;
-using System.Linq;
 using System;
 
 namespace Xml.Console
@@ -56,19 +54,14 @@ namespace Xml.Console
             }
 
             return authorSurnames;
-
-            void ValidationHandler(Object sender, ValidationEventArgs args)
-            {
-                if (args.Severity == XmlSeverityType.Warning)
-                    System.Console.WriteLine("Warning: {0}", args.Message);
-                else
-                    System.Console.WriteLine("Error: {0}", args.Message);
-            }
-
         }
 
-
-
-
+        private static void ValidationHandler(Object sender, ValidationEventArgs args)
+        {
+            if (args.Severity == XmlSeverityType.Warning)
+                System.Console.WriteLine("Warning: {0}", args.Message);
+            else
+                System.Console.WriteLine("Error: {0}", args.Message);
+        }
     }
 }

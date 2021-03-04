@@ -24,11 +24,11 @@ namespace Xml.Console
             
             // ---------- Lab02
             
-            var authors2 = LibraryReader.ReadLibrary2(libraryPath);
-            foreach (var author in authors2)
-            {
-                System.Console.WriteLine($"Author: {author}");
-            }
+            //var authors2 = LibraryReader.ReadLibrary2(libraryPath);
+            //foreach (var author in authors2)
+            //{
+            //    System.Console.WriteLine($"Author: {author}");
+            //}
 
 
 

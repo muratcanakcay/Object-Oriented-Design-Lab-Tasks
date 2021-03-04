@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://example.org/mca/library"
+    elementFormDefault="qualified"
+    xmlns:lib="http://example.org/mca/library"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="library">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="books">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="book" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="title" type="lib:titleType" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="year" type="lib:yearType" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="lang" type="lib:langType" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="authors" minOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="author" type="lib:authorType" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="authorType">
+    <xs:sequence>
+      <xs:element name="names" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="surname" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="titleType" >
+    <xs:restriction base="xs:string">
+      <xs:minLength value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="yearType" >
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1120"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="langType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EN"/>
+      <xs:enumeration value="PL"/>
+      <xs:enumeration value="TLH"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
+

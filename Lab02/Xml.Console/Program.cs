@@ -11,8 +11,6 @@ namespace Xml.Console
     {
         static void Main(string[] args)
         {
-            int labNo = 1; // choose which lab task to execute
-
             //---We can create the libraryPath string in multiple ways: 
             
             //---1 
@@ -32,60 +30,48 @@ namespace Xml.Console
             WriteLine($"library path is = {libraryPath}");
 
             // ---------
-            
-            switch (labNo)
-            { 
-            case 1:
-            {         
-                // --------- Lab01
 
-                var library = LibraryReader.ReadLibrary1(libraryPath);
-            
-                // 1st Method 
-                var authors11 = new List<Library.authorsTypeAuthor>();
-                foreach (var book in library.books)
-                    foreach (var author in book.authors)
-                    {
-                        // directly write to console:
-                        // System.Console.WriteLine($"Author: {string.Join(",", author.names.ToArray())}, {author.surname}"); 
-                    
-                        // or add to a list for future use:
-                        authors11.Add(author);
-                    }
+            if (!LibraryReader.Validate(libraryPath)) return;
 
-                foreach (var author in authors11)
-                {
-                    WriteLine($"Author: {string.Join(",", author.names.ToArray())}, {author.surname}");
-                }
-            
-                WriteLine("---------------------------");
+            var library = LibraryReader.ReadLibrary(libraryPath);
 
-                // 2nd method (using SelectMany() method)
-                var authors12 = library.books.SelectMany(b => b.authors);
-                foreach (var author in authors12)
-                {
-                    WriteLine($"Author: {string.Join(",", author.names.ToArray())}, {author.surname}");
-                }
+            //// 1st Method 
+            //var authors11 = new List<Library.libraryBookAuthor>();
+            //foreach (var book in library.books)
+            //    foreach (var author in book.authors)
+            //    {
+            //        // directly write to console:
+            //        // System.Console.WriteLine($"Author: {string.Join(",", author.names.ToArray())}, {author.surname}"); 
 
-                WriteLine("---------------------------");
-            
-                break;
-            } // end case 1
-            case 2:
+            //        // or add to a list for future use:
+            //        authors11.Add(author);
+            //    }
 
-            {
-                // ---------- Lab02
+            //foreach (var author in authors11)
+            //{
+            //    WriteLine($"Author: {string.Join(",", author.names.ToArray())}, {author.surname}");
+            //}
 
-                var authorSurnames = LibraryReader.ReadLibrary2(libraryPath);
-                foreach (var surname in authorSurnames)
-                {
-                    WriteLine($"Author: {surname}");
-                }
+            //WriteLine("---------------------------");
 
-                break;
-                // ---------------
-            } // end case 2
-            } // end switch
+            //// 2nd method (using SelectMany() method)
+            //var authors12 = library.books.SelectMany(b => b.authors);
+            //foreach (var author in authors12)
+            //{
+            //    WriteLine($"Author: {string.Join(",", author.names.ToArray())}, {author.surname}");
+            //}
+
+            //WriteLine("---------------------------");
+
+
+
+
+
+
+
+
+
+
         }
     }
 }

@@ -26,6 +26,8 @@ namespace Library {
         
         private libraryBook[] booksField;
         
+        private authorType[] authorsField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("book", IsNullable=false)]
         public libraryBook[] books {
@@ -34,6 +36,17 @@ namespace Library {
             }
             set {
                 this.booksField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayItemAttribute("author", IsNullable=false)]
+        public authorType[] authors {
+            get {
+                return this.authorsField;
+            }
+            set {
+                this.authorsField = value;
             }
         }
     }
@@ -52,7 +65,7 @@ namespace Library {
         
         private langType langField;
         
-        private authorsTypeAuthor[] authorsField;
+        private libraryBookAuthor[] authorsField;
         
         /// <remarks/>
         public string title {
@@ -87,7 +100,7 @@ namespace Library {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("author", IsNullable=false)]
-        public authorsTypeAuthor[] authors {
+        public libraryBookAuthor[] authors {
             get {
                 return this.authorsField;
             }
@@ -119,11 +132,35 @@ namespace Library {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://example.org/mca/library")]
-    public partial class authorsTypeAuthor {
+    public partial class libraryBookAuthor {
+        
+        private string refField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string @ref {
+            get {
+                return this.refField;
+            }
+            set {
+                this.refField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://example.org/mca/library")]
+    public partial class authorType {
         
         private string[] namesField;
         
         private string surnameField;
+        
+        private string idField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("name", IsNullable=false)]
@@ -143,6 +180,17 @@ namespace Library {
             }
             set {
                 this.surnameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
             }
         }
     }

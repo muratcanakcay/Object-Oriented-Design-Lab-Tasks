@@ -34,21 +34,31 @@ namespace Xml.Console
             var library = LibraryReader.ReadLibrary(libraryPath);
             if (library == null) return;
 
-
-
-            //// 1st Method 
+            //---------- matching key - ref using List<>
+            
             var refs = new List<string>();
             foreach (var book in library.books)
                 foreach (var author in book.authors)
                     refs.Add(author.@ref);
 
-            WriteLine($"Authors in the library:");
+            WriteLine("Authors in the library (from id-ref matching):");
             foreach (var r in refs.Distinct())
                 foreach (var author in library.authors)
-                { 
+                {
                     if (r == author.id)
-                        WriteLine($"Author with id:{r} is {string.Join(", ", author.names.ToArray())}, {author.surname}"); 
+                        WriteLine($"Author with id:{r} is {string.Join(", ", author.names.ToArray())}, {author.surname}");
                 }
+            //----------- matching key - ref using Dictionary<>
+
+            var authors = new Dictionary<string, Library.authorType>();
+            foreach (var author in library.authors)
+                authors.Add(author.id, author);
+
+            WriteLine("Authors in the library (from dictionary):");
+            foreach (var r in refs.Distinct())
+                WriteLine($"Author with id:{r} is {string.Join(", ", authors[r].names.ToArray())}, {authors[r].surname}");
+
+
         }
     }
 }

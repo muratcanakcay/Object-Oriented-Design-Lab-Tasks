@@ -37,42 +37,18 @@ namespace Xml.Console
 
 
             //// 1st Method 
-            //var authors11 = new List<Library.libraryBookAuthor>();
-            //foreach (var book in library.books)
-            //    foreach (var author in book.authors)
-            //    {
-            //        // directly write to console:
-            //        // System.Console.WriteLine($"Author: {string.Join(",", author.names.ToArray())}, {author.surname}"); 
+            var refs = new List<string>();
+            foreach (var book in library.books)
+                foreach (var author in book.authors)
+                    refs.Add(author.@ref);
 
-            //        // or add to a list for future use:
-            //        authors11.Add(author);
-            //    }
-
-            //foreach (var author in authors11)
-            //{
-            //    WriteLine($"Author: {string.Join(",", author.names.ToArray())}, {author.surname}");
-            //}
-
-            //WriteLine("---------------------------");
-
-            //// 2nd method (using SelectMany() method)
-            //var authors12 = library.books.SelectMany(b => b.authors);
-            //foreach (var author in authors12)
-            //{
-            //    WriteLine($"Author: {string.Join(",", author.names.ToArray())}, {author.surname}");
-            //}
-
-            //WriteLine("---------------------------");
-
-
-
-
-
-
-
-
-
-
+            WriteLine($"Authors in the library:");
+            foreach (var r in refs.Distinct())
+                foreach (var author in library.authors)
+                { 
+                    if (r == author.id)
+                        WriteLine($"Author with id:{r} is {string.Join(", ", author.names.ToArray())}, {author.surname}"); 
+                }
         }
     }
 }

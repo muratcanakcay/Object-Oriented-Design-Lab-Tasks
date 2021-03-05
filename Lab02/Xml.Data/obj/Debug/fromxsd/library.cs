@@ -52,7 +52,7 @@ namespace Library {
         
         private langType langField;
         
-        private authorType[] authorsField;
+        private authorsTypeAuthor[] authorsField;
         
         /// <remarks/>
         public string title {
@@ -87,7 +87,7 @@ namespace Library {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("author", IsNullable=false)]
-        public authorType[] authors {
+        public authorsTypeAuthor[] authors {
             get {
                 return this.authorsField;
             }
@@ -118,8 +118,8 @@ namespace Library {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://example.org/mca/library")]
-    public partial class authorType {
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://example.org/mca/library")]
+    public partial class authorsTypeAuthor {
         
         private string[] namesField;
         

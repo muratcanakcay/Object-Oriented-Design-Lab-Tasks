@@ -6,34 +6,34 @@
       <year>1945</year>
       <lang>EN</lang>
       <authors>
-		<author>
+		    <author>
           <names>
             <name>author1name1</name>
           </names>
-		  <surname>author1surname</surname>
-		</author>
-	  </authors>
+		      <surname>author1surname</surname>
+		    </author>
+	    </authors>
     </book>
   
     <book>
       <title>book2</title>
       <year>1942</year>
       <lang>PL</lang>
-	  <authors>
-	   	<author>
+	    <authors>
+	   	  <author>
           <names>
-			<name>author1name1</name>
+			      <name>author1name1</name>
           </names>
-	  	  <surname>author1surname</surname>
-		</author>
-		<author>
+	  	    <surname>author1surname</surname>
+		    </author>
+		    <author>
           <names>
             <name>author2name1</name>
-		    <name>author2name2</name>
+		        <name>author2name2</name>
           </names>
-		  <surname>author2surname</surname>
-		</author>  
-	  </authors>
+		      <surname>author2surname</surname>
+		    </author>  
+	    </authors>
     </book>
   
     <book>
@@ -41,21 +41,24 @@
       <year>1992</year>
       <lang>EN</lang>
       <authors>
-		<author>
+		    <author>
           <names>
             <name>author3name1</name>
-		    <name>author3name2</name>
+		        <name>author3name2</name>
           </names>
-		  <surname>author3surname</surname>
-		</author>
-		<author>
+		      <surname>author3surname</surname>
+		    </author>
+		    <author>
           <names>
             <name>author4name1</name>
-		    <name>author4name2</name>
+		        <name>author4name2</name>
           </names>
-		  <surname>author4surname</surname>
-		</author>
-	  </authors>
+		      <surname>author4surname</surname>
+		    </author>
+	    </authors>
     </book>
   </books>
+  
+  
+  
 </library>

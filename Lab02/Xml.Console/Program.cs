@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Xml.Console
 {
@@ -10,10 +11,28 @@ namespace Xml.Console
     {
         static void Main(string[] args)
         {
-            int labNo = 2; // choose which lab task to execute
-            
-            var libraryPath = Path.Combine(Directory.GetCurrentDirectory(), "library.xml");
+            int labNo = 1; // choose which lab task to execute
 
+            //---We can create the libraryPath string in multiple ways: 
+            
+            //---1 
+            string libraryPath = Directory.GetCurrentDirectory() + "\\library.xml";
+            
+            //---2
+            //var libraryPath = string.Join("\\", new string[] { Directory.GetCurrentDirectory(), "library.xml" });
+            
+            //---3 
+            //var libraryPath = Path.Combine(Directory.GetCurrentDirectory(), "library.xml"); // using system.IO
+            
+            //---4
+            //var sb = new StringBuilder(); // using System.Text
+            //sb.Append(Directory.GetCurrentDirectory()).Append("\\library.xml");
+            //var libraryPath = sb.ToString();
+
+            WriteLine($"library path is = {libraryPath}");
+
+            // ---------
+            
             switch (labNo)
             { 
             case 1:
@@ -23,7 +42,7 @@ namespace Xml.Console
                 var library = LibraryReader.ReadLibrary1(libraryPath);
             
                 // 1st Method 
-                var authors11 = new List<Library.authorType>();
+                var authors11 = new List<Library.authorsTypeAuthor>();
                 foreach (var book in library.books)
                     foreach (var author in book.authors)
                     {

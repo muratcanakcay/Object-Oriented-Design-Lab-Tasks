@@ -13,6 +13,7 @@ namespace Xml.Console
 
         public static Library.library ReadLibrary(string path)
         {
+            if (!Validate(path)) return null;
             var serializer = new XmlSerializer(typeof(Library.library));
             return (Library.library)serializer.Deserialize(new FileStream(path, FileMode.Open, FileAccess.Read));
         }
@@ -57,9 +58,7 @@ namespace Xml.Console
                 System.Console.WriteLine("Error: {0}", args.Message);
             
             System.Console.WriteLine("------------------------------------------");
-
             valid = false;
-
         }
     }
 }

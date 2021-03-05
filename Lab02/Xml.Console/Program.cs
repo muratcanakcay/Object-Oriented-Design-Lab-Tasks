@@ -31,9 +31,10 @@ namespace Xml.Console
 
             // ---------
 
-            if (!LibraryReader.Validate(libraryPath)) return;
-
             var library = LibraryReader.ReadLibrary(libraryPath);
+            if (library == null) return;
+
+
 
             //// 1st Method 
             //var authors11 = new List<Library.libraryBookAuthor>();

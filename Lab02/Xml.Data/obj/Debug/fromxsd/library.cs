@@ -24,18 +24,31 @@ namespace Library {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="http://example.org/mca/library", IsNullable=false)]
     public partial class library {
         
-        private libraryBook[] booksField;
+        private bookType[] booksField;
+        
+        private journalType[] journalsField;
         
         private authorType[] authorsField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("book", IsNullable=false)]
-        public libraryBook[] books {
+        public bookType[] books {
             get {
                 return this.booksField;
             }
             set {
                 this.booksField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayItemAttribute("journal", IsNullable=false)]
+        public journalType[] journals {
+            get {
+                return this.journalsField;
+            }
+            set {
+                this.journalsField = value;
             }
         }
         
@@ -56,37 +69,12 @@ namespace Library {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://example.org/mca/library")]
-    public partial class libraryBook {
-        
-        private string titleField;
-        
-        private string yearField;
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://example.org/mca/library")]
+    public partial class bookType : documentType {
         
         private langType langField;
         
-        private libraryBookAuthor[] authorsField;
-        
-        /// <remarks/>
-        public string title {
-            get {
-                return this.titleField;
-            }
-            set {
-                this.titleField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
-        public string year {
-            get {
-                return this.yearField;
-            }
-            set {
-                this.yearField = value;
-            }
-        }
+        private bookTypeAuthor[] authorsField;
         
         /// <remarks/>
         public langType lang {
@@ -100,7 +88,7 @@ namespace Library {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("author", IsNullable=false)]
-        public libraryBookAuthor[] authors {
+        public bookTypeAuthor[] authors {
             get {
                 return this.authorsField;
             }
@@ -132,7 +120,7 @@ namespace Library {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://example.org/mca/library")]
-    public partial class libraryBookAuthor {
+    public partial class bookTypeAuthor {
         
         private string refField;
         
@@ -191,6 +179,99 @@ namespace Library {
             }
             set {
                 this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(journalType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(bookType))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://example.org/mca/library")]
+    public partial class documentType {
+        
+        private string titleField;
+        
+        private string yearField;
+        
+        /// <remarks/>
+        public string title {
+            get {
+                return this.titleField;
+            }
+            set {
+                this.titleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+        public string year {
+            get {
+                return this.yearField;
+            }
+            set {
+                this.yearField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://example.org/mca/library")]
+    public partial class journalType : documentType {
+        
+        private string issueField;
+        
+        private journalTypeEditor[] editorsField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
+        public string issue {
+            get {
+                return this.issueField;
+            }
+            set {
+                this.issueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayItemAttribute("editor", IsNullable=false)]
+        public journalTypeEditor[] editors {
+            get {
+                return this.editorsField;
+            }
+            set {
+                this.editorsField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://example.org/mca/library")]
+    public partial class journalTypeEditor {
+        
+        private string refField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string @ref {
+            get {
+                return this.refField;
+            }
+            set {
+                this.refField = value;
             }
         }
     }

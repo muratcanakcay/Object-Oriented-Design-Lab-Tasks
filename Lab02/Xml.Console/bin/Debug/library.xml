@@ -2,6 +2,7 @@
 <library xmlns="http://example.org/mca/library"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://example.org/mca/library library.xsd">
+  <!--books-->
   <books>
     <book>
       <title>book1</title>
@@ -18,7 +19,7 @@
       <lang>PL</lang>
 	    <authors>
 	   	  <author ref="1"/>
-		    <author ref="6"/>
+		    <author ref="2"/>
 	    </authors>
     </book>
   
@@ -32,7 +33,32 @@
 	    </authors>
     </book>
   </books>
+  <!--end of books-->
 
+  <!--journals-->
+  <journals>
+    <journal>
+      <title>journal1</title>
+      <year>1901</year>
+      <issue>1</issue>
+      <editors>
+        <editor ref="1"/>
+      </editors>
+    </journal>
+
+    <journal>
+      <title>journal2</title>
+      <year>1902</year>
+      <issue>2</issue>
+      <editors>
+        <editor ref="2"/>
+      </editors>
+    </journal>
+   
+  </journals>
+  <!--end of journals-->
+
+  <!--people-->
   <authors>
     <author id="1">
       <names>
@@ -69,5 +95,6 @@
       <surname>author5surname</surname>
     </author>
   </authors>
+  <!--end of people-->
   
 </library>

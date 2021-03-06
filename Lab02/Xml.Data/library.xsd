@@ -5,12 +5,13 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
 
+  <!-- Root -->
   <xs:element name="library">
     <xs:complexType>
       <xs:sequence>
         
         <!-- Library contents -->
-        <xs:element name="books">
+        <xs:element name="books" minOccurs="1" maxOccurs="1">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="book" minOccurs="1" maxOccurs="unbounded">
@@ -36,6 +37,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <!-- End of library contents -->
 
         <!-- List of all authors -->
         <xs:element name="authors" minOccurs="1" maxOccurs="1">
@@ -45,10 +47,24 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <!-- End of list of all authors -->
         
       </xs:sequence>
-    </xs:complexType>    
+    </xs:complexType>
+
+    <!-- key-ref for authors -->
+    <xs:key name="authorKey">
+      <xs:selector xpath="lib:authors/lib:author"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <xs:keyref name="authorRef" refer="lib:authorKey">
+      <xs:selector xpath="lib:book/lib:authors/lib:author"/>
+      <xs:field xpath="@ref"/>
+    </xs:keyref>
+    <!-- end of key-ref for authors -->
+    
   </xs:element>
+  <!-- end of Root -->
 
   <!--Types-->
   <xs:complexType name="authorType">

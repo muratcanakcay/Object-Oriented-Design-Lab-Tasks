@@ -40,8 +40,10 @@ namespace Xml.Console
             foreach (var book in library.books)
                 foreach (var author in book.authors)
                     refs.Add(author.@ref);
-
-            WriteLine("Authors in the library (from id-ref matching):");
+            
+            WriteLine("---------------------------");
+            WriteLine("\nAuthors in the library (using id-ref matching):");
+            
             foreach (var r in refs.Distinct())
                 foreach (var author in library.authors)
                 {
@@ -53,12 +55,21 @@ namespace Xml.Console
             var authors = new Dictionary<string, Library.authorType>();
             foreach (var author in library.authors)
                 authors.Add(author.id, author);
-
-            WriteLine("Authors in the library (from dictionary):");
+            
+            WriteLine("---------------------------");
+            WriteLine("\nAuthors in the library (using dictionary):");
+            
             foreach (var r in refs.Distinct())
                 WriteLine($"Author with id:{r} is {string.Join(", ", authors[r].names.ToArray())}, {authors[r].surname}");
 
+            WriteLine("---------------------------");
+            
 
+                    
+              
         }
+
+
+    
     }
 }

@@ -69,17 +69,16 @@
   </xs:element>
   <!-- end of Root -->
 
-  
-  
-  <xs:complexType name="documentType">
+
+  <!--Types-->
+  <xs:complexType name="documentType">  <!-- base type for book and journal -->
     <xs:sequence>
       <xs:element name="title" type="lib:titleType" minOccurs="1" maxOccurs="1"/>
       <xs:element name="year" type="lib:yearType" minOccurs="1" maxOccurs="1"/>
     </xs:sequence>
   </xs:complexType>
-
   
-  <xs:complexType name="bookType">
+  <xs:complexType name="bookType">    <!-- extension from documentType -->
     <xs:complexContent>
       <xs:extension base="lib:documentType">
         <xs:sequence>
@@ -100,7 +99,7 @@
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:complexType name="journalType">
+  <xs:complexType name="journalType">    <!-- extension from documentType -->
     <xs:complexContent>
       <xs:extension base="lib:documentType">
         <xs:sequence>
@@ -121,8 +120,6 @@
     </xs:complexContent>
   </xs:complexType>
       
-  
-  <!--Types-->
   <xs:complexType name="authorType">
     <xs:sequence>
       <xs:element name="names" minOccurs="1" maxOccurs="1">

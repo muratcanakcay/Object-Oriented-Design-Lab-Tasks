@@ -34,8 +34,10 @@ namespace Xml.Console
             var library = LibraryReader.ReadLibrary(libraryPath);
             if (library == null) return;
 
+            WriteLine($"library.ToString() output: {library.ToString()}");
+
             //---------- matching key - ref using List<>
-            
+
             var refs = new List<string>();
             foreach (var book in library.books)
                 foreach (var author in book.authors)
@@ -63,7 +65,9 @@ namespace Xml.Console
                 WriteLine($"Author with id:{r} is {string.Join(", ", authors[r].names.ToArray())}, {authors[r].surname}");
 
             WriteLine("---------------------------");
-            
+
+
+            library.PrintLibrary();
 
                     
               

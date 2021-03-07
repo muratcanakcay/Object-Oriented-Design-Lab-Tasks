@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+  <library xmlns="http://example.org/mca/library2"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://example.org/mca/library2 library2.xsd">
+
+    <books>
+      <book>
+        <title>book1</title>
+        <year>1901</year>
+        <lang>EN</lang>
+        <authors>
+          <author ref="1"/>
+          <author ref="2"/>
+        </authors>
+      </book>  
+    
+      <book>
+        <title>book2</title>
+        <year>1902</year>
+        <lang>PL</lang>
+        <authors>
+          <author ref="2"/>
+          <author ref="3"/>
+        </authors>
+      </book>
+    </books>
+
+    <journals>
+      <journal>
+        <title>journal1</title>
+        <year>1901</year>
+        <issue>1</issue>
+        <editors>
+          <editor ref="3"/>
+        </editors>
+      </journal>
+      <journal>
+        <title>journal2</title>
+        <year>1902</year>
+        <issue>2</issue>
+        <editors>
+          <editor ref="1"/>
+          <editor ref="2"/>
+        </editors>
+      </journal>
+    </journals>
+    
+    <authors>
+      <author id="1">
+        <names>
+          <name>author1name1</name>
+          <name>author1name2</name>
+        </names>
+        <surname>author1surname</surname>
+      </author>
+      <author id="2">
+        <names>
+          <name>author2name1</name>
+          <name>author2name2</name>
+        </names>
+        <surname>author2surname</surname>
+      </author>
+      <author id="3">
+        <names>
+          <name>author3name1</name>
+          <name>author3name2</name>
+        </names>
+        <surname>author3surname</surname>
+      </author>
+    </authors>
+    
+  </library>
+
+
+  
+         

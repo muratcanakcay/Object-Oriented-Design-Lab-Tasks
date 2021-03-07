@@ -1,17 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<library xmlns="http://example.org/mca/library">
+<library xmlns="http://example.org/mca/library"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://example.org/mca/library library.xsd">
+  <!--books-->
   <books>
     <book>
       <title>book1</title>
       <year>1945</year>
       <lang>EN</lang>
       <authors>
-		    <author>
-          <names>
-            <name>author1name1</name>
-          </names>
-		      <surname>author1surname</surname>
-		    </author>
+		    <author ref="1"/>
 	    </authors>
     </book>
   
@@ -20,19 +18,8 @@
       <year>1942</year>
       <lang>PL</lang>
 	    <authors>
-	   	  <author>
-          <names>
-			      <name>author1name1</name>
-          </names>
-	  	    <surname>author1surname</surname>
-		    </author>
-		    <author>
-          <names>
-            <name>author2name1</name>
-		        <name>author2name2</name>
-          </names>
-		      <surname>author2surname</surname>
-		    </author>  
+	   	  <author ref="1"/>
+		    <author ref="2"/>
 	    </authors>
     </book>
   
@@ -41,24 +28,72 @@
       <year>1992</year>
       <lang>EN</lang>
       <authors>
-		    <author>
-          <names>
-            <name>author3name1</name>
-		        <name>author3name2</name>
-          </names>
-		      <surname>author3surname</surname>
-		    </author>
-		    <author>
-          <names>
-            <name>author4name1</name>
-		        <name>author4name2</name>
-          </names>
-		      <surname>author4surname</surname>
-		    </author>
+		    <author ref="3"/>
+		    <author ref="4"/>
 	    </authors>
     </book>
   </books>
-  
-  
+  <!--end of books-->
+
+  <!--journals-->
+  <journals>
+    <journal>
+      <title>journal1</title>
+      <year>1901</year>
+      <issue>1</issue>
+      <editors>
+        <editor ref="1"/>
+      </editors>
+    </journal>
+
+    <journal>
+      <title>journal2</title>
+      <year>1902</year>
+      <issue>2</issue>
+      <editors>
+        <editor ref="2"/>
+      </editors>
+    </journal>
+  </journals>
+  <!--end of journals-->
+
+  <!--people-->
+  <authors>
+    <author id="1">
+      <names>
+        <name>author1name1</name>
+      </names>
+      <surname>author1surname</surname>
+    </author>
+    <author id="2">
+      <names>
+        <name>author2name1</name>
+        <name>author2name2</name>
+      </names>
+      <surname>author2surname</surname>
+    </author>
+    <author id="3">
+      <names>
+        <name>author3name1</name>
+        <name>author3name2</name>
+      </names>
+      <surname>author3surname</surname>
+    </author>
+    <author id="4">
+      <names>
+        <name>author4name1</name>
+        <name>author4name2</name>
+      </names>
+      <surname>author4surname</surname>
+    </author>
+    <author id="5">  <!--This author is not used in the library-->
+      <names>
+        <name>author5name1</name>
+        <name>author5name2</name>
+      </names>
+      <surname>author5surname</surname>
+    </author>
+  </authors>
+  <!--end of people-->
   
 </library>

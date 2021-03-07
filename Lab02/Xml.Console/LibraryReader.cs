@@ -9,19 +9,17 @@ namespace Xml.Console
 {
     public static class LibraryReader
     {
-        // --------- Lab01
-        
-        public static Library.library ReadLibrary1(string path)
+        static bool valid = true; // validation result
+
+        public static Library.library ReadLibrary(string path)
         {
+            if (!Validate(path)) return null;
             var serializer = new XmlSerializer(typeof(Library.library));
             return (Library.library)serializer.Deserialize(new FileStream(path, FileMode.Open, FileAccess.Read));
         }
 
-        // --------- Lab02
-
-        public static IEnumerable<string> ReadLibrary2(string path)
+        public static bool Validate(string path)
         {
-
             XmlReaderSettings settings = new XmlReaderSettings();
             // Validator settings
             settings.ValidationType = ValidationType.Schema;
@@ -41,19 +39,15 @@ namespace Xml.Console
             settings.ValidationEventHandler += ValidationHandler;
 
             XmlReader reader = XmlReader.Create(path, settings);
-
-            var authorSurnames = new List<string>();
-
+            
             // Read method reads next element or attribute from the document
             // It will call ValidationEventHandler if some invalid
             // part occurs
-            while (reader.Read())
-            {
-                if (reader.NodeType == XmlNodeType.Element && reader.Name == "surname")
-                    authorSurnames.Add(reader.ReadElementContentAsString());
-            }
+            while (reader.Read());            
+            if (valid) System.Console.WriteLine("Validation passed");
+            else System.Console.WriteLine("Validation failed"); ;
 
-            return authorSurnames;
+            return valid;
         }
 
         private static void ValidationHandler(Object sender, ValidationEventArgs args)
@@ -62,6 +56,9 @@ namespace Xml.Console
                 System.Console.WriteLine("Warning: {0}", args.Message);
             else
                 System.Console.WriteLine("Error: {0}", args.Message);
+            
+            System.Console.WriteLine("------------------------------------------");
+            valid = false;
         }
     }
 }

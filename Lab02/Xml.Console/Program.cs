@@ -11,8 +11,6 @@ namespace Xml.Console
     {
         static void Main(string[] args)
         {
-            int labNo = 1; // choose which lab task to execute
-
             //---We can create the libraryPath string in multiple ways: 
             
             //---1 
@@ -32,60 +30,50 @@ namespace Xml.Console
             WriteLine($"library path is = {libraryPath}");
 
             // ---------
-            
-            switch (labNo)
-            { 
-            case 1:
-            {         
-                // --------- Lab01
 
-                var library = LibraryReader.ReadLibrary1(libraryPath);
+            var library = LibraryReader.ReadLibrary(libraryPath);
+            if (library == null) return;
+
+            WriteLine($"library.ToString() output: {library.ToString()}");
+
+            //---------- matching key - ref using List<>
+
+            var refs = new List<string>();
+            foreach (var book in library.books)
+                foreach (var author in book.authors)
+                    refs.Add(author.@ref);
             
-                // 1st Method 
-                var authors11 = new List<Library.authorsTypeAuthor>();
-                foreach (var book in library.books)
-                    foreach (var author in book.authors)
-                    {
-                        // directly write to console:
-                        // System.Console.WriteLine($"Author: {string.Join(",", author.names.ToArray())}, {author.surname}"); 
+            WriteLine("---------------------------");
+            WriteLine("\nAuthors in the library (using id-ref matching):");
+            
+            foreach (var r in refs.Distinct())
+                foreach (var author in library.authors)
+                {
+                    if (r == author.id)
+                        WriteLine($"Author with id:{r} is {string.Join(", ", author.names.ToArray())}, {author.surname}");
+                }
+            //----------- matching key - ref using Dictionary<>
+
+            var authors = new Dictionary<string, Library.authorType>();
+            foreach (var author in library.authors)
+                authors.Add(author.id, author);
+            
+            WriteLine("---------------------------");
+            WriteLine("\nAuthors in the library (using dictionary):");
+            
+            foreach (var r in refs.Distinct())
+                WriteLine($"Author with id:{r} is {string.Join(", ", authors[r].names.ToArray())}, {authors[r].surname}");
+
+            WriteLine("---------------------------");
+
+
+            library.PrintLibrary();
+
                     
-                        // or add to a list for future use:
-                        authors11.Add(author);
-                    }
-
-                foreach (var author in authors11)
-                {
-                    WriteLine($"Author: {string.Join(",", author.names.ToArray())}, {author.surname}");
-                }
-            
-                WriteLine("---------------------------");
-
-                // 2nd method (using SelectMany() method)
-                var authors12 = library.books.SelectMany(b => b.authors);
-                foreach (var author in authors12)
-                {
-                    WriteLine($"Author: {string.Join(",", author.names.ToArray())}, {author.surname}");
-                }
-
-                WriteLine("---------------------------");
-            
-                break;
-            } // end case 1
-            case 2:
-
-            {
-                // ---------- Lab02
-
-                var authorSurnames = LibraryReader.ReadLibrary2(libraryPath);
-                foreach (var surname in authorSurnames)
-                {
-                    WriteLine($"Author: {surname}");
-                }
-
-                break;
-                // ---------------
-            } // end case 2
-            } // end switch
+              
         }
+
+
+    
     }
 }

@@ -38,16 +38,14 @@ namespace Xml.Console
             // validation error or warning occurs
             settings.ValidationEventHandler += ValidationHandler;
 
-            XmlReader reader = XmlReader.Create(path, settings);
-            
-            // Read method reads next element or attribute from the document
-            // It will call ValidationEventHandler if some invalid
-            // part occurs
-            while (reader.Read());
+            using (XmlReader reader = XmlReader.Create(path, settings))
+            {
+                // Read method reads next element or attribute from the document
+                // It will call ValidationEventHandler if some invalid
+                // part occurs
+                while (reader.Read()) ;
+            }
 
-            // always dispose of reader to free the resources!
-            reader.Dispose();
-            
             if (valid) System.Console.WriteLine("Validation passed");
             else System.Console.WriteLine("Validation failed"); ;
 

@@ -21,13 +21,15 @@ namespace Library
             sb.AppendLine("Books:\n");
             foreach(var book in books)
             {
-                var bookString = book.ToString();
-                var reader = new StringReader(bookString);
                 string line;
-                var fields = new List<string>();
-                while ((line = reader.ReadLine()) != null)
-                    fields.Add(line);
-                
+                var fields = new List<string>(); 
+                var bookString = book.ToString();
+                using (var reader = new StringReader(bookString))
+                {
+                    while ((line = reader.ReadLine()) != null)
+                        fields.Add(line);
+                }
+
                 sb.AppendLine(String.Format("{0, -15}{1}{2}", "Title", " = ", fields[0]));
                 sb.AppendLine(String.Format("{0, -15}{1}{2}", "Language", " = ", fields[1]));
                 sb.AppendLine(String.Format("{0, -15}{1}{2}", "Year", " = ", fields[2]));
@@ -44,12 +46,14 @@ namespace Library
             sb.AppendLine("Journals:\n");
             foreach (var journal in journals)
             {
-                var journalString = journal.ToString();
-                var reader = new StringReader(journalString);
                 string line;
-                var fields = new List<string>();
-                while ((line = reader.ReadLine()) != null)
-                    fields.Add(line);
+                var fields = new List<string>(); 
+                var journalString = journal.ToString();
+                using (var reader = new StringReader(journalString))
+                {
+                    while ((line = reader.ReadLine()) != null)
+                        fields.Add(line);
+                }
 
                 sb.AppendLine(String.Format("{0, -15}{1}{2}", "Title", " = ", fields[0]));
                 sb.AppendLine(String.Format("{0, -15}{1}{2}", "Issue no", " = ", fields[1]));

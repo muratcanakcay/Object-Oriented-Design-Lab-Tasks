@@ -27,14 +27,15 @@ namespace Xml.Console
             //sb.Append(Directory.GetCurrentDirectory()).Append("\\library.xml");
             //var libraryPath = sb.ToString();
 
-            WriteLine($"library path is = {libraryPath}");
-
             // ---------
 
             var library = LibraryReader.ReadLibrary(libraryPath);
             if (library == null) return;
 
-            WriteLine($"library.ToString() output: {library.ToString()}");
+            WriteLine(library); // calls ToString() method of library class to print library contents
+
+
+            /*
 
             //---------- matching key - ref using List<>
 
@@ -66,11 +67,9 @@ namespace Xml.Console
 
             WriteLine("---------------------------");
 
+            */
 
-            library.PrintLibrary();
 
-                    
-              
         }
 
 

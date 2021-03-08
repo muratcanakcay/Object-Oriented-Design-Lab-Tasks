@@ -43,7 +43,11 @@ namespace Xml.Console
             // Read method reads next element or attribute from the document
             // It will call ValidationEventHandler if some invalid
             // part occurs
-            while (reader.Read());            
+            while (reader.Read());
+
+            // always dispose of reader to free the resources!
+            reader.Dispose();
+            
             if (valid) System.Console.WriteLine("Validation passed");
             else System.Console.WriteLine("Validation failed"); ;
 

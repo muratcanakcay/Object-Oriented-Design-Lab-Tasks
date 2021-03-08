@@ -49,7 +49,7 @@
       <xs:field xpath="@id"/>
     </xs:key>
     <xs:keyref name="authorRef" refer="lib:authorKey">
-      <xs:selector xpath="lib:book/lib:authors/lib:author"/>
+      <xs:selector xpath="lib:books/lib:book/lib:authors/lib:author"/>
       <xs:field xpath="@ref"/>
     </xs:keyref>
     <!-- end of key-ref for authors -->
@@ -61,7 +61,7 @@
       <xs:field xpath="@id"/>
     </xs:key>
     <xs:keyref name="editorRef" refer="lib:editorKey">
-      <xs:selector xpath="lib:journal/lib:editors/lib:editor"/>
+      <xs:selector xpath="lib:journals/lib:journal/lib:editors/lib:editor"/>
       <xs:field xpath="@ref"/>
     </xs:keyref>
     <!-- end of key-ref for editors -->

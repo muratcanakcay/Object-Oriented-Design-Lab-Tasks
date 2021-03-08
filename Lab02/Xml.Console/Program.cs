@@ -34,45 +34,30 @@ namespace Xml.Console
 
             WriteLine(library); // calls ToString() method of library class to print library contents
 
+            WriteLine("---------------------------");
 
-            /*
+            // printing all of the authors that appear in the books in the library:
 
-            //---------- matching key - ref using List<>
-
+            // look up in each book to get the authors' ref's
             var refs = new List<string>();
             foreach (var book in library.books)
                 foreach (var author in book.authors)
                     refs.Add(author.@ref);
             
-            WriteLine("---------------------------");
-            WriteLine("\nAuthors in the library (using id-ref matching):");
-            
-            foreach (var r in refs.Distinct())
-                foreach (var author in library.authors)
-                {
-                    if (r == author.id)
-                        WriteLine($"Author with id:{r} is {string.Join(", ", author.names.ToArray())}, {author.surname}");
-                }
-            //----------- matching key - ref using Dictionary<>
-
+            // parse all of the possible authors to get their id's
             var authors = new Dictionary<string, Library.authorType>();
             foreach (var author in library.authors)
                 authors.Add(author.id, author);
-            
-            WriteLine("---------------------------");
-            WriteLine("\nAuthors in the library (using dictionary):");
-            
+
+            WriteLine("\nAll authors in the library:");
+            foreach (var author in authors)
+                WriteLine($"Author with id:{author.Key} is {author.Value.ToString()}");
+
+            WriteLine("\nAuthors of the books in the library:");
             foreach (var r in refs.Distinct())
-                WriteLine($"Author with id:{r} is {string.Join(", ", authors[r].names.ToArray())}, {authors[r].surname}");
+                WriteLine($"Author with id:{r} is {authors[r]}");
 
             WriteLine("---------------------------");
-
-            */
-
-
         }
-
-
-    
     }
 }

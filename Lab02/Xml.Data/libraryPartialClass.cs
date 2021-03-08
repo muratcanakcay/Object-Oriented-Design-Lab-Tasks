@@ -39,7 +39,6 @@ namespace Library
                 }
 
                 sb.AppendLine();
-
             }
 
             sb.AppendLine("Journals:\n");
@@ -124,6 +123,4 @@ namespace Library
             return string.Join(", ", this.names) + ", " + this.surname;
         }
     }
-
-
 }

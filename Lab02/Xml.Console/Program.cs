@@ -58,6 +58,23 @@ namespace Xml.Console
                 WriteLine($"Author with id:{r} is {authors[r]}");
 
             WriteLine("---------------------------");
+
+
+            // printing the oldest book in the library:
+
+            Library.bookType oldestBook = library.books[0];
+            foreach (var book in library.books)
+            {
+                if (int.Parse(book.year) < int.Parse(oldestBook.year)) oldestBook = book;
+            }
+
+            WriteLine($"The oldest book in the library is:");
+            WriteLine($"Title: {oldestBook.title}");
+            WriteLine($"Year: {oldestBook.year}");
+            WriteLine($"Language: {oldestBook.lang}");
+            WriteLine($"Authors:");
+            foreach (var author in oldestBook.authors)
+                WriteLine($"     {authors[author.@ref]}");
         }
     }
 }

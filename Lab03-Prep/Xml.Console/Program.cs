@@ -35,11 +35,11 @@ namespace Xml.Console
             {
                 var sb = new StringBuilder();
 
-                if (item is Library.goodsFood)
+                if (item is Library.foodType)
                 {
-                    var food = (Library.goodsFood)(item);
+                    var food = (Library.foodType)(item);
                     sb.Append("Food: ");
-                    sb.Append(food.name + ", ");
+                    sb.Append(food.name + ". ");
                     sb.Append("List of additions: ");
                     foreach (var addition in food.addition)
                         sb.Append(additions[addition].name + ", ");
@@ -47,11 +47,11 @@ namespace Xml.Console
                     WriteLine(sb.ToString());
                 }
 
-                if (item is Library.goodsArticle)
+                if (item is Library.articleType)
                 {
-                    var article = (Library.goodsArticle)(item);
+                    var article = (Library.articleType)(item);
                     sb.Append("Article: ");
-                    sb.Append(article.name + ", ");
+                    sb.Append(article.name + ". ");
                     sb.Append("List of additions: ");
                     foreach (var addition in article.addition)
                         sb.Append(additions[addition].name + ", ");
@@ -59,50 +59,6 @@ namespace Xml.Console
                     WriteLine(sb.ToString());
                 }
             }
-            
-            
-            /*
-            
-            var refs = new List<string>();
-            foreach (var book in library.books)
-                foreach (var author in book.authors)
-                    refs.Add(author.@ref);
-
-            // parse all of the possible authors to get their id's
-            var authors = new Dictionary<string, Library.authorType>();
-            foreach (var author in library.authors)
-                authors.Add(author.id, author);
-
-            WriteLine("\nAll authors in the library:");
-            foreach (var author in authors)
-                WriteLine($"Author with id:{author.Key} is {author.Value.ToString()}");
-
-            WriteLine("\nAuthors of the books in the library:");
-            foreach (var r in refs.Distinct())
-                WriteLine($"Author with id:{r} is {authors[r]}");
-
-            WriteLine("---------------------------");
-
-
-            // printing the oldest book in the library:
-
-            Library.bookType oldestBook = library.books[0];
-            foreach (var book in library.books)
-            {
-                if (int.Parse(book.year) < int.Parse(oldestBook.year)) oldestBook = book;
-            }
-
-            WriteLine($"The oldest book in the library is:");
-            WriteLine($"Title: {oldestBook.title}");
-            WriteLine($"Year: {oldestBook.year}");
-            WriteLine($"Language: {oldestBook.lang}");
-            WriteLine($"Authors:");
-            foreach (var author in oldestBook.authors)
-                WriteLine($"     {authors[author.@ref]}");
-
-
-
-            */
         }
     }
 }

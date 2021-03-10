@@ -12,64 +12,22 @@
       <xs:sequence>
         
         <xs:choice maxOccurs="unbounded">
-          <xs:element name="food">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="addition" type="xs:integer" maxOccurs="unbounded"/>
-                <xs:element name="origin" type="xs:string" maxOccurs="1"/>
-              </xs:sequence>
-              <xs:attribute name="name" type="xs:string"/>
-              <xs:attribute name="calories">
-                <xs:simpleType>
-                  <xs:restriction base="xs:decimal">
-                    <xs:minExclusive value="5"/>
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:attribute>
-              <xs:attribute name="code">
-                <xs:simpleType>
-                  <xs:restriction base="xs:token">
-                    <xs:pattern value="[A-Z]{2}-[0-9]*-[a-z]{1}$"/>
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:attribute>
-            </xs:complexType>
+          <xs:element name="food" type="goods:foodType">
             <xs:unique name="uniqueFoodRole">
               <xs:selector xpath="./goods:addition" />
               <xs:field xpath="." />
             </xs:unique>
           </xs:element>
-          <xs:element name="article">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="addition" type="xs:integer" maxOccurs="unbounded">                  
-                </xs:element>
-              </xs:sequence>
-              <xs:attribute name="name" type="xs:string"/>
-              <xs:attribute name="type">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:enumeration value="cleaner"/>
-                    <xs:enumeration value="cosmetic"/>
-                    <xs:enumeration value="tool"/>
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:attribute>
-              <xs:attribute name="code">
-                <xs:simpleType>
-                  <xs:restriction base="xs:token">
-                    <xs:pattern value="[A-Z]{2}-[0-9]*-[a-z]{1}$"/>
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:attribute>
-            </xs:complexType>
+          
+          <xs:element name="article" type="goods:articleType">
             <xs:unique name="uniqueArticleRole">
               <xs:selector xpath="./goods:addition" />
               <xs:field xpath="." />
             </xs:unique>
           </xs:element>
         </xs:choice>
-        <xs:element name="additions" maxOccurs="1">
+        
+        <xs:element name="additions" minOccurs="1" maxOccurs="1">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="addition" maxOccurs="unbounded">
@@ -96,6 +54,7 @@
       <xs:selector xpath="goods:additions/goods:addition"/>
       <xs:field xpath="@id"/>
     </xs:key>
+    
     <xs:keyref name="foodadditionRef" refer="goods:additionKey">
       <xs:selector xpath="goods:food/goods:addition"/>
       <xs:field xpath="."/>
@@ -106,10 +65,56 @@
     </xs:keyref>
     <!-- end of key-ref for additions-->
 
-    
-
   </xs:element>
   <!--End of Root-->
+
+  <xs:simpleType name="codeType">
+    <xs:restriction base="xs:token">
+      <xs:pattern value="[A-Z]{2}-[0-9]*-[a-z]{1}$"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="goodType">
+    <xs:sequence>
+      <xs:element name="addition" type="xs:integer" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="articleType">
+    <xs:complexContent>
+      <xs:extension base="goods:goodType">
+        <xs:attribute name="type">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="cleaner"/>
+              <xs:enumeration value="cosmetic"/>
+              <xs:enumeration value="tool"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="code" type="goods:codeType"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="foodType">
+    <xs:complexContent>
+      <xs:extension base="goods:goodType">
+        <xs:sequence>
+          <xs:element name="origin" type="xs:string" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="calories">
+          <xs:simpleType>
+            <xs:restriction base="xs:decimal">
+              <xs:minExclusive value="5"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="code" type="goods:codeType"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   
 </xs:schema>
 

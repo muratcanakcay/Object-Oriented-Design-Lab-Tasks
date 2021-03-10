@@ -6,7 +6,6 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
 
-
   <!--Root-->
   <xs:element name="goods">
     <xs:complexType>

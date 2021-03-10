@@ -11,46 +11,54 @@ namespace Xml.Console
     {
         static void Main(string[] args)
         {
-            //---We can create the libraryPath string in multiple ways: 
+            string libraryPath;
 
-            //---1 
-            string libraryPath = Directory.GetCurrentDirectory() + "\\food-example.xml";
-
-            //---2
-            //var libraryPath = string.Join("\\", new string[] { Directory.GetCurrentDirectory(), "library.xml" });
-
-            //---3 
-            //var libraryPath = Path.Combine(Directory.GetCurrentDirectory(), "library.xml"); // using system.IO
-
-            //---4
-            //var sb = new StringBuilder(); // using System.Text
-            //sb.Append(Directory.GetCurrentDirectory()).Append("\\library.xml");
-            //var libraryPath = sb.ToString();
-
-            // ---------
+            if (args.Length == 0)
+            {
+                WriteLine("No cmd args");
+                libraryPath = Directory.GetCurrentDirectory() + "\\food-example.xml";
+            }
+            else
+            {
+                WriteLine($"Cmd arg: {args[0]}");
+                libraryPath = Directory.GetCurrentDirectory() + "\\" + args[0];
+            }
 
             var goods = LibraryReader.ReadLibrary(libraryPath);
             if (goods == null) return;
 
-            //WriteLine(library); // calls ToString() method of library class to print library contents
+            var additions = new Dictionary<string, Library.goodsAddition>();
+            foreach (var addition in goods.additions)
+                additions.Add(addition.id, addition);
 
-            WriteLine("---------------------------");
+            foreach (var item in goods.Items)
+            {
+                var sb = new StringBuilder();
 
-            // printing all of the authors that appear in the books in the library:
+                if (item is Library.goodsFood)
+                {
+                    var food = (Library.goodsFood)(item);
+                    sb.Append("Food: ");
+                    sb.Append(food.name + ", ");
+                    sb.Append("List of additions: ");
+                    foreach (var addition in food.addition)
+                        sb.Append(additions[addition].name + ", ");
 
-            // look up in each book to get the authors' ref's
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+                    WriteLine(sb.ToString());
+                }
+
+                if (item is Library.goodsArticle)
+                {
+                    var article = (Library.goodsArticle)(item);
+                    sb.Append("Article: ");
+                    sb.Append(article.name + ", ");
+                    sb.Append("List of additions: ");
+                    foreach (var addition in article.addition)
+                        sb.Append(additions[addition].name + ", ");
+
+                    WriteLine(sb.ToString());
+                }
+            }
             
             
             /*

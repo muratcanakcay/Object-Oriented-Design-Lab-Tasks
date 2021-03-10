@@ -13,7 +13,7 @@ Each food element contains the following attributes (all required):
  - name attribute containing the name of the product (any string),
  - calories attribute containing a number greater than 5 (not necessarily an
    integer) [kilo]calories provided the product,
- - product code in ERP system, in the following format: two uppercase letters,
+ - product code in ERP systemA-, in the following format: two uppercase letters,
    hyphen, sequence of at least 1 digit, hyphen, one lowercase letter (example:
    AB-123-c),
 and zero or more addition elements, each addition element containing an integer

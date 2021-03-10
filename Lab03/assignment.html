@@ -1,0 +1,62 @@
+<h1 id="graded-assignment-xml-10th-march-2021">Graded assignment: XML, 10th March 2021</h1>
+<p>You have 90 minutes to solve the task. The solution must be sent no later than 7:45pm. You can get up to 6 points for the solution.</p>
+<p>You are allowed to use the tutorial from previous lab, your own code, books and resources that are publicly available on the Internet. You cannot use parts of solution of other people. You cannot communicate with other people except for your lab teacher.</p>
+<h2 id="sending-the-solution">Sending the solution</h2>
+<p>You have to send all XML and XSD files created or modified and the whole C# project (that includes: cs files and all project files, .sln and .csproj in particular). Please remove any binary files from the project before sending. Those include bin, obj and .vs directories.</p>
+<p>Please send the solution to your lab teacher via email. Subject: OOD 2021 XML Wed</p>
+<h1 id="the-data">The data</h1>
+<p>The document has to store information about tortoises vs snails racing competition. The competition is described by:</p>
+<ul>
+<li>racing circuits,</li>
+<li>competitors,</li>
+<li>event’s descriptions (joining circuits with particular competitors and dates).</li>
+</ul>
+<p>You are provided with a sample XML file conforming to the requested format.</p>
+<p>The document root element is named formulaT. The element has the following children: participants, track, event. There is only one participants element and it is always the first one. Track and event element come after participants in no particular order. There can be two or more tracks and events and they can be interleaved with each other.</p>
+<p>The structure of child elements is as follows:</p>
+<ul>
+<li>participants – describes all participants of the competition – turtles and snails. It contains zero or more tortoise and snail elements. All tortoise elements must precede snail elements.
+<ul>
+<li><p>tortoise has a single compulsory attribute startNumber that contains a participant’s start number in format a capital T letter and two digits. The value must be unique across all participants (both snails and tortoises) in the document. It has three child elements in exactly that order:</p>
+<ul>
+<li>nick – a nick of the participant – a string</li>
+<li>weight – a decimal number</li>
+<li><p>color – one of the three possible color values:</p>
+<ul>
+<li>green</li>
+<li>dark green</li>
+<li>light green</li>
+</ul></li>
+</ul></li>
+<li><p>snail has a single compulsory attribute startNumber that contains a participant’s start number in format a capital T letter and two digits. The value must be unique across all participants (both snails and tortoises) in the document. It has three child elements in exactly that order:</p>
+<ul>
+<li>nick – a nick of the participant – a string</li>
+<li>weight – a decimal number</li>
+<li>either slow or fast element. (exactly one of those). This element must be empty.</li>
+</ul></li>
+</ul></li>
+<li><p>track contains the three following elements in exactly that order</p>
+<ul>
+<li>id – a positive integer that uniquely identifies a track in the document (it must be unique across the all tracks).</li>
+<li>name – a string</li>
+<li>length – a decimal number</li>
+</ul></li>
+<li><p>event</p>
+<ul>
+<li>name – a string that starts with a capital letter and contains at least two capital letters in total.</li>
+<li>date – a date in format YYYY-MM-DD</li>
+<li>track – element with a single mandatory attribute id, a number. This must be a id of a track defined in the document.</li>
+<li>two or more participant elements. Each participant elements has mandatory id attribute. This attribute must point to a existing participant’s start number. Moreover within a single event participants <em>must be unique</em>.</li>
+</ul></li>
+</ul>
+<h1 id="grading-rules">Grading rules</h1>
+<ul>
+<li>(1 pt) Define XSD that will enforce the structure of the document. No keys and reference enforcement at this point. Modify XML so that elements are connected with XSD definition.</li>
+<li>(0.5 pts) Avoid defining the common part of the types (tortoise, snail) twice.</li>
+<li>(1 pt) Write a program in C#, that will read the XML given as a command line argument and print to stdout all meetings from file in the following format: Event in [name of track] participants: (print nicks, not start numbers, of all participants)</li>
+<li>(0.5 pts) The solution is divided into separate project with class library and separate with console app.</li>
+<li>(0.5 pts) Classes are automatically generated from XSD during compilation process.</li>
+<li>(0.5 pts) If the provided XML does not conform to XSD, the program prints an error message and exits.</li>
+<li>(1 point) Enforce proper references from meetings to other entities.</li>
+<li>(1 point) Enforce unique participants in each event.</li>
+</ul>

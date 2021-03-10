@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<formulaT xmlns="http://example.org/mca/tortoise"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://example.org/mca/tortoise tortoise_s.xsd">
+  
+  <participants>
+    <tortoise startNumber="T23">
+      <nick>Perry</nick>
+      <weight>1.23</weight>
+      <color>light green</color>
+    </tortoise>
+    <tortoise startNumber="T00">
+      <nick>Pinky</nick>
+      <weight>123.00</weight>
+      <color>green</color>
+    </tortoise>
+    <snail startNumber="T93">
+      <nick>Pete</nick>
+      <weight>13</weight>
+      <slow/>
+    </snail>
+    <snail startNumber="T01">
+      <nick>Tricia</nick>
+      <weight>22</weight>
+      <fast/>
+    </snail>
+  </participants>
+  <track>
+    <id>13</id>
+    <name>Yellowstone</name>
+    <length>5.891</length>
+  </track>
+  <event>
+    <name>Grand Prix of Slowness</name>
+    <date>2021-04-02</date>
+    <track id="13" />
+    <participant id="T23"></participant>
+    <participant id="T01"></participant>
+  </event>
+  <event>
+    <name>Superfast Race</name>
+    <date>2021-04-03</date>
+    <track id="13" />
+    <participant id="T00"/>
+    <participant id="T23"></participant>
+    <participant id="T93"></participant>
+  </event>
+  <track>
+    <id>1</id>
+    <name>Słomczyn</name>
+    <length>7</length>
+  </track>
+</formulaT>

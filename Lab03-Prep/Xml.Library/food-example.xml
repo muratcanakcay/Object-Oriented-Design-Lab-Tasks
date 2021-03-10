@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<goods xmlns="http://example.org/mca/food-example"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://example.org/mca/food-example food-example.xsd">
+  <food name="Carrot" calories="25" code="AB-214151-x">
+    <addition>8</addition>
+    <origin>PL</origin>
+  </food>
+  <article type="cosmetic" name="Shampoo" code="QQ-111-a">
+    <addition>1</addition>
+    <addition>2</addition>
+    <addition>8</addition>
+  </article>
+  <food calories="480" name="Chocolate" code="AA-123-a">
+    <addition>5</addition>
+    <addition>2</addition>
+    <addition>9</addition>
+    <origin>EN</origin>
+  </food>
+  <additions>
+    <addition id="8" name="sugar" />
+    <addition id="5" name="emulsifier" code="E476"/>
+    <addition id="2" name="red dye" code="E124"/>
+    <addition id="1" name="aroma"/>
+    <addition id="1" name="salt"/>
+  </additions>
+</goods>

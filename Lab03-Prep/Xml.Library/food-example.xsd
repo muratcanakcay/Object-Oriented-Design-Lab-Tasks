@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="food-example"
+    targetNamespace="http://example.org/mca/food-example"
+    elementFormDefault="qualified"
+    xmlns:goods="http://example.org/mca/food-example"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+
+  <!--Root-->
+  <xs:element name="goods">
+    <xs:complexType>
+      <xs:sequence>
+        
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="food">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="addition" type="xs:integer" maxOccurs="unbounded"/>
+                <xs:element name="origin" type="xs:string" maxOccurs="1"/>
+              </xs:sequence>
+              <xs:attribute name="name" type="xs:string"/>
+              <xs:attribute name="calories">
+                <xs:simpleType>
+                  <xs:restriction base="xs:decimal">
+                    <xs:minExclusive value="5"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:attribute>
+              <xs:attribute name="code">
+                <xs:simpleType>
+                  <xs:restriction base="xs:token">
+                    <xs:pattern value="[A-Z]{2}-[0-9]*-[a-z]{1}$"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:attribute>
+            </xs:complexType>
+            <xs:unique name="uniqueFoodRole">
+              <xs:selector xpath="./goods:addition" />
+              <xs:field xpath="." />
+            </xs:unique>
+          </xs:element>
+          <xs:element name="article">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="addition" type="xs:integer" maxOccurs="unbounded">                  
+                </xs:element>
+              </xs:sequence>
+              <xs:attribute name="name" type="xs:string"/>
+              <xs:attribute name="type">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="cleaner"/>
+                    <xs:enumeration value="cosmetic"/>
+                    <xs:enumeration value="tool"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:attribute>
+              <xs:attribute name="code">
+                <xs:simpleType>
+                  <xs:restriction base="xs:token">
+                    <xs:pattern value="[A-Z]{2}-[0-9]*-[a-z]{1}$"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:attribute>
+            </xs:complexType>
+            <xs:unique name="uniqueArticleRole">
+              <xs:selector xpath="./goods:addition" />
+              <xs:field xpath="." />
+            </xs:unique>
+          </xs:element>
+        </xs:choice>
+        <xs:element name="additions" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="addition" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="id" type="xs:integer" use="required"/>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                  <xs:attribute name="code" use="optional">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:token">
+                        <xs:pattern value="E[0-9]{3}$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element> 
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+
+    <!-- key-ref for additions-->
+    <xs:key name="additionKey">
+      <xs:selector xpath="goods:additions/goods:addition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <xs:keyref name="foodadditionRef" refer="goods:additionKey">
+      <xs:selector xpath="goods:food/goods:addition"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+    <xs:keyref name="articleadditionRef" refer="goods:additionKey">
+      <xs:selector xpath="goods:article/goods:addition"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+    <!-- end of key-ref for additions-->
+
+    
+
+  </xs:element>
+  <!--End of Root-->
+  
+</xs:schema>
+

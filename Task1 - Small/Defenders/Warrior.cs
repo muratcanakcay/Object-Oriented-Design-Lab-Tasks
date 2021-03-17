@@ -17,20 +17,28 @@ namespace Defenders
 
         virtual public int Attack(Giant g)
         {
-            Console.WriteLine($"{this.name} attacks {g.Name}!");
-            return 100;
+            Console.WriteLine($"Warrior {name} attacks giant {g.Name} and hits for {strength} damage!"); 
+            return strength;
         }
 
         virtual public int Attack(Ogre o)
         {
-            return 0;
+            Console.WriteLine($"Warrior {name} attacks ogre {o.Name} and hits for {strength} damage!");
+            return strength;
         }
 
         virtual public int Attack(Rat r)
         {
+            Console.Write($"Warrior {name} attacks rat {r.Name} and ");
+            if (rng.NextDouble() < r.Speed / 100)
+            { 
+                Console.WriteLine($"hits for {strength} damage!");
+                return strength;
+            }
+
+            Console.WriteLine($"misses!");
             return 0;
+            
         }
-
-
     }
 }

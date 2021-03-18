@@ -15,30 +15,45 @@ namespace Defenders
             this.strength = strength;
         }
 
+        //------------------------------------------
+
+        protected virtual int Hit(Enemy e)
+        {
+            Console.WriteLine($"Warrior {name} attacks {e.Name} and hits for {strength} damage!");
+            return strength;
+        }
+
+        protected virtual int Miss(Enemy e)
+        {
+            Console.WriteLine($"Warrior {name} attacks {e.Name} and misses!");
+            return 0;
+        }
+
         virtual public int Attack(Giant g)
         {
-            Console.WriteLine($"Warrior {name} attacks giant {g.Name} and hits for {strength} damage!"); 
-            return strength;
+            return Hit(g);
         }
 
         virtual public int Attack(Ogre o)
         {
-            Console.WriteLine($"Warrior {name} attacks ogre {o.Name} and hits for {strength} damage!");
-            return strength;
+            return Hit(o);
         }
 
         virtual public int Attack(Rat r)
         {
-            Console.Write($"Warrior {name} attacks rat {r.Name} and ");
-            if (rng.NextDouble() < r.Speed / 100)
-            { 
-                Console.WriteLine($"hits for {strength} damage!");
-                return strength;
-            }
+            return AttackRat(r);
+        }
 
-            Console.WriteLine($"misses!");
-            return 0;
-            
+        protected int AttackRat(Rat r)
+        {
+            if (rng.NextDouble() < r.Speed / 100)
+            {
+                return Hit(r);
+            }
+            else
+            {
+                return Miss(r);
+            }
         }
     }
 }

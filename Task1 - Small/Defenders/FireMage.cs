@@ -13,21 +13,17 @@ namespace Defenders
             this.killChance = killChance;
         }
 
-        // all 3 needed???
-
-        override public int Attack(Giant g)
+        override protected int Hit(Enemy e)
         {
-            return 0;
-        }
-
-        override public int Attack(Ogre o)
-        {
-            return 0;
-        }
-
-        override public int Attack(Rat r)
-        {
-            return 0;
+            mana -= spellPower;
+            if (rng.NextDouble() < this.killChance)
+            {
+                Console.WriteLine($"Mage {name} casts a fire spell at {e.Name} and insta-kills!!!!");
+                return 1000000000;
+            }
+            
+            Console.WriteLine($"Mage {name} casts a fire spell at {e.Name} and hits for {spellPower} damage!");
+            return spellPower;            
         }
     }
 }

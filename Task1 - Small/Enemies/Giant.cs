@@ -12,8 +12,7 @@ namespace Enemies
 
         override public void GetAttackedBy(IDefender defender)
         {
-            int damage = defender.Attack(this);
-            GetDamage(damage);
+            GetDamage(defender.Attack(this));
         }
     }
 }

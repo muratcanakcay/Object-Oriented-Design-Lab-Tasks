@@ -36,19 +36,34 @@ namespace Defenders
             mana += manaRegen;
         }
 
+        //------------------------------------------
+
+        virtual protected int Hit(Enemy e)
+        {
+            mana -= spellPower;
+            Console.WriteLine($"Mage {name} casts a spell at {e.Name} and hits for {spellPower} damage!");
+            return spellPower;
+        }
+
+        virtual protected int CastSpell(Enemy e)
+        {
+            if (CanCastSpell()) return Hit(e);
+            else return 0;
+        }
+
         virtual public int Attack(Giant g)
         {
-            return 0;
+            return CastSpell(g);
         }
 
         virtual public int Attack(Ogre o)
         {
-            return 0;
+            return CastSpell(o);
         }
 
         virtual public int Attack(Rat r)
         {
-            return 0;
+            return CastSpell(r);
         }
     }
 }

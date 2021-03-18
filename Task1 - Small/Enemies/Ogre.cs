@@ -14,9 +14,14 @@ namespace Enemies
 
         override public void GetAttackedBy(IDefender defender)
         {
-            int damage = defender.Attack(this);
-            GetDamage(damage);
+            int initDamage = defender.Attack(this);
+            
+            if (initDamage > 0)
+            {
+                int finalDamage = initDamage <= Armor ? 1 : initDamage - Armor;
+                Console.WriteLine($"----Ogre {Name}'s armor absorbs {initDamage - finalDamage} damage.");
+                GetDamage(finalDamage);
+            }
         }
-
     }
 }

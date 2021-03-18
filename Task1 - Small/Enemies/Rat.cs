@@ -16,6 +16,12 @@ namespace Enemies
         {
             int damage = defender.Attack(this);
             GetDamage(damage);
+
+            if (damage > 0 && Alive)
+            {
+                Speed++;
+                Console.WriteLine($"----Rat {Name} panics and starts moving faster!");
+            }
         }
     }
 }

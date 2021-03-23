@@ -22,12 +22,13 @@ namespace Enemies
             HP -= damage;
             if(HP<=0)
             {
-                Console.WriteLine($"{Name} is dead...");
+                Console.WriteLine($"++++{Name} is dead...");
                 Alive = false;
             }
+            else if (damage > 0)
+                Console.WriteLine($"----{Name} has {HP} hp left...");
         }
 
-        abstract public void GetAttackedBy(IDefender defender);
-
+        public abstract void GetAttackedBy(IDefender defender);
     }
 }

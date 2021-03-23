@@ -38,32 +38,37 @@ namespace Defenders
 
         //------------------------------------------
 
-        virtual protected int Hit(Enemy e)
+        protected virtual int Hit(Enemy e)
         {
-            mana -= spellPower;
-            Console.WriteLine($"Mage {name} casts a spell at {e.Name} and hits for {spellPower} damage!");
+            Console.Write($"Mage {name} casts a spell and gives {spellPower} damage to ");
             return spellPower;
         }
 
-        virtual protected int CastSpell(Enemy e)
+        protected virtual int CastSpell(Enemy e)
         {
             if (CanCastSpell()) return Hit(e);
             else return 0;
         }
 
-        virtual public int Attack(Giant g)
+        public virtual int Attack(Giant g)
         {
-            return CastSpell(g);
+            int damage = CastSpell(g);
+            if (damage > 0) Console.WriteLine($"Giant {g.Name}.");
+            return damage;
         }
 
-        virtual public int Attack(Ogre o)
+        public virtual int Attack(Ogre o)
         {
-            return CastSpell(o);
+            int damage = CastSpell(o);
+            if (damage > 0) Console.WriteLine($"Ogre {o.Name}.");
+            return damage;
         }
 
-        virtual public int Attack(Rat r)
+        public virtual int Attack(Rat r)
         {
-            return CastSpell(r);
+            int damage = CastSpell(r);
+            if (damage > 0) Console.WriteLine($"Rat {r.Name}.");
+            return damage;
         }
     }
 }

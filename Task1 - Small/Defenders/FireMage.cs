@@ -13,16 +13,18 @@ namespace Defenders
             this.killChance = killChance;
         }
 
-        override protected int Hit(Enemy e)
+        // uses all methods from base class Mage
+        // overrides Hit() to give a chance for instant kill
+        
+        protected override int Hit(Enemy e)
         {
-            mana -= spellPower;
-            if (rng.NextDouble() < this.killChance)
+            if (rng.NextDouble() < this.killChance) // insta-kill chance
             {
-                Console.WriteLine($"Mage {name} casts a fire spell at {e.Name} and insta-kills!!!!");
+                Console.Write($"Fire Mage {name} casts a fire spell and insta-kills ");
                 return 1000000000;
             }
             
-            Console.WriteLine($"Mage {name} casts a fire spell at {e.Name} and hits for {spellPower} damage!");
+            Console.Write($"Fire Mage {name} casts a fire spell and gives {spellPower} damage to ");
             return spellPower;            
         }
     }

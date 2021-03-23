@@ -19,40 +19,50 @@ namespace Defenders
 
         protected virtual int Hit(Enemy e)
         {
-            Console.WriteLine($"Warrior {name} attacks {e.Name} and hits for {strength} damage!");
+            Console.Write($"Warrior {name} attacks and gives {strength} damage to ");
             return strength;
         }
 
         protected virtual int Miss(Enemy e)
         {
-            Console.WriteLine($"Warrior {name} attacks {e.Name} and misses!");
+            Console.Write($"Warrior {name} attacks but misses ");
             return 0;
         }
 
-        virtual public int Attack(Giant g)
+        public virtual int Attack(Giant g)
         {
-            return Hit(g);
+            int damage = Hit(g);
+            
+            // in fact the type could be passed to Hit() as an argument like Hit(g, "Giant") to make it simpler
+            // then Hit() would print the following line intead of repeating it in each Attack() method
+            // but I'm not sure it it's allowed so I'm leaving it as it is 
+            Console.WriteLine($"Giant {g.Name}.");
+            return damage;
         }
 
-        virtual public int Attack(Ogre o)
+        public virtual int Attack(Ogre o)
         {
-            return Hit(o);
+            int damage = Hit(o);
+            Console.WriteLine($"Ogre {o.Name}.");
+            return damage;
         }
 
-        virtual public int Attack(Rat r)
+        public virtual int Attack(Rat r)
         {
-            return AttackRat(r);
+            int damage = AttackRat(r);
+            Console.WriteLine($"Rat {r.Name}.");
+            return damage;
         }
 
         protected int AttackRat(Rat r)
         {
-            if (rng.NextDouble() < r.Speed / 100)
+            if (rng.NextDouble() < r.Speed / 100) // miss chance
             {
-                return Hit(r);
+                return Miss(r);
             }
             else
             {
-                return Miss(r);
+                return Hit(r);
             }
         }
     }

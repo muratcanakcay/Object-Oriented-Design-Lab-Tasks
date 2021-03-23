@@ -12,7 +12,9 @@ namespace Enemies
             Speed = speed;
         }
 
-        override public void GetAttackedBy(IDefender defender)
+        //-------------------------
+
+        public override void GetAttackedBy(IDefender defender)
         {
             int damage = defender.Attack(this);
             GetDamage(damage);

@@ -12,7 +12,9 @@ namespace Enemies
             Armor = armor;
         }
 
-        override public void GetAttackedBy(IDefender defender)
+        //-------------------------
+
+        public override void GetAttackedBy(IDefender defender)
         {
             int initDamage = defender.Attack(this);
             

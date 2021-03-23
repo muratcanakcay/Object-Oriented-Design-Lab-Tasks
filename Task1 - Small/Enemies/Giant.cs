@@ -10,7 +10,9 @@ namespace Enemies
         {
         }
 
-        override public void GetAttackedBy(IDefender defender)
+        //-------------------------
+
+        public override void GetAttackedBy(IDefender defender)
         {
             GetDamage(defender.Attack(this));
         }

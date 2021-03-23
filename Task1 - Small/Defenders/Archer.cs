@@ -14,60 +14,78 @@ namespace Defenders
 
         //------------------------------------------
 
+        protected bool CanShoot()
+        {
+            if (arrows >= 1)
+            {
+                arrows--;
+                return true;
+            }
+
+            Console.WriteLine($"Archer {name} does not have any arrows left!");
+            return false;
+        }
+
         protected override int Hit(Enemy e)
         {
-            Console.WriteLine($"Archer {name} shoots an arrow at {e.Name} and hits for {strength} damage!");
+            Console.Write($"Archer {name} shoots an arrow and gives {strength} damage to ");
             return strength;
         }
 
         protected override int Miss(Enemy e)
         {
-            Console.WriteLine($"Archer {name} shoots an arrow at {e.Name} and misses!");
+            Console.Write($"Archer {name} shoots an arrow but misses ");
             return 0;
         }
 
-        protected virtual int NoArrows(Enemy e)
+        // generic ShootArrow() method can be used for new enemies that can be added in the future
+        // which the archer will attack "normally"  
+        protected virtual int ShootArrow(Enemy e)
         {
-            Console.WriteLine($"Archer {name} cannot shoot an arrow at {e.Name} because he has no arrows left!");
-            return 0;
-
-        }
-        virtual protected int ShootArrow(Enemy e)
-        {
-            if (arrows > 0)
+            if (CanShoot())
             {
-                arrows--; 
                 return Hit(e);
             }
-            else return NoArrows(e);
+            else return 0;
         }
         
-        // can't shoot if only 1 arrow left??
-        override public int Attack(Giant g)
+        public override int Attack(Ogre o)
+        {
+            int damage = ShootArrow(o);
+            if (damage > 0) Console.WriteLine($"Ogre {o.Name}.");
+            return damage; 
+        }
+
+        // archer CAN shoot at a giant if he has only 1 arrow left!
+        public override int Attack(Giant g)
         {
             int damage = 0;
-
+            
             for (int i = 0; i < 2; i++)
             {
-                damage += ShootArrow(g);
+                if (CanShoot())
+                {
+                    damage += Hit(g);
+                    Console.WriteLine($"Giant {g.Name}.");
+                }
             }
-       
+
             return damage;
         }
 
-        override public int Attack(Ogre o)
+        // archer can also miss a rat since he's a warrior subclass
+        // uses AttackRat() method of base Warrior class
+        public override int Attack(Rat r) 
         {
-            return ShootArrow(o); 
-        }
+            int damage = 0;
 
-        override public int Attack(Rat r)
-        {
-            if (arrows > 0)
+            if (CanShoot())
             {
-                arrows--;
-                return AttackRat(r); // can archer can miss a rat because he's a warrior subclass?
+                damage = AttackRat(r);
+                Console.WriteLine($"Rat {r.Name}.");
+                return damage;
             }
-            else return NoArrows(r);
+            else return 0;
         }
     }
 }

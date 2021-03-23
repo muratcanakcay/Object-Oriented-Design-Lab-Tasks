@@ -55,7 +55,7 @@ namespace lab4
 
 
             if (enemy.Alive)
-                Console.WriteLine($"{enemy.Name} is alive!");
+                Console.WriteLine($"++++{enemy.Name} is alive!");
 
             Console.WriteLine(string.Empty);
         }

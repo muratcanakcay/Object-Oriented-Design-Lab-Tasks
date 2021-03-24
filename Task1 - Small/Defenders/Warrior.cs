@@ -35,32 +35,24 @@ namespace Defenders
 
         public virtual int Attack(Giant g)
         {
-            int damage = Hit(g, "Giant");            
-            return damage;
+            return Hit(g, "Giant");            
         }
 
         public virtual int Attack(Ogre o)
         {
-            int damage = Hit(o, "Ogre");
-            return damage;
+            return Hit(o, "Ogre");
         }
 
         public virtual int Attack(Rat r)
         {
-            int damage = AttackRat(r);
-            return damage;
+            return AttackRat(r);
         }
 
         protected int AttackRat(Rat r)
         {
-            if (rng.NextDouble() < r.Speed / 100) // miss chance
-            {
-                return Miss(r, "Rat");
-            }
-            else
-            {
-                return Hit(r, "Rat");
-            }
+            // miss chance
+            if (rng.NextDouble() < r.Speed / 100) return Miss(r, "Rat");
+            else return Hit(r, "Rat");
         }
     }
 }

@@ -42,10 +42,7 @@ namespace Defenders
         // which the archer will attack "normally"  
         protected virtual int ShootArrow(Enemy e, string type)
         {
-            if (CanShoot())
-            {
-                return Hit(e, type);
-            }
+            if (CanShoot()) return Hit(e, type);
             else return 0;
         }
         
@@ -60,12 +57,7 @@ namespace Defenders
             int damage = 0;
             
             for (int i = 0; i < 2; i++)
-            {
-                if (CanShoot())
-                {
-                    damage += Hit(g, "Giant");
-                }
-            }
+                if (CanShoot()) damage += Hit(g, "Giant");
 
             return damage;
         }
@@ -74,13 +66,7 @@ namespace Defenders
         // uses AttackRat() method of base Warrior class
         public override int Attack(Rat r) 
         {
-            int damage = 0;
-
-            if (CanShoot())
-            {
-                damage = AttackRat(r);
-                return damage;
-            }
+            if (CanShoot()) return AttackRat(r);
             else return 0;
         }
     }

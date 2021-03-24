@@ -26,34 +26,32 @@ namespace Defenders
             return false;
         }
 
-        protected override int Hit(Enemy e)
+        protected override int Hit(Enemy e, string type)
         {
-            Console.Write($"Archer {name} shoots an arrow and gives {strength} damage to ");
+            Console.WriteLine($"Archer {name} shoots an arrow and gives {strength} damage to {type} {e.Name}.");
             return strength;
         }
 
-        protected override int Miss(Enemy e)
+        protected override int Miss(Enemy e, string type)
         {
-            Console.Write($"Archer {name} shoots an arrow but misses ");
+            Console.WriteLine($"Archer {name} shoots an arrow but misses {type} {e.Name}.");
             return 0;
         }
 
         // generic ShootArrow() method can be used for new enemies that can be added in the future
         // which the archer will attack "normally"  
-        protected virtual int ShootArrow(Enemy e)
+        protected virtual int ShootArrow(Enemy e, string type)
         {
             if (CanShoot())
             {
-                return Hit(e);
+                return Hit(e, type);
             }
             else return 0;
         }
         
         public override int Attack(Ogre o)
         {
-            int damage = ShootArrow(o);
-            if (damage > 0) Console.WriteLine($"Ogre {o.Name}.");
-            return damage; 
+            return ShootArrow(o, "Ogre"); ; 
         }
 
         // archer CAN shoot at a giant if he has only 1 arrow left!
@@ -65,8 +63,7 @@ namespace Defenders
             {
                 if (CanShoot())
                 {
-                    damage += Hit(g);
-                    Console.WriteLine($"Giant {g.Name}.");
+                    damage += Hit(g, "Giant");
                 }
             }
 
@@ -82,7 +79,6 @@ namespace Defenders
             if (CanShoot())
             {
                 damage = AttackRat(r);
-                Console.WriteLine($"Rat {r.Name}.");
                 return damage;
             }
             else return 0;

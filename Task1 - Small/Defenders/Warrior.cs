@@ -17,40 +17,37 @@ namespace Defenders
 
         //------------------------------------------
 
-        protected virtual int Hit(Enemy e)
+        // this is the simpler version which I mentioned in the version in master branch.
+        // since I'm defining the "type" argument from inside the visitor methods I guess it should 
+        // not be a problem. 
+        
+        protected virtual int Hit(Enemy e, string type)
         {
-            Console.Write($"Warrior {name} attacks and gives {strength} damage to ");
+            Console.WriteLine($"Warrior {name} attacks and gives {strength} damage to {type} {e.Name}.");
             return strength;
         }
 
-        protected virtual int Miss(Enemy e)
+        protected virtual int Miss(Enemy e, string type)
         {
-            Console.Write($"Warrior {name} attacks but misses ");
+            Console.WriteLine($"Warrior {name} attacks but misses {type} {e.Name}");
             return 0;
         }
 
         public virtual int Attack(Giant g)
         {
-            int damage = Hit(g);
-            
-            // in fact the type could be passed to Hit() as an argument like Hit(g, "Giant") to make it simpler
-            // then Hit() would print the following line intead of repeating it in each Attack() method
-            // but I'm not sure it it's allowed so I'm leaving it as it is 
-            Console.WriteLine($"Giant {g.Name}.");
+            int damage = Hit(g, "Giant");            
             return damage;
         }
 
         public virtual int Attack(Ogre o)
         {
-            int damage = Hit(o);
-            Console.WriteLine($"Ogre {o.Name}.");
+            int damage = Hit(o, "Ogre");
             return damage;
         }
 
         public virtual int Attack(Rat r)
         {
             int damage = AttackRat(r);
-            Console.WriteLine($"Rat {r.Name}.");
             return damage;
         }
 
@@ -58,11 +55,11 @@ namespace Defenders
         {
             if (rng.NextDouble() < r.Speed / 100) // miss chance
             {
-                return Miss(r);
+                return Miss(r, "Rat");
             }
             else
             {
-                return Hit(r);
+                return Hit(r, "Rat");
             }
         }
     }

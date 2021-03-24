@@ -24,7 +24,7 @@ namespace Defenders
                 return 1000000000;
             }
             
-            Console.Write($"Fire Mage {name} casts a fire spell and gives {spellPower} damage to {type} {e.Name}");
+            Console.WriteLine($"Fire Mage {name} casts a fire spell and gives {spellPower} damage to {type} {e.Name}");
             return spellPower;            
         }
     }

@@ -56,8 +56,11 @@ namespace Defenders
         {
             int damage = 0;
             
-            for (int i = 0; i < 2; i++)
+            if (CanShoot())
+            {
+                damage += Hit(g, "Giant");
                 if (CanShoot()) damage += Hit(g, "Giant");
+            }
 
             return damage;
         }

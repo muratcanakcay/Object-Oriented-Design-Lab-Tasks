@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Task2
 {
-    interface ITransformation : IFileSystemNode
+    public interface ITransformation : IFileSystemNode
     {
-
+        // will delete the interface if not used 
     }
 }

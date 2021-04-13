@@ -4,33 +4,29 @@ using System.Text;
 
 namespace Task2
 {
-    public class Transformation1 : ITransformation
+    public class Transformation2 : ITransformation
     {
+        private readonly System.Text.RegularExpressions.Regex rHyphens = new System.Text.RegularExpressions.Regex(@"-");
         public IFileSystemNode Node;
 
-        public Transformation1(IFileSystemNode node)
+        public Transformation2(IFileSystemNode node)
         {
             this.Node = node;
         }
 
         public virtual string GetPrintableName()
         {
-            var sb = new StringBuilder();
-            sb.Append("|");
-            
-            var n = Node;
-            while (n.GetParent() != null)
-            {
-                sb.Append("-");
-                n = n.GetParent();
-            }
-            
-            return (sb + Node.GetPrintableName());
+            return Node.GetPrintableName();
         }
 
         public virtual string GetPrintableContent()
         {
-            return Node.GetPrintableContent();
+            if (!Node.IsDir())
+            {
+                string newContent = RemoveHyphens(Node.GetPrintableContent());
+                return newContent;
+            } 
+            else return Node.GetPrintableContent();
         }
 
         public IFileSystemNode GetParent()
@@ -47,5 +43,11 @@ namespace Task2
         {
             return GetPrintableName() + ", " + GetPrintableContent();
         }
+
+        private string RemoveHyphens(string input) { return rHyphens.Replace(input, ""); }
     }
 }
+
+
+
+

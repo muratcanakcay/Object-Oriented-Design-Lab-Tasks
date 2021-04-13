@@ -7,44 +7,8 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            var root2 = new DummyDirectory("root2");
-            var d1 = new DummyDirectory("dir1", root2);
-            var d2 = new DummyDirectory("dir2", root2);
-            var f1 = new DummyFile("f1", "f1content", root2);
-            var f2 = new DummyFile("f2", "f2content", d1);
-            var d3 = new DummyDirectory("dir3", d1);
-            var f3 = new DummyFile("f3", "f3content", d2);
-            var f4 = new DummyFile("f4", "f4content", d2);
-            var f5 = new DummyFile("f5", "f5content", d3);
-            var f6 = new DummyFile("f6", "f6content", d3);
-
-            BfsIteratorFactory methodbfs = new BfsIteratorFactory();
-            IIterator itbfs = root2.GetIteratorFromFactory(methodbfs);
-            IFileSystemNode n_bfs = itbfs.Next();
-            
-            while (n_bfs != null)
-            {
-                n_bfs = new Transformation1(n_bfs);
-                Console.WriteLine(n_bfs);
-                n_bfs = itbfs.Next();
-            }
-
-            Console.WriteLine("-------------------");
-
-            DfsIteratorFactory methoddfs = new DfsIteratorFactory();
-            IIterator itdfs = root2.GetIteratorFromFactory(methoddfs);
-
-            IFileSystemNode n_dfs = itdfs.Next();
-            while (n_dfs != null)
-            {
-                n_dfs = new Transformation1(n_dfs);
-                Console.WriteLine(n_dfs);
-                n_dfs = itdfs.Next();
-            }
-
-
             //------------------------------------
-
+            
             var root = new DummyDirectory("root");
 
             var csProjects = new DummyDirectory("CSharpProjects", root);
@@ -71,19 +35,8 @@ namespace Task2
             var dir4 = new DummyDirectory("dangerous-zone", dir3);
             new DummyFile("cats.txt.cipher", "#9U9w9W---9-#-B-9G9---A-#-u-H-xuH9", dir4);
 
-            Console.WriteLine("--------BFS--------");
-
-            
-            var it = root.GetIteratorFromFactory(methodbfs);
-
-            IFileSystemNode node = it.Next();
-            while (node != null)
-            {
-                node = new Transformation1(node);
-                Console.WriteLine(node.GetPrintableName());
-                node = it.Next();
-            }
-
+            //------------------------------------
+            //
             // 1. Iterate over the dummy filesystem (strating from root) in BFS order
             // For each node please print its name and contents if it's available
             // 
@@ -92,20 +45,24 @@ namespace Task2
             // {
             //     Console.WriteLine(printableContent);
             // }
-            Console.WriteLine("-----------------");
-            Console.WriteLine("--------DFS--------");
+            //
 
+            Console.WriteLine("--------BFS--------");
 
-            it = root.GetIteratorFromFactory(methoddfs);
+            BfsIteratorFactory methodBfs = new BfsIteratorFactory(); 
+            var it = root.GetIteratorFromFactory(methodBfs);
 
-            node = it.Next();
+            IFileSystemNode node = it.Next();
             while (node != null)
             {
-                node = new Transformation1(node); 
-                Console.WriteLine(node.GetPrintableName());
+                node = new Transformation2(new Transformation1(node));
+                Console.WriteLine(node);
                 node = it.Next();
             }
 
+            Console.WriteLine("-----------------");
+
+            //-----------------------------------------------
             // 2. Iterate over the dummy filesystem (strating from root) in DFS order
             // For each node please print its name and contents if it's available
             // 
@@ -114,6 +71,22 @@ namespace Task2
             // {
             //     Console.WriteLine(printableContent);
             // }
+            
+            Console.WriteLine("--------DFS--------");
+
+            DfsIteratorFactory methodDfs = new DfsIteratorFactory(); 
+            it = root.GetIteratorFromFactory(methodDfs);
+
+            node = it.Next();
+            while (node != null)
+            {
+                node = new Transformation2(new Transformation1(node));
+                Console.WriteLine(node);
+                node = it.Next();
+            }
+
+            Console.WriteLine("-------------------");
+
             // Make sure that:
             // 1. Before each name print '|' and N times '-', where N is the depth of the file in the filesystem
             // (number of parents until null is reached)
@@ -123,8 +96,6 @@ namespace Task2
             // 4. If node's name ends with ".cipher", in addition to all previous transformations, apply two more:
             //      - Reverse its content (character-wise, e.g. "asd" becomes "dsa")
             //      - Subtract 25 from each character in its content (cast char to int), e.g. 'z' - 25 = 'a'
-            Console.WriteLine("-------------------");
-            
         }
     }
 }

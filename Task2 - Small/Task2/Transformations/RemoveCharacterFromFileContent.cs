@@ -1,10 +1,10 @@
 ﻿namespace Task2
 {
-    public class RemoveCharacterFromContent : Transformation
+    public class RemoveCharacterFromFileContent : Transformation
     {
         private readonly char _c;
 
-        public RemoveCharacterFromContent(char c, IFileSystemNode node) : base(node)
+        public RemoveCharacterFromFileContent(char c, IFileSystemNode node) : base(node)
         {
             this._c = c;
         }

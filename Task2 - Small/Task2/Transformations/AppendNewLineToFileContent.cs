@@ -6,9 +6,9 @@
 
         public override string GetPrintableContent()
         {
-            if (!Node.IsDir())
+            if (!Node.IsDir() && !Node.GetPrintableName().EndsWith(".cipher"))
             {
-                return "\n" + Node.GetPrintableContent();
+                return Node.GetPrintableContent() + "\n";
             }
             else return Node.GetPrintableContent();
         }

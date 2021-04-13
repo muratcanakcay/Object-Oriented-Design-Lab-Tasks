@@ -2,11 +2,11 @@
 
 namespace Task2
 {
-    public class DecipherContentUsingKey : Transformation
+    public class DecipherFileContentUsingKey : Transformation
     {
         private readonly int _key;
 
-        public DecipherContentUsingKey(int key, IFileSystemNode node) : base(node)
+        public DecipherFileContentUsingKey(int key, IFileSystemNode node) : base(node)
         {
             this._key = key;
         }

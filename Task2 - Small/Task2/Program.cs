@@ -58,12 +58,19 @@ namespace Task2
             while (currentNode != null)
             {
                 // apply transformations
-                IFileSystemNode transformedNode = new RemoveCharacterFromContent('-', new AddHyphens(currentNode));
-                if (transformedNode.GetPrintableName().EndsWith(".cipher")) transformedNode = new DecipherContentUsingKey(25, new ReverseContent(transformedNode));
-                transformedNode = new AppendNewLineToFileContent(transformedNode);
+                IFileSystemNode transformedNode =
+                    new DecipherFileContentUsingKey(25, 
+                    new ReverseFileContentIfCipherFile(
+                    new AppendNewLineToFileContent(
+                    new RemoveCharacterFromFileContent('-', 
+                    new AddHyphensBeforeFileName(currentNode)))));
 
                 // print transformed node
-                Console.WriteLine(transformedNode);
+                Console.WriteLine(transformedNode.GetPrintableName());
+                if (transformedNode.GetPrintableContent() != null)
+                {
+                    Console.WriteLine(transformedNode.GetPrintableContent());
+                }
 
                 // move to next iteration
                 currentNode = bfsIterator.Next();
@@ -98,12 +105,19 @@ namespace Task2
             while (currentNode != null)
             {
                 // apply transformations
-                IFileSystemNode transformedNode = new RemoveCharacterFromContent('-', new AddHyphens(currentNode));
-                if (transformedNode.GetPrintableName().EndsWith(".cipher")) transformedNode = new DecipherContentUsingKey(25, new ReverseContent(transformedNode));
-                transformedNode = new AppendNewLineToFileContent(transformedNode);
-                
+                IFileSystemNode transformedNode =
+                    new DecipherFileContentUsingKey(25,
+                    new ReverseFileContentIfCipherFile(
+                    new AppendNewLineToFileContent(
+                    new RemoveCharacterFromFileContent('-',
+                    new AddHyphensBeforeFileName(currentNode)))));
+
                 // print transformed node
-                Console.WriteLine(transformedNode);
+                Console.WriteLine(transformedNode.GetPrintableName());
+                if (transformedNode.GetPrintableContent() != null)
+                {
+                    Console.WriteLine(transformedNode.GetPrintableContent());
+                }
 
                 // move to next iteration
                 currentNode = dfsIterator.Next();

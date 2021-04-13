@@ -28,10 +28,5 @@
         {
             return Node.IsDir();
         }
-
-        public override string ToString()
-        {
-            return GetPrintableName() + " " + GetPrintableContent();
-        }
     }
 }

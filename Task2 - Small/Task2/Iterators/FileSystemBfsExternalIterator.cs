@@ -2,12 +2,11 @@
 
 namespace Task2
 {
-    public class FileSystemBfsExternalIterator : IIterator
+    public class FileSystemBfsExternalIterator : IFileSystemIterator
     {
         
         private DummyNode currentNode;
         private Queue<DummyNode> queue = new Queue<DummyNode>();
-
 
         public FileSystemBfsExternalIterator(DummyNode node)
         { 
@@ -15,6 +14,7 @@ namespace Task2
             queue.Enqueue(node);
         }
 
+        // returns current node and moves iterator to the next node
         public DummyNode Next()
         {
             if (queue.Count == 0) return null;

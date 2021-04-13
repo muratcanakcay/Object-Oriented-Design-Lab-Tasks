@@ -2,13 +2,13 @@
 
 namespace Task2
 {
-    public class ReverseContent : Transformation
+    public class ReverseFileContentIfCipherFile : Transformation
     {
-        public ReverseContent(IFileSystemNode node) : base(node) {}
+        public ReverseFileContentIfCipherFile(IFileSystemNode node) : base(node) {}
 
         public override string GetPrintableContent()
         {
-            if (!Node.IsDir())
+            if (!Node.IsDir() && Node.GetPrintableName().EndsWith(".cipher"))
             {
                 string newContent = Reverse(Node.GetPrintableContent());
                 return newContent;

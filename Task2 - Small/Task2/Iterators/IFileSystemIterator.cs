@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Task2
+﻿namespace Task2
 {
-    public interface IFilesystemIterator
+    public interface IFileSystemIterator // common interface for filesystem iterators
     {
+        // returns current node and moves iterator to the next node
         public DummyNode Next();
     }
 }

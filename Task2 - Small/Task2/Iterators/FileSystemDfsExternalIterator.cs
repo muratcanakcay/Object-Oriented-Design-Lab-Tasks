@@ -2,7 +2,7 @@
 
 namespace Task2
 {
-    public class FileSystemDfsExternalIterator : IIterator
+    public class FileSystemDfsExternalIterator : IFileSystemIterator
     {
         private DummyNode _currentNode;
         private readonly Stack<DummyNode> _mainStack = new Stack<DummyNode>();
@@ -14,6 +14,7 @@ namespace Task2
             _mainStack.Push(node);
         }
 
+        // returns current node and moves iterator to the next node
         public DummyNode Next()
         {
             if (_mainStack.Count == 0) return null; 
@@ -25,7 +26,7 @@ namespace Task2
             // being added to the stack in order to start listing from 
             // the left branch of the tree.
             
-            while (n != null)
+            while (n != null)          
             {
                 _helperStack.Push(n);
                 n = n.Next;

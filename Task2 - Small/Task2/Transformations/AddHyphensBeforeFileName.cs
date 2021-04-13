@@ -2,9 +2,9 @@
 
 namespace Task2
 {
-    public class AddHyphens : Transformation
+    public class AddHyphensBeforeFileName : Transformation
     {
-        public AddHyphens(IFileSystemNode node) : base(node) {}
+        public AddHyphensBeforeFileName(IFileSystemNode node) : base(node) {}
 
         public override string GetPrintableName()
         {

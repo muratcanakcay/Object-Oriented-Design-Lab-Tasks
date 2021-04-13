@@ -53,14 +53,9 @@ namespace Task2
         // ----------------------------------------------------
 
         // gets a FileSystem iterator for itself, from the factory that produces iterators of a certain type 
-        public IIterator GetIteratorFromFactory(IteratorFactory factory) 
+        public IFileSystemIterator GetIteratorFromFactory(IteratorFactory factory) 
         {
             return factory.GetFileSystemIterator(this);
-        }
-
-        public override string ToString()
-        {
-            return GetPrintableName() + " " + GetPrintableContent();
         }
     }
 }

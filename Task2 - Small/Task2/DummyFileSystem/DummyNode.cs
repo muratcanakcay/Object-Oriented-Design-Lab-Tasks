@@ -51,13 +51,13 @@ namespace Task2
             return isDir;
         }
 
-        
+
         // ----------------------------------------------------
 
-
-        public IFilesystemIterator GetIteratorFromFactory(FileSystemIteratorFactory factory)
+        // gets an iterator for file system type collection, from the factory of given type iterations
+        public IIterator GetIteratorFromFactory(IteratorFactory factory) 
         {
-            return factory.GetIterator(this);
+            return factory.GetFileSystemIterator(this);
         }
     }
 }

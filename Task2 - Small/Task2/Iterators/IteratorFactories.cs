@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Task2
+﻿namespace Task2
 {
 
-    public abstract class FileSystemIteratorFactory
+    public abstract class IteratorFactory // abstract class for different iteration types
     {
-        public abstract IFilesystemIterator GetIterator(DummyNode node);
+        public abstract IIterator GetFileSystemIterator(DummyNode node);
     }
     
-    public class FileSystemBfsIteratorFactory : FileSystemIteratorFactory
+    public class BfsIteratorFactory : IteratorFactory // holds bfs iterators for different collection types
     {
-        public override IFilesystemIterator GetIterator(DummyNode node)
+        public override IIterator GetFileSystemIterator(DummyNode node)
         {
             return new FileSystemBfsExternalIterator(node);
         }
     }
 
-    public class FileSystemDfsIteratorFactory : FileSystemIteratorFactory
+    public class DfsIteratorFactory : IteratorFactory // holds dfs iterators for different collection types
     {
-        public override IFilesystemIterator GetIterator(DummyNode node)
+        public override IIterator GetFileSystemIterator(DummyNode node)
         {
             return new FileSystemDfsExternalIterator(node);
         }

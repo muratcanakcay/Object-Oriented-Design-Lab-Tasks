@@ -18,7 +18,7 @@ namespace Task2
             var f5 = new DummyFile("f5", "f5", d3);
             var f6 = new DummyFile("f6", "f6", d3);
 
-            var methodbfs = new FileSystemBfsIteratorFactory();
+            var methodbfs = new BfsIteratorFactory();
             var itbfs = root2.GetIteratorFromFactory(methodbfs);
 
             var n_bfs = itbfs.Next();
@@ -30,7 +30,7 @@ namespace Task2
 
             Console.WriteLine("-------------------");
 
-            var methoddfs = new FileSystemDfsIteratorFactory();
+            var methoddfs = new DfsIteratorFactory();
             var itdfs = root2.GetIteratorFromFactory(methoddfs);
 
             var n_dfs = itdfs.Next();

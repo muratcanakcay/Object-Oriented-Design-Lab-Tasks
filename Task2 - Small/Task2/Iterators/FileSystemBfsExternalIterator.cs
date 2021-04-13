@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System;
+﻿using System.Collections.Generic;
 
 namespace Task2
 {
-    public class FileSystemBfsExternalIterator : IFilesystemIterator
+    public class FileSystemBfsExternalIterator : IIterator
     {
         
         private DummyNode currentNode;

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System;
-using System.ComponentModel.Design;
+﻿using System.Collections.Generic;
 
 namespace Task2
 {
-    public class FileSystemDfsExternalIterator : IFilesystemIterator
+    public class FileSystemDfsExternalIterator : IIterator
     {
 
         private DummyNode currentNode;
@@ -33,7 +29,7 @@ namespace Task2
                 n = n.Next;
             }
             
-            while (helperStack.TryPop(out n))
+            while (helperStack.TryPop(out n)) 
             {
                 mainStack.Push(n);
             }

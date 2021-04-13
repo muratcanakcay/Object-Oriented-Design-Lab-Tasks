@@ -9,7 +9,6 @@ namespace Task2
         private Stack<DummyNode> mainStack = new Stack<DummyNode>();
         private Stack<DummyNode> helperStack = new Stack<DummyNode>();
 
-
         public FileSystemDfsExternalIterator(DummyNode node)
         {
             this.currentNode = node;

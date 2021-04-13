@@ -41,12 +41,6 @@ namespace Task2
 
         public abstract string GetPrintableContent();
 
-        // maybe will need deleting  if unused!
-        public override string ToString()
-        {
-            return GetPrintableName() + ", " + GetPrintableContent();
-        }
-
         public IFileSystemNode GetParent()
         {
             return Parent;
@@ -57,13 +51,17 @@ namespace Task2
             return isDir;
         }
 
-
         // ----------------------------------------------------
 
         // gets an iterator for collections of FileSystem type, from the factory that produces iterations of a certain type
         public IIterator GetIteratorFromFactory(IteratorFactory factory) 
         {
             return factory.GetFileSystemIterator(this);
+        }
+
+        public override string ToString()
+        {
+            return GetPrintableName() + ", " + GetPrintableContent();
         }
     }
 }

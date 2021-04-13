@@ -5,22 +5,22 @@ using System.Text;
 namespace Task2
 {
 
-    public interface IIteratorFactory
+    public abstract class FileSystemIteratorFactory
     {
-        IFilesystemIterator GetIterator(DummyNode node);
+        public abstract IFilesystemIterator GetIterator(DummyNode node);
     }
     
-    public class FileSystemBfsIteratorFactory : IIteratorFactory
+    public class FileSystemBfsIteratorFactory : FileSystemIteratorFactory
     {
-        public IFilesystemIterator GetIterator(DummyNode node)
+        public override IFilesystemIterator GetIterator(DummyNode node)
         {
             return new FileSystemBfsExternalIterator(node);
         }
     }
 
-    public class FileSystemDfsIteratorFactory : IIteratorFactory
+    public class FileSystemDfsIteratorFactory : FileSystemIteratorFactory
     {
-        public IFilesystemIterator GetIterator(DummyNode node)
+        public override IFilesystemIterator GetIterator(DummyNode node)
         {
             return new FileSystemDfsExternalIterator(node);
         }

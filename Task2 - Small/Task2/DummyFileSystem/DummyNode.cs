@@ -55,7 +55,7 @@ namespace Task2
         // ----------------------------------------------------
 
 
-        public IFilesystemIterator GetIteratorFromFactory(IIteratorFactory factory)
+        public IFilesystemIterator GetIteratorFromFactory(FileSystemIteratorFactory factory)
         {
             return factory.GetIterator(this);
         }

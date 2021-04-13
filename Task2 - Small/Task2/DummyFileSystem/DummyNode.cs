@@ -50,5 +50,14 @@ namespace Task2
         {
             return isDir;
         }
+
+        
+        // ----------------------------------------------------
+
+
+        public IFilesystemIterator GetIteratorFromFactory(IIteratorFactory factory)
+        {
+            return factory.GetIterator(this);
+        }
     }
 }

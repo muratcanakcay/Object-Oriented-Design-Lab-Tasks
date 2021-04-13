@@ -49,20 +49,27 @@ namespace Task2
 
             Console.WriteLine("--------BFS--------");
 
+            // define which factory to use and get iterator from factory
             BfsIteratorFactory methodBfs = new BfsIteratorFactory(); 
-            var it = root.GetIteratorFromFactory(methodBfs);
+            var bfsIterator = root.GetIteratorFromFactory(methodBfs);
 
-            IFileSystemNode node = it.Next();
-            while (node != null)
+            //move to first element in collection and start iterating
+            var currentNode = bfsIterator.Next();
+            while (currentNode != null)
             {
                 // apply transformations
-                node = new RemoveCharacterFromContent('-', new AddHyphens(node));
-                if (node.GetPrintableName().EndsWith(".cipher")) node = new DecipherContentUsingKey(25, new ReverseContent(node));
-                node = new AppendNewLineToFileContent(node);
-                
-                Console.WriteLine(node);
-                
-                node = it.Next();
+                IFileSystemNode transformedNode = new RemoveCharacterFromContent('-', new AddHyphens(currentNode));
+                if (transformedNode.GetPrintableName().EndsWith(".cipher")) transformedNode = new DecipherContentUsingKey(25, new ReverseContent(transformedNode));
+                transformedNode = new AppendNewLineToFileContent(transformedNode);
+
+                // print transformed node
+                Console.WriteLine(transformedNode);
+
+                // move to next iteration
+                currentNode = bfsIterator.Next();
+
+                // If I wanted to, I could get a new iterator in order to switch to DFS at any time as follows:
+                var newIterator = currentNode.GetIteratorFromFactory((new DfsIteratorFactory()));
             }
 
             Console.WriteLine("-----------------");
@@ -79,19 +86,24 @@ namespace Task2
             
             Console.WriteLine("--------DFS--------");
 
+            // define which factory to use and get iterator from factory
             DfsIteratorFactory methodDfs = new DfsIteratorFactory(); 
-            it = root.GetIteratorFromFactory(methodDfs);
+            var dfsIterator = root.GetIteratorFromFactory(methodDfs);
 
-            node = it.Next();
-            while (node != null)
+            //move to first element in collection and start iterating
+            currentNode = dfsIterator.Next();
+            while (currentNode != null)
             {
                 // apply transformations
-                node = new RemoveCharacterFromContent('-', new AddHyphens(node));
-                if (node.GetPrintableName().EndsWith(".cipher")) node = new DecipherContentUsingKey(25, new ReverseContent(node));
-                node = new AppendNewLineToFileContent(node);
+                IFileSystemNode transformedNode = new RemoveCharacterFromContent('-', new AddHyphens(currentNode));
+                if (transformedNode.GetPrintableName().EndsWith(".cipher")) transformedNode = new DecipherContentUsingKey(25, new ReverseContent(transformedNode));
+                transformedNode = new AppendNewLineToFileContent(transformedNode);
                 
-                Console.WriteLine(node);
-                node = it.Next();
+                // print transformed node
+                Console.WriteLine(transformedNode);
+
+                // move to next iteration
+                currentNode = dfsIterator.Next();
             }
 
             Console.WriteLine("-------------------");

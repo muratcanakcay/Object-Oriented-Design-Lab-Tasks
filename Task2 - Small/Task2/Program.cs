@@ -26,7 +26,7 @@ namespace Task2
             var rustProjects = new DummyDirectory("rust", root);
             var rustProject1 = new DummyDirectory("hello-rust", rustProjects);
             var rustSrc = new DummyDirectory("src", rustProject1);
-            new DummyFile("Cargo.toml", "[pac---kage]\nnam---e = \"hello-rust\"", rustProject1); // should this line break be printed as a line break or as \n ?
+            new DummyFile("Cargo.toml", "[pac---kage]\nnam---e = \"hello-rust\"", rustProject1);
             new DummyFile("main.rs", "fn main() { pri--nt-l--n--!(\"Hello, student!\"); }", rustSrc);
 
             var dir1 = new DummyDirectory("very-important-documents", root);
@@ -55,8 +55,13 @@ namespace Task2
             IFileSystemNode node = it.Next();
             while (node != null)
             {
-                node = new DecipherContentUsingKey(new RemoveCharacterFromContent(new AddHyphens(node), '-'), 25);
+                // apply transformations
+                node = new RemoveCharacterFromContent('-', new AddHyphens(node));
+                if (node.GetPrintableName().EndsWith(".cipher")) node = new DecipherContentUsingKey(25, new ReverseContent(node));
+                node = new AppendNewLineToFileContent(node);
+                
                 Console.WriteLine(node);
+                
                 node = it.Next();
             }
 
@@ -80,7 +85,11 @@ namespace Task2
             node = it.Next();
             while (node != null)
             {
-                node = new RemoveCharacterFromContent(new AddHyphens(node), '-');
+                // apply transformations
+                node = new RemoveCharacterFromContent('-', new AddHyphens(node));
+                if (node.GetPrintableName().EndsWith(".cipher")) node = new DecipherContentUsingKey(25, new ReverseContent(node));
+                node = new AppendNewLineToFileContent(node);
+                
                 Console.WriteLine(node);
                 node = it.Next();
             }

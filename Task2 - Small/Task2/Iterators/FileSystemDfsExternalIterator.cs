@@ -4,36 +4,39 @@ namespace Task2
 {
     public class FileSystemDfsExternalIterator : IIterator
     {
-
-        private DummyNode currentNode;
-        private Stack<DummyNode> mainStack = new Stack<DummyNode>();
-        private Stack<DummyNode> helperStack = new Stack<DummyNode>();
+        private DummyNode _currentNode;
+        private readonly Stack<DummyNode> _mainStack = new Stack<DummyNode>();
+        private readonly Stack<DummyNode> _helperStack = new Stack<DummyNode>();
 
         public FileSystemDfsExternalIterator(DummyNode node)
         {
-            this.currentNode = node;
-            mainStack.Push(node);
+            this._currentNode = node;
+            _mainStack.Push(node);
         }
 
         public DummyNode Next()
         {
-            if (mainStack.Count == 0) return null; 
+            if (_mainStack.Count == 0) return null; 
             
-            currentNode = mainStack.Pop();
-            DummyNode n = currentNode.FirstChild;
+            _currentNode = _mainStack.Pop();
+            DummyNode n = _currentNode.FirstChild;
 
+            // using the helperStack to reverse the order of the children 
+            // being added to the stack in order to start listing from 
+            // the left branch of the tree.
+            
             while (n != null)
             {
-                helperStack.Push(n);
+                _helperStack.Push(n);
                 n = n.Next;
             }
             
-            while (helperStack.TryPop(out n)) 
+            while (_helperStack.TryPop(out n)) 
             {
-                mainStack.Push(n);
+                _mainStack.Push(n);
             }
 
-            return currentNode;
+            return _currentNode;
         }
     }
 }

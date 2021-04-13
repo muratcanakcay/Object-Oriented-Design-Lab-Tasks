@@ -1,48 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Task2
+﻿namespace Task2
 {
-    public class RemoveCharacterFromContent : IFileSystemNode
+    public class RemoveCharacterFromContent : Transformation
     {
-        public IFileSystemNode Node;
-        private char c;
+        private readonly char _c;
 
-        public RemoveCharacterFromContent(IFileSystemNode node, char c)
+        public RemoveCharacterFromContent(char c, IFileSystemNode node) : base(node)
         {
-            this.Node = node;
-            this.c = c;
+            this._c = c;
         }
 
-        public virtual string GetPrintableName()
-        {
-            return Node.GetPrintableName();
-        }
-
-        public virtual string GetPrintableContent()
+        public override string GetPrintableContent()
         {
             if (!Node.IsDir())
             {
-                string newContent = RemoveChar(Node.GetPrintableContent(), c);
+                string newContent = RemoveChar(Node.GetPrintableContent(), _c);
                 return newContent;
             } 
             else return Node.GetPrintableContent();
-        }
-
-        public IFileSystemNode GetParent()
-        {
-            return Node.GetParent();
-        }
-
-        public bool IsDir()
-        {
-            return Node.IsDir();
-        }
-
-        public override string ToString()
-        {
-            return GetPrintableName() + ", " + GetPrintableContent();
         }
 
         private string RemoveChar(string input, char c)
@@ -51,20 +25,14 @@ namespace Task2
 
             for (int i = 0; i < n; i++)
             {
-                if (input[i].Equals(c))
-                {
-                    input = input.Remove(i--, 1);
-                    n--;
-                }
+                if (!input[i].Equals(c)) continue;
                 
+                input = input.Remove(i--, 1);
+                n--;
             }
 
             return input;
-
         }
-        
-        
-        
     }
 }
 

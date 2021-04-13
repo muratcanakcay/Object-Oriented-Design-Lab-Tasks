@@ -5,7 +5,6 @@ namespace Task2
 {
     public abstract class DummyNode : IFileSystemNode
     {
-
         public string Name { get; }
         public DummyNode Parent { get; protected set; }
         public DummyNode FirstChild { get; protected set; }
@@ -53,7 +52,7 @@ namespace Task2
 
         // ----------------------------------------------------
 
-        // gets an iterator for collections of FileSystem type, from the factory that produces iterations of a certain type
+        // gets a FileSystem iterator for itself, from the factory that produces iterators of a certain type 
         public IIterator GetIteratorFromFactory(IteratorFactory factory) 
         {
             return factory.GetFileSystemIterator(this);
@@ -61,7 +60,7 @@ namespace Task2
 
         public override string ToString()
         {
-            return GetPrintableName() + ", " + GetPrintableContent();
+            return GetPrintableName() + " " + GetPrintableContent();
         }
     }
 }

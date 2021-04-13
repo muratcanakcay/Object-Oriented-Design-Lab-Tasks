@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
 namespace Task2
 {
-    public class AddHyphens : IFileSystemNode
+    public class AddHyphens : Transformation
     {
-        public IFileSystemNode Node;
+        public AddHyphens(IFileSystemNode node) : base(node) {}
 
-        public AddHyphens(IFileSystemNode node)
-        {
-            this.Node = node;
-        }
-
-        public virtual string GetPrintableName()
+        public override string GetPrintableName()
         {
             var sb = new StringBuilder();
             sb.Append("|");
@@ -26,26 +19,6 @@ namespace Task2
             }
             
             return (sb + Node.GetPrintableName());
-        }
-
-        public virtual string GetPrintableContent()
-        {
-            return Node.GetPrintableContent();
-        }
-
-        public IFileSystemNode GetParent()
-        {
-            return Node.GetParent();
-        }
-
-        public bool IsDir()
-        {
-            return Node.IsDir();
-        }
-
-        public override string ToString()
-        {
-            return GetPrintableName() + ", " + GetPrintableContent();
         }
     }
 }

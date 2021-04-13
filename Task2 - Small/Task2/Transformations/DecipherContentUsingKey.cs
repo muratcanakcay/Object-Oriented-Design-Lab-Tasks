@@ -1,48 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
 namespace Task2
 {
-    public class DecipherContentUsingKey : IFileSystemNode
+    public class DecipherContentUsingKey : Transformation
     {
-        public IFileSystemNode Node;
-        private int key;
+        private readonly int _key;
 
-        public DecipherContentUsingKey(IFileSystemNode node, int key)
+        public DecipherContentUsingKey(int key, IFileSystemNode node) : base(node)
         {
-            this.Node = node;
-            this.key = key;
+            this._key = key;
         }
 
-        public virtual string GetPrintableName()
+        public override string GetPrintableContent()
         {
-            return Node.GetPrintableName();
-        }
-
-        public virtual string GetPrintableContent()
-        {
-            if (!Node.IsDir())
+            if (!Node.IsDir() && Node.GetPrintableName().EndsWith(".cipher"))
             {
-                string newContent = DecipherContent(Node.GetPrintableContent(), key);
+                string newContent = DecipherContent(Node.GetPrintableContent(), _key);
                 return newContent;
             }
             else return Node.GetPrintableContent();
-        }
-
-        public IFileSystemNode GetParent()
-        {
-            return Node.GetParent();
-        }
-
-        public bool IsDir()
-        {
-            return Node.IsDir();
-        }
-
-        public override string ToString()
-        {
-            return GetPrintableName() + ", " + GetPrintableContent();
         }
 
         private string DecipherContent(string input, int key)
@@ -50,7 +26,7 @@ namespace Task2
             var n = input.Length;
             var sb = new StringBuilder();
 
-            for (int i = n-1; i >= 0; i--)
+            for (int i = 0; i < n; i++)
             {
                 char newChar = (char)(input[i] - key);
                 sb.Append(newChar);
@@ -58,8 +34,5 @@ namespace Task2
 
             return sb.ToString();
         }
-
-
-
     }
 }

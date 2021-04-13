@@ -20,20 +20,10 @@ namespace Task2
             mainStack.Push(node);
         }
 
-        public bool IsDone()
+        public DummyNode Next()
         {
-            return mainStack.Count == 0;
-        }
-
-        public DummyNode CurrentNode()
-        {
-            return currentNode;
-        }
-
-        public void Next()
-        {
-            if (IsDone()) return;
-
+            if (mainStack.Count == 0) return null; 
+            
             currentNode = mainStack.Pop();
             DummyNode n = currentNode.FirstChild;
 
@@ -47,6 +37,8 @@ namespace Task2
             {
                 mainStack.Push(n);
             }
+
+            return currentNode;
         }
     }
 }

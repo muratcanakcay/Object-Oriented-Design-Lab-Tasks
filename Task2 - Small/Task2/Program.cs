@@ -20,12 +20,12 @@ namespace Task2
 
             var methodbfs = new FileSystemBfsIteratorFactory();
             var itbfs = root2.GetIteratorFromFactory(methodbfs);
-            
-            itbfs.Next();
-            while (!itbfs.IsDone())
+
+            var n_bfs = itbfs.Next();
+            while (n_bfs != null)
             {
-                Console.WriteLine(itbfs.CurrentNode().GetPrintableName());
-                itbfs.Next();
+                Console.WriteLine(n_bfs.GetPrintableName());
+                n_bfs = itbfs.Next();
             }
 
             Console.WriteLine("-------------------");
@@ -33,11 +33,11 @@ namespace Task2
             var methoddfs = new FileSystemDfsIteratorFactory();
             var itdfs = root2.GetIteratorFromFactory(methoddfs);
 
-            itdfs.Next();
-            while (!itdfs.IsDone())
+            var n_dfs = itdfs.Next();
+            while (n_dfs != null)
             {
-                Console.WriteLine(itdfs.CurrentNode().GetPrintableName());
-                itdfs.Next();
+                Console.WriteLine(n_dfs.GetPrintableName());
+                n_dfs = itdfs.Next();
             }
 
 
@@ -80,17 +80,15 @@ namespace Task2
 
             Console.WriteLine("--------BFS--------");
 
-            var method = new FileSystemBfsIteratorFactory();
-            var it = root.GetIteratorFromFactory(method);
+            
+            var it = root.GetIteratorFromFactory(methodbfs);
 
-            it.Next();
-            while (!it.IsDone())
+            var node = it.Next();
+            while (node != null)
             {
-                Console.WriteLine(it.CurrentNode().GetPrintableName());
-                it.Next();
+                Console.WriteLine(node.GetPrintableName());
+                node = it.Next();
             }
-
-
 
             // 1. Iterate over the dummy filesystem (strating from root) in BFS order
             // For each node please print its name and contents if it's available
@@ -102,6 +100,17 @@ namespace Task2
             // }
             Console.WriteLine("-----------------");
             Console.WriteLine("--------DFS--------");
+
+
+            it = root.GetIteratorFromFactory(methoddfs);
+
+            node = it.Next();
+            while (node != null)
+            {
+                Console.WriteLine(node.GetPrintableName());
+                node = it.Next();
+            }
+
             // 2. Iterate over the dummy filesystem (strating from root) in DFS order
             // For each node please print its name and contents if it's available
             // 

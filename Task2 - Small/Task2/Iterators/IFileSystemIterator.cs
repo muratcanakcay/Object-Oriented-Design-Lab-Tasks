@@ -6,8 +6,6 @@ namespace Task2
 {
     public interface IFilesystemIterator
     {
-        public bool IsDone();
-        public DummyNode CurrentNode();
-        public void Next();
+        public DummyNode Next();
     }
 }

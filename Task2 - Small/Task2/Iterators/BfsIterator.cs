@@ -18,20 +18,10 @@ namespace Task2
             queue.Enqueue(node);
         }
 
-        public bool IsDone()
+        public DummyNode Next()
         {
-            return queue.Count == 0;
-        }
-
-        public DummyNode CurrentNode()
-        {
-            return currentNode;
-        }
-
-        public void Next()
-        {
-            if (IsDone()) return ;
-
+            if (queue.Count == 0) return null;
+            
             currentNode = queue.Dequeue(); 
             DummyNode n = currentNode.FirstChild;
 
@@ -40,6 +30,8 @@ namespace Task2
                 queue.Enqueue(n);
                 n = n.Next;
             }
+
+            return currentNode;
         }
     }
 }

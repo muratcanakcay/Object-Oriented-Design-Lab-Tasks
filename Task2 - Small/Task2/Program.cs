@@ -69,7 +69,10 @@ namespace Task2
                 currentNode = bfsIterator.Next();
 
                 // If I wanted to, I could get a new iterator in order to switch to DFS at any time as follows:
-                var newIterator = currentNode.GetIteratorFromFactory((new DfsIteratorFactory()));
+                if (currentNode != null)
+                {
+                    var newIterator = currentNode.GetIteratorFromFactory((new DfsIteratorFactory()));
+                }
             }
 
             Console.WriteLine("-----------------");

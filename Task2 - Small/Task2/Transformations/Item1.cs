@@ -40,5 +40,10 @@ namespace Task2
         {
             return node.IsDir();
         }
+
+        public override string ToString()
+        {
+            return GetPrintableName() + ", " + GetPrintableContent();
+        }
     }
 }

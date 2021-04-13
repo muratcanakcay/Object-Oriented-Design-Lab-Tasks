@@ -20,11 +20,12 @@ namespace Task2
 
             BfsIteratorFactory methodbfs = new BfsIteratorFactory();
             IIterator itbfs = root2.GetIteratorFromFactory(methodbfs);
-
-            var n_bfs = itbfs.Next();
+            IFileSystemNode n_bfs = itbfs.Next();
+            
             while (n_bfs != null)
             {
-                Console.WriteLine( (new Item1(n_bfs)).GetPrintableName() + " " + n_bfs.GetPrintableContent());
+                n_bfs = new Item1(n_bfs);
+                Console.WriteLine(n_bfs.ToString());
                 n_bfs = itbfs.Next();
             }
 

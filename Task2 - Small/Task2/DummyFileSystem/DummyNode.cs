@@ -41,6 +41,12 @@ namespace Task2
 
         public abstract string GetPrintableContent();
 
+        // maybe will need deleting  if unused!
+        public override string ToString()
+        {
+            return GetPrintableName() + ", " + GetPrintableContent();
+        }
+
         public IFileSystemNode GetParent()
         {
             return Parent;

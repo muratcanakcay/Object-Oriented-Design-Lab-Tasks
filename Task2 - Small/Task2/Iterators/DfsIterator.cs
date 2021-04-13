@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System;
+using System.ComponentModel.Design;
 
 namespace Task2
 {
@@ -9,18 +10,19 @@ namespace Task2
     {
 
         private DummyNode currentNode;
-        private Queue<DummyNode> queue = new Queue<DummyNode>();
+        private Stack<DummyNode> mainStack = new Stack<DummyNode>();
+        private Stack<DummyNode> helperStack = new Stack<DummyNode>();
 
 
         public FileSystemDfsExternalIterator(DummyNode node)
         {
             this.currentNode = node;
-            queue.Enqueue(node);
+            mainStack.Push(node);
         }
 
         public bool IsDone()
         {
-            return queue.Count == 0;
+            return mainStack.Count == 0;
         }
 
         public DummyNode CurrentNode()
@@ -32,14 +34,18 @@ namespace Task2
         {
             if (IsDone()) return;
 
-            currentNode = queue.Dequeue();
+            currentNode = mainStack.Pop();
             DummyNode n = currentNode.FirstChild;
 
             while (n != null)
-            { 
-                queue.Enqueue(n);
-                if (n.FirstChild != null) n = n.FirstChild;
-                else if (n.Next != null) n = n.Next;
+            {
+                helperStack.Push(n);
+                n = n.Next;
+            }
+            
+            while (helperStack.TryPop(out n))
+            {
+                mainStack.Push(n);
             }
         }
     }

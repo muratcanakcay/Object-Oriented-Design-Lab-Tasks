@@ -22,7 +22,7 @@ namespace Task2
     {
         public IFilesystemIterator GetIterator(DummyNode node)
         {
-            return new FileSystemBfsExternalIterator(node);
+            return new FileSystemDfsExternalIterator(node);
         }
     }
 }

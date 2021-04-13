@@ -18,14 +18,26 @@ namespace Task2
             var f5 = new DummyFile("f5", "f5", d3);
             var f6 = new DummyFile("f6", "f6", d3);
 
-            var method2 = new FileSystemBfsIteratorFactory();
-            var it2 = root2.GetIteratorFromFactory(method2);
+            var methodbfs = new FileSystemBfsIteratorFactory();
+            var itbfs = root2.GetIteratorFromFactory(methodbfs);
             
-            it2.Next();
-            while (!it2.IsDone())
+            itbfs.Next();
+            while (!itbfs.IsDone())
             {
-                Console.WriteLine(it2.CurrentNode().GetPrintableName());
-                it2.Next();
+                Console.WriteLine(itbfs.CurrentNode().GetPrintableName());
+                itbfs.Next();
+            }
+
+            Console.WriteLine("-------------------");
+
+            var methoddfs = new FileSystemDfsIteratorFactory();
+            var itdfs = root2.GetIteratorFromFactory(methoddfs);
+
+            itdfs.Next();
+            while (!itdfs.IsDone())
+            {
+                Console.WriteLine(itdfs.CurrentNode().GetPrintableName());
+                itdfs.Next();
             }
 
 
@@ -39,7 +51,7 @@ namespace Task2
 
 
             //------------------------------------
-            
+
             var root = new DummyDirectory("root");
 
             var csProjects = new DummyDirectory("CSharpProjects", root);

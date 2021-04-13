@@ -10,21 +10,21 @@ namespace Task2
             var root2 = new DummyDirectory("root2");
             var d1 = new DummyDirectory("dir1", root2);
             var d2 = new DummyDirectory("dir2", root2);
-            var f1 = new DummyFile("f1", "f1", root2);
-            var f2 = new DummyFile("f2", "f2", d1);
+            var f1 = new DummyFile("f1", "f1content", root2);
+            var f2 = new DummyFile("f2", "f2content", d1);
             var d3 = new DummyDirectory("dir3", d1);
-            var f3 = new DummyFile("f3", "f3", d2);
-            var f4 = new DummyFile("f4", "f4", d2);
-            var f5 = new DummyFile("f5", "f5", d3);
-            var f6 = new DummyFile("f6", "f6", d3);
+            var f3 = new DummyFile("f3", "f3content", d2);
+            var f4 = new DummyFile("f4", "f4content", d2);
+            var f5 = new DummyFile("f5", "f5content", d3);
+            var f6 = new DummyFile("f6", "f6content", d3);
 
-            var methodbfs = new BfsIteratorFactory();
-            var itbfs = root2.GetIteratorFromFactory(methodbfs);
+            BfsIteratorFactory methodbfs = new BfsIteratorFactory();
+            IIterator itbfs = root2.GetIteratorFromFactory(methodbfs);
 
             var n_bfs = itbfs.Next();
             while (n_bfs != null)
             {
-                Console.WriteLine(n_bfs.GetPrintableName());
+                Console.WriteLine( (new Item1(n_bfs)).GetPrintableName() + " " + n_bfs.GetPrintableContent());
                 n_bfs = itbfs.Next();
             }
 

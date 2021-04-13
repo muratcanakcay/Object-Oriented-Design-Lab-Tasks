@@ -54,7 +54,7 @@ namespace Task2
 
         // ----------------------------------------------------
 
-        // gets an iterator for file system type collection, from the factory of given type iterations
+        // gets an iterator for collections of FileSystem type, from the factory that produces iterations of a certain type
         public IIterator GetIteratorFromFactory(IteratorFactory factory) 
         {
             return factory.GetFileSystemIterator(this);

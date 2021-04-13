@@ -24,31 +24,23 @@ namespace Task2
             
             while (n_bfs != null)
             {
-                n_bfs = new Item1(n_bfs);
-                Console.WriteLine(n_bfs.ToString());
+                n_bfs = new Transformation1(n_bfs);
+                Console.WriteLine(n_bfs);
                 n_bfs = itbfs.Next();
             }
 
             Console.WriteLine("-------------------");
 
-            var methoddfs = new DfsIteratorFactory();
-            var itdfs = root2.GetIteratorFromFactory(methoddfs);
+            DfsIteratorFactory methoddfs = new DfsIteratorFactory();
+            IIterator itdfs = root2.GetIteratorFromFactory(methoddfs);
 
-            var n_dfs = itdfs.Next();
+            IFileSystemNode n_dfs = itdfs.Next();
             while (n_dfs != null)
             {
-                Console.WriteLine(n_dfs.GetPrintableName());
+                n_dfs = new Transformation1(n_dfs);
+                Console.WriteLine(n_dfs);
                 n_dfs = itdfs.Next();
             }
-
-
-
-
-
-
-
-
-
 
 
             //------------------------------------
@@ -84,9 +76,10 @@ namespace Task2
             
             var it = root.GetIteratorFromFactory(methodbfs);
 
-            var node = it.Next();
+            IFileSystemNode node = it.Next();
             while (node != null)
             {
+                node = new Transformation1(node);
                 Console.WriteLine(node.GetPrintableName());
                 node = it.Next();
             }
@@ -108,6 +101,7 @@ namespace Task2
             node = it.Next();
             while (node != null)
             {
+                node = new Transformation1(node); 
                 Console.WriteLine(node.GetPrintableName());
                 node = it.Next();
             }

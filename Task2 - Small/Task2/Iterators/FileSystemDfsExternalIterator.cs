@@ -10,7 +10,7 @@ namespace Task2
 
         public FileSystemDfsExternalIterator(DummyNode node)
         {
-            this._currentNode = node;
+            _currentNode = node;
             _mainStack.Push(node);
         }
 

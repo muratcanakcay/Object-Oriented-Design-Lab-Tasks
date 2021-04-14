@@ -6,7 +6,7 @@
 
         public RemoveCharacterFromFileContent(char c, IFileSystemNode node) : base(node)
         {
-            this._c = c;
+            _c = c;
         }
 
         public override string GetPrintableContent()

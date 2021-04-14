@@ -6,7 +6,7 @@
 
         protected Transformation(IFileSystemNode node)
         {
-            this.Node = node;
+            Node = node;
         }
 
         public virtual string GetPrintableName()

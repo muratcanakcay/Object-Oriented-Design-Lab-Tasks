@@ -18,7 +18,7 @@ namespace Task2
                 n = n.GetParent();
             }
             
-            return (sb + Node.GetPrintableName());
+            return sb + Node.GetPrintableName();
         }
     }
 }

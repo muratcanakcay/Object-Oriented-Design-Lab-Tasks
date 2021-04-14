@@ -80,6 +80,10 @@ namespace Task2
                 {
                     var newIterator = currentNode.GetIteratorFromFactory((new DfsIteratorFactory()));
                 }
+                // in fact I could get the new iterator from the transformedNode, too but that would require me to add
+                // GetIteratorFromFactory() to the IFileSystemNode interface, which we are not allowed to modify. So 
+                // right now it's only possible to get a new iterator from the currentNode which has not been transformed
+                // by the decorators yet.
             }
 
             Console.WriteLine("-----------------");

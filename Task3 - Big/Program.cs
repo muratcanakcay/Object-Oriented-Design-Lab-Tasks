@@ -76,8 +76,12 @@ namespace Task3
 
             // Part 1 - publishing each virus database
             Console.WriteLine("\n-------------simpleDatabase output ----------------\n");
-            var simpleIterator = IteratorFactory.GetIterator(simpleDatabase, genomeDatabase);
+            var simpleIterator = simpleDatabase.GetIterator(genomeDatabase);
             mediaOutlet.Publish(simpleIterator);
+            
+            
+            
+            
             Console.WriteLine("\n-------------excellDatabase output ----------------\n");
             var excellIterator = IteratorFactory.GetIterator(excellDatabase, genomeDatabase);
             mediaOutlet.Publish(excellIterator);

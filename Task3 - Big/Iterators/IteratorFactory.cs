@@ -10,10 +10,7 @@ namespace Task3
         // iterators for virus databases
         
         // simpleDatabase
-        public static IDatabaseIterator GetIterator(SimpleDatabase simpleDatabase, SimpleGenomeDatabase simpleGenomeDatabase)
-        {
-            return new SimpleDatabaseIterator(simpleDatabase, simpleGenomeDatabase);
-        }
+        
 
         // excellDatabase
         public static IDatabaseIterator GetIterator(ExcellDatabase excellDatabase, SimpleGenomeDatabase simpleGenomeDatabase)

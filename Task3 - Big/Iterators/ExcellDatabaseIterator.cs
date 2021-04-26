@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Task3
 {
@@ -23,8 +22,8 @@ namespace Task3
                     virusNames[i],
                     Double.Parse(deathRates[i]),
                     Double.Parse(infectionRates[i]),
-                    simpleGenomeDatabase.genomeDatas.Where(x=>x.Id==Guid.Parse(genomeIds[i])).ToList())
-                );
+                    simpleGenomeDatabase.genomeDatas.Where(genome => genome.Id == Guid.Parse(genomeIds[i])).ToList()
+                    ));
             }
         }
         

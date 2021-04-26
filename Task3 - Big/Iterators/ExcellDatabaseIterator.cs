@@ -16,7 +16,6 @@ namespace Task3
             var deathRates=excellDatabase.DeathRates.Split(';');
             var infectionRates=excellDatabase.InfectionRates.Split(';');
             var genomeIds=excellDatabase.GenomeIds.Split(';');
-            
             for(int i = 0; i < virusNames.Length; i++)
             {
                 _data.Add(new VirusData(

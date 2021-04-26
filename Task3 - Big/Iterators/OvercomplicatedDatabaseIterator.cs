@@ -11,22 +11,25 @@ namespace Task3
         
         public OvercomplicatedDatabaseIterator(OvercomplicatedDatabase overcomplicatedDatabase, SimpleGenomeDatabase simpleGenomeDatabase)
         {
-            List<INode> virusList = new List<INode>();
-            virusList.Add(overcomplicatedDatabase.Root);
-            
-            for (int i = 0; i < virusList.Count; i++)
+            // using bfs to traverse the database and create iterator data
+            Queue<INode> virusList = new Queue<INode>();
+            virusList.Enqueue(overcomplicatedDatabase.Root);
+
+            while (virusList.Count > 0)
             {
-                foreach (var virus in virusList[i].Children)
+                var currentVirus = virusList.Dequeue();
+
+                foreach (var virus in currentVirus.Children)
                 {
-                    virusList.Add(virus);
+                    virusList.Enqueue(virus);
                 }
-            }
-            foreach (var virus in virusList)
-            {
-                _data.Add(new VirusData(virus.VirusName,
-                    virus.DeathRate,
-                    virus.InfectionRate,
-                    simpleGenomeDatabase.genomeDatas.Where(genome => genome.Tags.Any(tag => tag == virus.GenomeTag)).ToList()));
+
+                _data.Add(new VirusData(
+                        currentVirus.VirusName,
+                        currentVirus.DeathRate,
+                        currentVirus.InfectionRate,
+                        simpleGenomeDatabase.genomeDatas.Where(genome => genome.Tags.Any(tag => tag == currentVirus.GenomeTag)).ToList()
+                        ));
             }
         }
         

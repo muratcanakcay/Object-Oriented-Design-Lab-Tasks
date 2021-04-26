@@ -152,3 +152,4 @@ What you must not do
 
 - Change the access modifiers (public, protected, private) of already created fields/properties/methods;
 - Use explicit type checking with if, switch etc.
+

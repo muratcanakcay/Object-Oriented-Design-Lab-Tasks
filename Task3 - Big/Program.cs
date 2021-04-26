@@ -9,10 +9,15 @@ namespace Task3
     {
         public class MediaOutlet
         {
-            public void Publish()
+            public void Publish(IDatabaseIterator dbIterator)
             {
-                // Console.WriteLine(...)
+                while(dbIterator.HasNext())
+                {
+                    System.Console.WriteLine(dbIterator.Current().ToString());
+                    dbIterator.Next();
+                }
             }
+            
         }
 
         public class Tester
@@ -69,7 +74,16 @@ namespace Task3
             var overcomplicatedDatabase = Generators.PrepareOvercomplicatedDatabase(genomeDatabase);
             var mediaOutlet = new MediaOutlet();
 
-
+            // Part 1 - publishing each virus database
+            Console.WriteLine("\n-------------simpleDatabase output ----------------\n");
+            var simpleIterator = IteratorFactory.GetIterator(simpleDatabase, genomeDatabase);
+            mediaOutlet.Publish(simpleIterator);
+            Console.WriteLine("\n-------------excellDatabase output ----------------\n");
+            var excellIterator = IteratorFactory.GetIterator(excellDatabase, genomeDatabase);
+            mediaOutlet.Publish(excellIterator);
+            Console.WriteLine("\n-------------overcomplicatedDatabase output -------\n");
+            var overcomplicatedIterator = IteratorFactory.GetIterator(overcomplicatedDatabase, genomeDatabase);
+            mediaOutlet.Publish(overcomplicatedIterator);
 
 
             // testing animals

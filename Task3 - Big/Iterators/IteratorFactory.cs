@@ -8,12 +8,9 @@
         
 
         // excellDatabase
-        public static IDatabaseIterator GetIterator(ExcellDatabase excellDatabase, SimpleGenomeDatabase simpleGenomeDatabase)
-        {
-            return new ExcellDatabaseIterator(excellDatabase, simpleGenomeDatabase);
-        }
+        
 
-        // excellDatabase
+        // overcomplicatedDatabase
         public static IDatabaseIterator GetIterator(OvercomplicatedDatabase overcomplicatedDatabase, SimpleGenomeDatabase simpleGenomeDatabase)
         {
             return new OvercomplicatedDatabaseIterator(overcomplicatedDatabase, simpleGenomeDatabase);

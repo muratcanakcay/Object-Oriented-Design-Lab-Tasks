@@ -28,7 +28,7 @@ namespace Task3
                     row.DeathRate,
                     row.InfectionRate,
                     _genomeData.Where(genome => row.GenomeId == genome.Id).ToList()
-                ));
+                    ));
             }
         }
         

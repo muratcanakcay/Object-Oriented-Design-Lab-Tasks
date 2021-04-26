@@ -79,14 +79,13 @@ namespace Task3
             var simpleIterator = simpleDatabase.GetIterator(genomeDatabase);
             mediaOutlet.Publish(simpleIterator);
             
-            
-            
-            
             Console.WriteLine("\n-------------excellDatabase output ----------------\n");
-            var excellIterator = IteratorFactory.GetIterator(excellDatabase, genomeDatabase);
+            var excellIterator = excellDatabase.GetIterator(genomeDatabase);
             mediaOutlet.Publish(excellIterator);
+
+
             Console.WriteLine("\n-------------overcomplicatedDatabase output -------\n");
-            var overcomplicatedIterator = IteratorFactory.GetIterator(overcomplicatedDatabase, genomeDatabase);
+            var overcomplicatedIterator = overcomplicatedDatabase.GetIterator(genomeDatabase);
             mediaOutlet.Publish(overcomplicatedIterator);
 
 

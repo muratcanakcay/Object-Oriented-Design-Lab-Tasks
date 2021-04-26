@@ -7,9 +7,18 @@ namespace Task3
     {
         private int _currentIndex = 0;
         private readonly List<VirusData> _data = new List<VirusData>();
+        private readonly List<GenomeData> _genomeData = new List<GenomeData>();
         
-        public OvercomplicatedDatabaseIterator(OvercomplicatedDatabase overcomplicatedDatabase, SimpleGenomeDatabase simpleGenomeDatabase)
+        public OvercomplicatedDatabaseIterator(OvercomplicatedDatabase overcomplicatedDatabase, IGenomeDatabaseIterable genomeDatabase)
         {
+            IGenomeDatabaseIterator genomeDatabaseIterator = genomeDatabase.GetIterator();
+
+            while (genomeDatabaseIterator.HasNext())
+            {
+                _genomeData.Add(genomeDatabaseIterator.Current());
+                genomeDatabaseIterator.Next();
+            }
+            
             // using bfs to traverse the database and create iterator data
             Queue<INode> virusList = new Queue<INode>();
             virusList.Enqueue(overcomplicatedDatabase.Root);
@@ -27,7 +36,7 @@ namespace Task3
                         currentVirus.VirusName,
                         currentVirus.DeathRate,
                         currentVirus.InfectionRate,
-                        simpleGenomeDatabase.genomeDatas.Where(genome => genome.Tags.Any(tag => tag == currentVirus.GenomeTag)).ToList()
+                        _genomeData.Where(genome => genome.Tags.Any(tag => tag == currentVirus.GenomeTag)).ToList()
                         ));
             }
         }

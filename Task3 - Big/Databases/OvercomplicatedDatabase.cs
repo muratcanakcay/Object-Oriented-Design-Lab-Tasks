@@ -29,13 +29,18 @@ namespace Task3
         }
     }
 
-    public class OvercomplicatedDatabase
+    public class OvercomplicatedDatabase : IVirusDatabaseIterable
     { 
         public INode Root { get; }
 
         public OvercomplicatedDatabase(INode root)
         {
             Root = root;
+        }
+        
+        public IVirusDatabaseIterator GetIterator(IGenomeDatabaseIterable genomeDatabase)
+        {
+            return new OvercomplicatedDatabaseIterator(this, genomeDatabase);
         }
     }
 }

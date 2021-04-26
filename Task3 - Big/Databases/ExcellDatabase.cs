@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Task3
 {
-    public class ExcellDatabase
+    public class ExcellDatabase : IVirusDatabaseIterable
     {
         public string Names { get; }
         public string DeathRates { get; }
@@ -16,6 +16,11 @@ namespace Task3
             DeathRates = deathRates;
             InfectionRates = infectionRates;
             GenomeIds = genomeIds;
+        }
+
+        public IVirusDatabaseIterator GetIterator(IGenomeDatabaseIterable genomeDatabase)
+        {
+            return new ExcellDatabaseIterator(this, genomeDatabase);
         }
     }
 

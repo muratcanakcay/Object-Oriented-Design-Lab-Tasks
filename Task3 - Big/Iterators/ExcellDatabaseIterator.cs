@@ -8,9 +8,18 @@ namespace Task3
     {
         private int _currentIndex = 0;
         private readonly List<VirusData> _data = new List<VirusData>();
+        private readonly List<GenomeData> _genomeData = new List<GenomeData>();
 
-        public ExcellDatabaseIterator(ExcellDatabase excellDatabase, SimpleGenomeDatabase simpleGenomeDatabase)
+        public ExcellDatabaseIterator(ExcellDatabase excellDatabase, IGenomeDatabaseIterable genomeDatabase)
         {
+            IGenomeDatabaseIterator genomeDatabaseIterator = genomeDatabase.GetIterator();
+
+            while (genomeDatabaseIterator.HasNext())
+            {
+                _genomeData.Add(genomeDatabaseIterator.Current());
+                genomeDatabaseIterator.Next();
+            }
+            
             var virusNames=excellDatabase.Names.Split(';');
             var deathRates=excellDatabase.DeathRates.Split(';');
             var infectionRates=excellDatabase.InfectionRates.Split(';');
@@ -22,7 +31,7 @@ namespace Task3
                     virusNames[i],
                     Double.Parse(deathRates[i]),
                     Double.Parse(infectionRates[i]),
-                    simpleGenomeDatabase.genomeDatas.Where(genome => genome.Id == Guid.Parse(genomeIds[i])).ToList()
+                    _genomeData.Where(genome => genome.Id == Guid.Parse(genomeIds[i])).ToList()
                     ));
             }
         }

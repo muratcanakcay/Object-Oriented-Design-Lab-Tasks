@@ -4,6 +4,15 @@
     {
         bool HasNext();
         void Next();
-        object Current();
+    }
+
+    public interface IVirusDatabaseIterator : IDatabaseIterator
+    {
+        VirusData Current();
+    }
+
+    public interface IGenomeDatabaseIterator : IDatabaseIterator
+    {
+        GenomeData Current();
     }
 }

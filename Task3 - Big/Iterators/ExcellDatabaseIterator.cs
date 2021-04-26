@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Task3
 {
-    public class ExcellDatabaseIterator : IDatabaseIterator
+    public class ExcellDatabaseIterator : IVirusDatabaseIterator
     {
         private int _currentIndex = 0;
         private readonly List<VirusData> _data = new List<VirusData>();
@@ -37,7 +37,7 @@ namespace Task3
             _currentIndex++;
         }
 
-        public object Current()
+        public VirusData Current()
         {
             return _data[_currentIndex];
         }

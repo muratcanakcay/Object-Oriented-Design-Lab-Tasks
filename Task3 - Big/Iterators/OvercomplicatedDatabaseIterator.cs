@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Task3
 {
-    public class OvercomplicatedDatabaseIterator : IDatabaseIterator
+    public class OvercomplicatedDatabaseIterator : IVirusDatabaseIterator
     {
         private int _currentIndex = 0;
         private readonly List<VirusData> _data = new List<VirusData>();
@@ -32,7 +32,7 @@ namespace Task3
             }
         }
         
-        public object Current()
+        public VirusData Current()
         {
             return _data[_currentIndex];
         }

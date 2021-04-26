@@ -2,7 +2,7 @@
 
 namespace Task3
 {
-    public class SimpleGenomeDatabaseIterator : IDatabaseIterator
+    public class SimpleGenomeDatabaseIterator : IGenomeDatabaseIterator
     {
         private List<GenomeData> _data;
         private int _currentIndex = 0;
@@ -12,7 +12,7 @@ namespace Task3
             _data = new List<GenomeData>(simpleGenomeDatabase.genomeDatas);
         }
         
-        public object Current()
+        public GenomeData Current()
         {
             return _data[_currentIndex];
         }

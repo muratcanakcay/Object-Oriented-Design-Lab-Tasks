@@ -1,7 +1,14 @@
 ﻿namespace Task3
 {
-    public interface IDatabaseIterable
+    public interface IDatabaseIterable {} 
+
+    public interface IVirusDatabaseIterable : IDatabaseIterable
     {
-        IDatabaseIterator GetIterator(IDatabaseIterable genomeDatabase);
+        IVirusDatabaseIterator GetIterator(IGenomeDatabaseIterable genomeDatabase);
+    }
+
+    public interface IGenomeDatabaseIterable : IDatabaseIterable
+    {
+        IGenomeDatabaseIterator GetIterator();
     }
 }

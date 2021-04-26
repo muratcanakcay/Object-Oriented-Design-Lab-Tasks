@@ -2,7 +2,7 @@
 
 namespace Task3
 {
-    public class SimpleGenomeDatabase : IDatabaseIterable
+    public class SimpleGenomeDatabase : IGenomeDatabaseIterable
     {
         public List<GenomeData> genomeDatas { get; }
 
@@ -11,7 +11,7 @@ namespace Task3
             this.genomeDatas = genomeDatas;
         }
 
-        public IDatabaseIterator GetIterator(IDatabaseIterable genomeDatabase)
+        public IGenomeDatabaseIterator GetIterator()
         {
             return new SimpleGenomeDatabaseIterator(this);
         }

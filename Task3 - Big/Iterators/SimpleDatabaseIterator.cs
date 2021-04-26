@@ -3,20 +3,20 @@ using System.Linq;
 
 namespace Task3
 {
-    public class SimpleDatabaseIterator : IDatabaseIterator
+    public class SimpleDatabaseIterator : IVirusDatabaseIterator
     {
         private int _currentIndex = 0;
         private readonly List<VirusData> _virusData = new List<VirusData>();
         private readonly List<GenomeData> _genomeData = new List<GenomeData>();
 
 
-        public SimpleDatabaseIterator(SimpleDatabase simpleDatabase, IDatabaseIterable genomeDatabase)
+        public SimpleDatabaseIterator(SimpleDatabase simpleDatabase, IGenomeDatabaseIterable genomeDatabase)
         {
-            IDatabaseIterator genomeDatabaseIterator = genomeDatabase.GetIterator(genomeDatabase);
+            IGenomeDatabaseIterator genomeDatabaseIterator = genomeDatabase.GetIterator();
 
             while (genomeDatabaseIterator.HasNext())
             {
-                _genomeData.Add((GenomeData) genomeDatabaseIterator.Current());
+                _genomeData.Add(genomeDatabaseIterator.Current());
                 genomeDatabaseIterator.Next();
             }
             
@@ -42,7 +42,7 @@ namespace Task3
             _currentIndex++;
         }
 
-        public object Current()
+        public VirusData Current()
         {
             return _virusData[_currentIndex];
         }

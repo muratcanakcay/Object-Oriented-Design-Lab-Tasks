@@ -9,7 +9,7 @@ namespace Task3
     {
         public class MediaOutlet
         {
-            public void Publish(IDatabaseIterator dbIterator)
+            public void Publish(IVirusDatabaseIterator dbIterator)
             {
                 while(dbIterator.HasNext())
                 {

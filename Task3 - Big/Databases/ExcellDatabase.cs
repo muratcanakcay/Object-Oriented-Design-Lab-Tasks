@@ -27,7 +27,7 @@ namespace Task3
         public Guid GenomeId { get; set; }
     }
 
-    public class SimpleDatabase : IDatabaseIterable
+    public class SimpleDatabase : IVirusDatabaseIterable
     {
         public IReadOnlyList<SimpleDatabaseRow> Rows { get; }
         public SimpleDatabase(IEnumerable<SimpleDatabaseRow> simpleDatabaseRows)
@@ -38,7 +38,7 @@ namespace Task3
             Rows = list;
         }
 
-        public IDatabaseIterator GetIterator(IDatabaseIterable genomeDatabase)
+        public IVirusDatabaseIterator GetIterator(IGenomeDatabaseIterable genomeDatabase)
         {
             return new SimpleDatabaseIterator(this, genomeDatabase);
         }

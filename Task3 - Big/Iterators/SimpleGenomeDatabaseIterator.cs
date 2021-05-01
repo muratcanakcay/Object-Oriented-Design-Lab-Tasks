@@ -4,7 +4,7 @@ namespace Task3
 {
     public class SimpleGenomeDatabaseIterator : IGenomeDatabaseIterator
     {
-        private List<GenomeData> _data;
+        private readonly List<GenomeData> _data;
         private int _currentIndex = 0;
         
         public SimpleGenomeDatabaseIterator(SimpleGenomeDatabase simpleGenomeDatabase)

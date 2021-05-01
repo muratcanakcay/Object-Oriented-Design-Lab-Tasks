@@ -11,8 +11,7 @@ namespace Task3
         
         public OvercomplicatedDatabaseIterator(OvercomplicatedDatabase overcomplicatedDatabase, IGenomeDatabaseIterable genomeDatabase)
         {
-            IGenomeDatabaseIterator genomeDatabaseIterator = genomeDatabase.GetIterator();
-
+            var genomeDatabaseIterator = genomeDatabase.GetIterator();
             while (genomeDatabaseIterator.HasNext())
             {
                 _genomeData.Add(genomeDatabaseIterator.Current());

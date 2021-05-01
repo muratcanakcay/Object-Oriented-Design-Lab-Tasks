@@ -1,6 +1,7 @@
 ﻿namespace Task3
 {
-    public interface IDatabaseIterator // common interface for all database iterators
+    // common interface for all database iterators
+    public interface IDatabaseIterator 
     {
         bool HasNext();
         void Next();

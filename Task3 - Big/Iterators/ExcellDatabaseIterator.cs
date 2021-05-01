@@ -12,8 +12,7 @@ namespace Task3
 
         public ExcellDatabaseIterator(ExcellDatabase excellDatabase, IGenomeDatabaseIterable genomeDatabase)
         {
-            IGenomeDatabaseIterator genomeDatabaseIterator = genomeDatabase.GetIterator();
-
+            var genomeDatabaseIterator = genomeDatabase.GetIterator();
             while (genomeDatabaseIterator.HasNext())
             {
                 _genomeData.Add(genomeDatabaseIterator.Current());

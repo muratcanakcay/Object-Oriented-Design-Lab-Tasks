@@ -95,6 +95,14 @@ namespace Task3
             var filteredIterator2 = new Filter(excellDatabase.GetIterator(genomeDatabase), (virus) => virus.DeathRate > 3);
             mediaOutlet.Publish(filteredIterator2);
 
+            Console.WriteLine("\n-------------mapping f => new VirusData(f.VirusName, f.DeathRate + 10, f.InfectionRate, f.Genomes) from the ExcellDatabase database -------\n");
+            var mapIterator = new Map(excellDatabase.GetIterator(genomeDatabase), f => new VirusData(f.VirusName, f.DeathRate + 10, f.InfectionRate, f.Genomes));
+            mediaOutlet.Publish(mapIterator);
+
+
+
+            
+
 
             // testing animals
             var tester = new Tester();

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Task3
+﻿namespace Task3
 {
     public abstract class Decorator : IVirusDatabaseIterator
     {
@@ -13,7 +9,10 @@ namespace Task3
             _it = iterator;
         }
 
-        public abstract bool HasNext();
+        public virtual bool HasNext()
+        {
+            return _it.HasNext();
+        }
 
         public virtual void Prev() 
         {

@@ -9,6 +9,7 @@
             _it = iterator;
         }
 
+        // HasNext() is the keypoint of the iterator. If Next() is called without checking HasNext() first the behaviour is undefined!
         public virtual bool HasNext()
         {
             return _it.HasNext();

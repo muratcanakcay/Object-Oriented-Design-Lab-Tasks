@@ -31,17 +31,8 @@ namespace Task3
         
         public override VirusData Current()
         {
-            base.Prev();
-            if (base.HasNext())
-            {
-                base.Next();
-                return base.Current();
-            }
-            else
-            {
-                base.Next();
-                return null; // dummy. remove before proceeding
-            }
+            if (_secondDatabase) return _it2.Current();
+            return _it.Current();
         }
     }
 }

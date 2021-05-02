@@ -84,11 +84,12 @@ namespace Task3
             var excellIterator = excellDatabase.GetIterator(genomeDatabase);
             mediaOutlet.Publish(excellIterator);
 
-
             Console.WriteLine("\n-------------overcomplicatedDatabase output -------\n");
             var overcomplicatedIterator = overcomplicatedDatabase.GetIterator(genomeDatabase);
             mediaOutlet.Publish(overcomplicatedIterator);
 
+            
+            // ----- testing
             Console.WriteLine("\n-------------filtering DeathRate > 15 of data from the ExcellDatabase database -------\n");
             var filteredIterator = new Filter(excellDatabase.GetIterator(genomeDatabase), (virus) => virus.DeathRate > 15);
             mediaOutlet.Publish(filteredIterator);
@@ -99,7 +100,17 @@ namespace Task3
             var mapIterator = new Map(excellDatabase.GetIterator(genomeDatabase), f => new VirusData(f.VirusName, f.DeathRate + 10, f.InfectionRate, f.Genomes));
             mediaOutlet.Publish(mapIterator);
 
+            Console.WriteLine("\n-------------mapping f => new VirusData(f.VirusName, f.DeathRate+10, f.InfectionRate, f.Genomes)and filtering f => f.DeathRate > 15 from the ExcellDatabase database -------\n");
+            var i1 = new Map(excellDatabase.GetIterator(genomeDatabase), f => new VirusData(f.VirusName, f.DeathRate + 10, f.InfectionRate, f.Genomes));
+            var i2 = new Filter(i1, f => f.DeathRate > 15);
+            mediaOutlet.Publish(i2);
 
+            Console.WriteLine("\n-------------concatonating SimpleDatabase and ExcellDatabase database -------\n");
+            var concatonateIterator = new Concatonate(simpleDatabase.GetIterator(genomeDatabase), excellDatabase.GetIterator(genomeDatabase));
+            mediaOutlet.Publish(concatonateIterator);
+
+
+            
 
             
 

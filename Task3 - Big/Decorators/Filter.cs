@@ -11,6 +11,7 @@ namespace Task3.Decorators
             _func = func;
         }
 
+        // HasNext() is the keypoint of the iterator. If Next() is called without checking HasNext() first the behaviour is undefined!
         public override bool HasNext()
         {
             while (_it.HasNext())

@@ -28,5 +28,15 @@ namespace Task3.Subjects
                 }
             }
         }
+
+        
+        // ------------
+
+        public int ReverseVaccineShots { get; set; } 
+        public void GetVaccinatedBy(IVaccine vaccine)
+        {
+            Console.WriteLine($"------- Pig [{ID}] is getting vaccinated by {vaccine}");
+            vaccine.Vaccinate(this);
+        }
     }
 }

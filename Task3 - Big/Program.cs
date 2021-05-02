@@ -15,7 +15,7 @@ namespace Task3
                 while(dbIterator.HasNext())
                 {
                     dbIterator.Next();
-                    System.Console.WriteLine(dbIterator.Current().ToString());
+                    System.Console.WriteLine(dbIterator.Current());
                 }
             }
             
@@ -29,7 +29,7 @@ namespace Task3
 
                 foreach (var vaccine in vaccines)
                 {
-                    Console.WriteLine($"Testing {vaccine}");
+                    Console.WriteLine($"\nTesting {vaccine}");
                     var subjects = new List<ISubject>();
                     int n = 5;
                     for (int i = 0; i < n; i++)
@@ -42,6 +42,7 @@ namespace Task3
                     foreach (var subject in subjects)
                     {
                         // process of vaccination
+                        subject.GetVaccinatedBy(vaccine);
                     }
 
                     var genomeDatabase = Generators.PrepareGenomes();
@@ -63,7 +64,7 @@ namespace Task3
                     {
                         if (subject.Alive) aliveCount++;
                     }
-                    Console.WriteLine($"{aliveCount} alive!");
+                    Console.WriteLine($"{aliveCount} alive!\n");
                 }
             }
         }
@@ -103,6 +104,8 @@ namespace Task3
             Console.WriteLine("\n-------------concatenation of data from the ExcellDatabase database and data from the OvercomplicatedDatabase database -------\n");
             var concatonatedIterator = new Concatonate(excellDatabase.GetIterator(genomeDatabase), overcomplicatedDatabase.GetIterator(genomeDatabase));
             mediaOutlet.Publish(concatonatedIterator);
+
+            // Part 3 - visitor
             
 
 

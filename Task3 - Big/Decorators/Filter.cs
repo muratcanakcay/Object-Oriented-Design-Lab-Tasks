@@ -6,7 +6,7 @@ namespace Task3.Decorators
     {
         private readonly Func<VirusData, bool> _func;
 
-        public Filter(IVirusDatabaseIterator iterator, Func<VirusData, bool> func) : base(iterator)
+        public Filter(Func<VirusData, bool> func, IVirusDatabaseIterator iterator) : base(iterator)
         {
             _func = func;
         }

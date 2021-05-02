@@ -91,21 +91,18 @@ namespace Task3
             
             // Part 2 - decorators
             Console.WriteLine("\n-------------filtering DeathRate > 15 of data from the ExcellDatabase database -------\n");
-            var decoratedIterator1 = new Filter(excellDatabase.GetIterator(genomeDatabase), (virus) => virus.DeathRate > 15);
-            mediaOutlet.Publish(decoratedIterator1);
+            var filteredIterator1 = new Filter((virus) => virus.DeathRate > 15, excellDatabase.GetIterator(genomeDatabase));
+            mediaOutlet.Publish(filteredIterator1);
 
             Console.WriteLine("\n-------------mapping f => new VirusData(f.VirusName, f.DeathRate + 10, f.InfectionRate, f.Genomes) and the filter f => f.DeathRate > 15 simultaneously of data from the ExcellDatabase database -------\n");
-            var decoratedIterator21 = new Map(excellDatabase.GetIterator(genomeDatabase), f => new VirusData(f.VirusName, f.DeathRate + 10, f.InfectionRate, f.Genomes));
-            var decoratedIterator22 = new Filter(decoratedIterator21, f => f.DeathRate > 15);
-            mediaOutlet.Publish(decoratedIterator22);
+            var filteredMappedIterator = new Filter(f => f.DeathRate > 15, 
+                                  new Map(f => new VirusData(f.VirusName, f.DeathRate + 10, f.InfectionRate, f.Genomes), 
+                                         excellDatabase.GetIterator(genomeDatabase)));
+            mediaOutlet.Publish(filteredMappedIterator);
 
             Console.WriteLine("\n-------------concatenation of data from the ExcellDatabase database and data from the OvercomplicatedDatabase database -------\n");
-            var concatonateIterator = new Concatonate(excellDatabase.GetIterator(genomeDatabase), overcomplicatedDatabase.GetIterator(genomeDatabase));
-            mediaOutlet.Publish(concatonateIterator);
-
-
-            
-
+            var concatonatedIterator = new Concatonate(excellDatabase.GetIterator(genomeDatabase), overcomplicatedDatabase.GetIterator(genomeDatabase));
+            mediaOutlet.Publish(concatonatedIterator);
             
 
 

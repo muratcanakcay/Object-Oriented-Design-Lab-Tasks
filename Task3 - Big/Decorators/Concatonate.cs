@@ -9,7 +9,7 @@ namespace Task3
         private readonly IVirusDatabaseIterator _it2;
         private bool _secondDatabase = false;
 
-        public Concatonate(IVirusDatabaseIterator iterator, IVirusDatabaseIterator iterator2) : base(iterator)
+        public Concatonate(IVirusDatabaseIterator iterator2, IVirusDatabaseIterator iterator) : base(iterator)
         {
             _it2 = iterator2;
         }

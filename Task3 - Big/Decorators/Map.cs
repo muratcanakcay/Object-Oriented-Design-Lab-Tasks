@@ -8,7 +8,7 @@ namespace Task3
     {
         private readonly Func<VirusData, VirusData> _func;
 
-        public Map(IVirusDatabaseIterator iterator, Func<VirusData, VirusData> func) : base(iterator)
+        public Map(Func<VirusData, VirusData> func, IVirusDatabaseIterator iterator) : base(iterator)
         {
             _func = func;
         }

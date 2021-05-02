@@ -5,6 +5,7 @@
     {
         bool HasNext();
         void Next();
+        void Prev();
     }
 
     public interface IVirusDatabaseIterator : IDatabaseIterator

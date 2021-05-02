@@ -6,7 +6,7 @@ namespace Task3
 {
     public class ExcellDatabaseIterator : IVirusDatabaseIterator
     {
-        private int _currentIndex = 0;
+        private int _currentIndex = -1;
         private readonly List<VirusData> _data = new List<VirusData>();
         private readonly List<GenomeData> _genomeData = new List<GenomeData>();
 
@@ -15,8 +15,8 @@ namespace Task3
             var genomeDatabaseIterator = genomeDatabase.GetIterator();
             while (genomeDatabaseIterator.HasNext())
             {
-                _genomeData.Add(genomeDatabaseIterator.Current());
                 genomeDatabaseIterator.Next();
+                _genomeData.Add(genomeDatabaseIterator.Current());
             }
             
             var virusNames=excellDatabase.Names.Split(';');
@@ -37,9 +37,14 @@ namespace Task3
         
         public bool HasNext()
         {
-            return _currentIndex < _data.Count;
+            return _currentIndex + 1 < _data.Count;
         }
 
+        public void Prev()
+        {
+            _currentIndex--;
+        }
+        
         public void Next()
         {
             _currentIndex++;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Task3.Decorators;
 using Task3.Subjects;
 using Task3.Vaccines;
 
@@ -13,8 +14,8 @@ namespace Task3
             {
                 while(dbIterator.HasNext())
                 {
-                    System.Console.WriteLine(dbIterator.Current().ToString());
                     dbIterator.Next();
+                    System.Console.WriteLine(dbIterator.Current().ToString());
                 }
             }
             
@@ -87,6 +88,12 @@ namespace Task3
             Console.WriteLine("\n-------------overcomplicatedDatabase output -------\n");
             var overcomplicatedIterator = overcomplicatedDatabase.GetIterator(genomeDatabase);
             mediaOutlet.Publish(overcomplicatedIterator);
+
+            Console.WriteLine("\n-------------filtering DeathRate > 15 of data from the ExcellDatabase database -------\n");
+            var filteredIterator = new Filter(excellDatabase.GetIterator(genomeDatabase), (virus) => virus.DeathRate > 15);
+            mediaOutlet.Publish(filteredIterator);
+            var filteredIterator2 = new Filter(excellDatabase.GetIterator(genomeDatabase), (virus) => virus.DeathRate > 3);
+            mediaOutlet.Publish(filteredIterator2);
 
 
             // testing animals

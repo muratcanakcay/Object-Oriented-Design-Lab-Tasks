@@ -5,7 +5,7 @@ namespace Task3
     public class SimpleGenomeDatabaseIterator : IGenomeDatabaseIterator
     {
         private readonly List<GenomeData> _data;
-        private int _currentIndex = 0;
+        private int _currentIndex = -1;
         
         public SimpleGenomeDatabaseIterator(SimpleGenomeDatabase simpleGenomeDatabase)
         {
@@ -19,9 +19,14 @@ namespace Task3
 
         public bool HasNext()
         {
-            return _currentIndex < _data.Count;
+            return _currentIndex + 1 < _data.Count;
         }
 
+        public void Prev()
+        {
+            _currentIndex--;
+        }
+        
         public void Next()
         {
             _currentIndex++;

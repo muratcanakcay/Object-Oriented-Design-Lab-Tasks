@@ -5,7 +5,7 @@ namespace Task3
 {
     public class SimpleDatabaseIterator : IVirusDatabaseIterator
     {
-        private int _currentIndex = 0;
+        private int _currentIndex = -1;
         private readonly List<VirusData> _virusData = new List<VirusData>();
         private readonly List<GenomeData> _genomeData = new List<GenomeData>();
 
@@ -15,8 +15,8 @@ namespace Task3
             var genomeDatabaseIterator = genomeDatabase.GetIterator();
             while (genomeDatabaseIterator.HasNext())
             {
-                _genomeData.Add(genomeDatabaseIterator.Current());
                 genomeDatabaseIterator.Next();
+                _genomeData.Add(genomeDatabaseIterator.Current());
             }
             
             foreach (var row in simpleDatabase.Rows)
@@ -33,9 +33,14 @@ namespace Task3
         
         public bool HasNext()
         {
-            return _currentIndex < _virusData.Count;
+            return _currentIndex + 1 < _virusData.Count;
         }
 
+        public void Prev()
+        {
+            _currentIndex--;
+        }
+        
         public void Next()
         {
             _currentIndex++;

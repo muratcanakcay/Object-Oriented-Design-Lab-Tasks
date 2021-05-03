@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Task3
+namespace Task3.Decorators
 {
     public class Map : Decorator
     {

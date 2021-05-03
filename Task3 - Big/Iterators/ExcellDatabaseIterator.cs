@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Task3
+namespace Task3.Iterators
 {
     public class ExcellDatabaseIterator : IVirusDatabaseIterator
     {

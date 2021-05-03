@@ -1,4 +1,4 @@
-﻿namespace Task3
+﻿namespace Task3.Decorators
 {
     public class Concatenate : Decorator
     {

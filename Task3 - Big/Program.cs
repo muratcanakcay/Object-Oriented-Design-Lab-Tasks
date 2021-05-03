@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Task3.Decorators;
 using Task3.Subjects;
 using Task3.Vaccines;
+using Task3.Decorators;
 
 namespace Task3
 {
@@ -15,10 +15,9 @@ namespace Task3
                 while(dbIterator.HasNext())
                 {
                     dbIterator.Next();
-                    System.Console.WriteLine(dbIterator.Current());
+                    Console.WriteLine(dbIterator.Current());
                 }
             }
-            
         }
 
         public class Tester

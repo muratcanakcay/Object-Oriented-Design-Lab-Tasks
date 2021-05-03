@@ -19,9 +19,8 @@ namespace Task3.Vaccines
 
         public void Vaccinate(Dog dog)
         {
-            var d = randomElement.NextDouble();
-            Console.WriteLine($"Random: {d}");
-            if (d <= DeathRate) // death chance
+            
+            if (randomElement.NextDouble() <= DeathRate) // death chance
             {
                 dog.Alive = false;
                 Console.WriteLine($"Dog [{dog.ID}] died by vaccination from {this}!");
@@ -42,9 +41,7 @@ namespace Task3.Vaccines
 
         public void Vaccinate(Cat cat)
         {
-            var d = randomElement.NextDouble();
-            Console.WriteLine($"Random: {d}");
-            if (d <= DeathRate) // death chance
+            if (randomElement.NextDouble() <= DeathRate) // death chance
             {
                 cat.Alive = false;
                 Console.WriteLine($"Cat [{cat.ID}] died by vaccination from {this}!");
@@ -65,9 +62,7 @@ namespace Task3.Vaccines
 
         public void Vaccinate(Pig pig)
         {
-            var d = randomElement.NextDouble();
-            Console.WriteLine($"Random: {d}");
-            if (d <= 3 * DeathRate) // death chance
+            if (randomElement.NextDouble() <= 3 * DeathRate) // death chance
             {
                 pig.Alive = false;
                 Console.WriteLine($"Pig [{pig.ID}] died by vaccination from {this}!");

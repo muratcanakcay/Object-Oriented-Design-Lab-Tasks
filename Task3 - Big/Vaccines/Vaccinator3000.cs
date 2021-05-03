@@ -20,7 +20,7 @@ namespace Task3.Vaccines
 
         public void Vaccinate(Dog dog)
         {
-            if (randomElement.NextDouble() < this.DeathRate) // death chance
+            if (randomElement.NextDouble() <= DeathRate) // death chance
             {
                 dog.Alive = false;
                 Console.WriteLine($"Dog [{dog.ID}] died by vaccination from {this}!");
@@ -30,8 +30,7 @@ namespace Task3.Vaccines
                 var sb = new StringBuilder();
                 for (int i = 0; i < 3000; i++)
                 {
-                    int n = randomElement.Next() % 4;
-                    sb.Append(Immunity[n]);
+                    sb.Append(Immunity[randomElement.Next(Immunity.Length)]);
                 }
 
                 dog.Immunity = sb.ToString();
@@ -41,7 +40,7 @@ namespace Task3.Vaccines
 
         public void Vaccinate(Cat cat)
         {
-            if (randomElement.NextDouble() < this.DeathRate) // death chance
+            if (randomElement.NextDouble() <= DeathRate) // death chance
             {
                 cat.Alive = false;
                 Console.WriteLine($"Cat [{cat.ID}] died by vaccination from {this}!");
@@ -51,8 +50,7 @@ namespace Task3.Vaccines
                 var sb = new StringBuilder();
                 for (int i = 0; i < 300; i++)
                 {
-                    int n = randomElement.Next() % 4;
-                    sb.Append(Immunity[n]);
+                    sb.Append(Immunity[randomElement.Next(Immunity.Length)]);
                 }
 
                 cat.Immunity = sb.ToString();
@@ -63,7 +61,7 @@ namespace Task3.Vaccines
 
         public void Vaccinate(Pig pig)
         {
-            if (randomElement.NextDouble() < this.DeathRate) // death chance
+            if (randomElement.NextDouble() <= DeathRate) // death chance
             {
                 pig.Alive = false;
                 Console.WriteLine($"Pig [{pig.ID}] died by vaccination from {this}!");
@@ -73,8 +71,7 @@ namespace Task3.Vaccines
                 var sb = new StringBuilder();
                 for (int i = 0; i < 15; i++)
                 {
-                    int n = randomElement.Next() % 4;
-                    sb.Append(Immunity[n]);
+                    sb.Append(Immunity[randomElement.Next(Immunity.Length)]);
                 }
 
                 pig.Immunity = sb.ToString();

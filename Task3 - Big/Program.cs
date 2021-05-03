@@ -50,14 +50,18 @@ namespace Task3
                     // iteration over SimpleGenomeDatabase using solution from 1)
                     // subjects should be tested here using GetTested function
 
-
+                    var simpleDatabaseIterator = simpleDatabase.GetIterator(genomeDatabase);
                     // iterating over simpleDatabase
-                    //{
-                        //foreach (var subject in subjects)
-                        //{
-                        //    subject.GetTested();
-                        //}
-                    //}
+                    
+                    while (simpleDatabaseIterator.HasNext())
+                    {
+                        simpleDatabaseIterator.Next();
+
+                        foreach (var subject in subjects)
+                        {
+                            subject.GetTested(simpleDatabaseIterator.Current());
+                        }
+                    }
 
                     int aliveCount = 0;
                     foreach (var subject in subjects)
@@ -106,8 +110,6 @@ namespace Task3
             mediaOutlet.Publish(concatonatedIterator);
 
             // Part 3 - visitor
-            
-
 
             // testing animals
             var tester = new Tester();

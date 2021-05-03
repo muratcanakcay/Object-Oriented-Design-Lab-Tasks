@@ -30,7 +30,7 @@ namespace Task3.Vaccines
         public void Vaccinate(Cat cat)
         {
             
-            if (randomElement.NextDouble() < this.DeathRate) // death chance
+            if (randomElement.NextDouble() <= DeathRate) // death chance
             {
                 cat.Alive = false;
                 Console.WriteLine($"Cat [{cat.ID}] died by vaccination from {this}!");

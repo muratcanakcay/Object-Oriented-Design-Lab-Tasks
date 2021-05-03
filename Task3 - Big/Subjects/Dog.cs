@@ -35,6 +35,7 @@ namespace Task3.Subjects
         public int ReverseVaccineShots { get; set; }
         public void GetVaccinatedBy(IVaccine vaccine)
         {
+            if (!Alive) return;
             Console.WriteLine($"------- Dog [{ID}] is getting vaccinated by {vaccine}");
             vaccine.Vaccinate(this);
         }

@@ -34,7 +34,7 @@ namespace Task3.Vaccines
 
         public void Vaccinate(Pig pig)
         {
-            if (randomElement.NextDouble() < this.DeathRate * pig.ReverseVaccineShots) // death chance
+            if (randomElement.NextDouble() <= DeathRate * pig.ReverseVaccineShots) // death chance
             {
                 pig.Alive = false;
                 Console.WriteLine($"Pig [{pig.ID}] died by vaccination from {this}!");

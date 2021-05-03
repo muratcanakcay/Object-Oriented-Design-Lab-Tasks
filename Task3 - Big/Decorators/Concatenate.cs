@@ -5,7 +5,7 @@
         private readonly IVirusDatabaseIterator _it2;
         private bool _secondDatabase = false;
 
-        public Concatenate(IVirusDatabaseIterator iterator2, IVirusDatabaseIterator iterator) : base(iterator)
+        public Concatenate(IVirusDatabaseIterator iterator, IVirusDatabaseIterator iterator2) : base(iterator)
         {
             _it2 = iterator2;
         }

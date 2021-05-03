@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Task3.Subjects;
+﻿using Task3.Subjects;
 
 namespace Task3.Vaccines
 {

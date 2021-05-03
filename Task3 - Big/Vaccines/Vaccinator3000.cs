@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using Task3.Subjects;
 
@@ -20,7 +19,9 @@ namespace Task3.Vaccines
 
         public void Vaccinate(Dog dog)
         {
-            if (randomElement.NextDouble() <= DeathRate) // death chance
+            var d = randomElement.NextDouble();
+            Console.WriteLine($"Random: {d}");
+            if (d <= DeathRate) // death chance
             {
                 dog.Alive = false;
                 Console.WriteLine($"Dog [{dog.ID}] died by vaccination from {this}!");
@@ -34,13 +35,16 @@ namespace Task3.Vaccines
                 }
 
                 dog.Immunity = sb.ToString();
-                Console.WriteLine($"Dog [{dog.ID}] is now immune to {dog.Immunity}!");
+                // 3000 characters clutter the screen but you can uncomment to see the immunity
+                //Console.WriteLine($"Dog [{dog.ID}] is now immune to {dog.Immunity}!");
             }
         }
 
         public void Vaccinate(Cat cat)
         {
-            if (randomElement.NextDouble() <= DeathRate) // death chance
+            var d = randomElement.NextDouble();
+            Console.WriteLine($"Random: {d}");
+            if (d <= DeathRate) // death chance
             {
                 cat.Alive = false;
                 Console.WriteLine($"Cat [{cat.ID}] died by vaccination from {this}!");
@@ -61,7 +65,9 @@ namespace Task3.Vaccines
 
         public void Vaccinate(Pig pig)
         {
-            if (randomElement.NextDouble() <= DeathRate) // death chance
+            var d = randomElement.NextDouble();
+            Console.WriteLine($"Random: {d}");
+            if (d <= 3 * DeathRate) // death chance
             {
                 pig.Alive = false;
                 Console.WriteLine($"Pig [{pig.ID}] died by vaccination from {this}!");

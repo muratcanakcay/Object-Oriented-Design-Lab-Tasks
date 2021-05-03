@@ -106,7 +106,7 @@ namespace Task3
             mediaOutlet.Publish(filteredMappedIterator);
 
             Console.WriteLine("\n-------------concatenation of data from the ExcellDatabase database and data from the OvercomplicatedDatabase database -------\n");
-            var concatonatedIterator = new Concatonate(excellDatabase.GetIterator(genomeDatabase), overcomplicatedDatabase.GetIterator(genomeDatabase));
+            var concatonatedIterator = new Concatenate(excellDatabase.GetIterator(genomeDatabase), overcomplicatedDatabase.GetIterator(genomeDatabase));
             mediaOutlet.Publish(concatonatedIterator);
 
             // Part 3 - visitor

@@ -1,11 +1,11 @@
 ﻿namespace Task3
 {
-    public class Concatonate : Decorator
+    public class Concatenate : Decorator
     {
         private readonly IVirusDatabaseIterator _it2;
         private bool _secondDatabase = false;
 
-        public Concatonate(IVirusDatabaseIterator iterator2, IVirusDatabaseIterator iterator) : base(iterator)
+        public Concatenate(IVirusDatabaseIterator iterator2, IVirusDatabaseIterator iterator) : base(iterator)
         {
             _it2 = iterator2;
         }

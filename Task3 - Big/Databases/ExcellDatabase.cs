@@ -4,7 +4,7 @@ using Task3.Iterators;
 
 namespace Task3
 {
-    public class ExcellDatabase : IVirusDatabaseIterable
+    public class ExcellDatabase
     {
         public string Names { get; }
         public string DeathRates { get; }
@@ -18,11 +18,6 @@ namespace Task3
             InfectionRates = infectionRates;
             GenomeIds = genomeIds;
         }
-
-        public IVirusDatabaseIterator GetIterator(IGenomeDatabaseIterable genomeDatabase)
-        {
-            return new ExcellDatabaseIterator(this, genomeDatabase);
-        }
     }
 
     public class SimpleDatabaseRow
@@ -33,7 +28,7 @@ namespace Task3
         public Guid GenomeId { get; set; }
     }
 
-    public class SimpleDatabase : IVirusDatabaseIterable
+    public class SimpleDatabase
     {
         public IReadOnlyList<SimpleDatabaseRow> Rows { get; }
         public SimpleDatabase(IEnumerable<SimpleDatabaseRow> simpleDatabaseRows)
@@ -42,11 +37,6 @@ namespace Task3
             list.AddRange(simpleDatabaseRows);
 
             Rows = list;
-        }
-
-        public IVirusDatabaseIterator GetIterator(IGenomeDatabaseIterable genomeDatabase)
-        {
-            return new SimpleDatabaseIterator(this, genomeDatabase);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Task3.Decorators
 {
-    public class Concatenate : Decorator
+    public class Concatenate : VirusDbIteratorDecorator
     {
         private readonly IVirusDatabaseIterator _it2;
         private bool _secondDatabase = false;

@@ -2,7 +2,7 @@
 
 namespace Task3.Decorators
 {
-    public class Map : Decorator
+    public class Map : VirusDbIteratorDecorator
     {
         private readonly Func<VirusData, VirusData> _func;
 

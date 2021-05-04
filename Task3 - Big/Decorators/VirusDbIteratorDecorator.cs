@@ -1,10 +1,10 @@
 ﻿namespace Task3.Decorators
 {
-    public abstract class Decorator : IVirusDatabaseIterator
+    public abstract class VirusDbIteratorDecorator : IVirusDatabaseIterator
     {
         protected readonly IVirusDatabaseIterator _it;
         
-        protected Decorator(IVirusDatabaseIterator iterator)
+        protected VirusDbIteratorDecorator(IVirusDatabaseIterator iterator)
         {
             _it = iterator;
         }

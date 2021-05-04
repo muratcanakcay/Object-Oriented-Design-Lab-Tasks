@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Task3.Repository;
 
 namespace Task3.Iterators
 {
@@ -8,17 +9,9 @@ namespace Task3.Iterators
     {
         private int _currentIndex = -1;
         private readonly List<VirusData> _data = new List<VirusData>();
-        private readonly List<GenomeData> _genomeData = new List<GenomeData>();
 
-        public ExcellDatabaseIterator(ExcellDatabase excellDatabase, IGenomeDatabaseIterable genomeDatabase)
+        public ExcellDatabaseIterator(ExcellDatabase excellDatabase, IGenomeRepo genomeDatabase)
         {
-            var genomeDatabaseIterator = genomeDatabase.GetIterator();
-            while (genomeDatabaseIterator.HasNext())
-            {
-                genomeDatabaseIterator.Next();
-                _genomeData.Add(genomeDatabaseIterator.Current());
-            }
-            
             var virusNames=excellDatabase.Names.Split(';');
             var deathRates=excellDatabase.DeathRates.Split(';');
             var infectionRates=excellDatabase.InfectionRates.Split(';');
@@ -30,7 +23,7 @@ namespace Task3.Iterators
                     virusNames[i],
                     Double.Parse(deathRates[i]),
                     Double.Parse(infectionRates[i]),
-                    _genomeData.Where(genome => genome.Id == Guid.Parse(genomeIds[i])).ToList()
+                    genomeDatabase.GetById(Guid.Parse(genomeIds[i]))
                     ));
             }
         }

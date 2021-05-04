@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Task3.Repository;
 
 namespace Task3.Iterators
 {
@@ -7,26 +8,16 @@ namespace Task3.Iterators
     {
         private int _currentIndex = -1;
         private readonly List<VirusData> _virusData = new List<VirusData>();
-        private readonly List<GenomeData> _genomeData = new List<GenomeData>();
 
-
-        public SimpleDatabaseIterator(SimpleDatabase simpleDatabase, IGenomeDatabaseIterable genomeDatabase)
+        public SimpleDatabaseIterator(SimpleDatabase simpleDatabase, IGenomeRepo genomeDatabase)
         {
-            var genomeDatabaseIterator = genomeDatabase.GetIterator();
-            while (genomeDatabaseIterator.HasNext())
-            {
-                genomeDatabaseIterator.Next();
-                _genomeData.Add(genomeDatabaseIterator.Current());
-            }
-            
             foreach (var row in simpleDatabase.Rows)
             {
-                
                 _virusData.Add(new VirusData(
                     row.VirusName,
                     row.DeathRate,
                     row.InfectionRate,
-                    _genomeData.Where(genome => row.GenomeId == genome.Id).ToList()
+                    genomeDatabase.GetById(row.GenomeId)
                     ));
             }
         }

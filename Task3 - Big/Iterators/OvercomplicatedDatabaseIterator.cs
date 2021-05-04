@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using Task3.Repository;
 
 namespace Task3.Iterators
 {
@@ -7,17 +7,9 @@ namespace Task3.Iterators
     {
         private int _currentIndex = -1;
         private readonly List<VirusData> _data = new List<VirusData>();
-        private readonly List<GenomeData> _genomeData = new List<GenomeData>();
         
-        public OvercomplicatedDatabaseIterator(OvercomplicatedDatabase overcomplicatedDatabase, IGenomeDatabaseIterable genomeDatabase)
+        public OvercomplicatedDatabaseIterator(OvercomplicatedDatabase overcomplicatedDatabase, IGenomeRepo genomeDatabase)
         {
-            var genomeDatabaseIterator = genomeDatabase.GetIterator();
-            while (genomeDatabaseIterator.HasNext())
-            {
-                genomeDatabaseIterator.Next();
-                _genomeData.Add(genomeDatabaseIterator.Current());
-            }
-            
             // using bfs to traverse the database and create iterator data
             Queue<INode> virusList = new Queue<INode>();
             virusList.Enqueue(overcomplicatedDatabase.Root);
@@ -35,7 +27,7 @@ namespace Task3.Iterators
                         currentVirus.VirusName,
                         currentVirus.DeathRate,
                         currentVirus.InfectionRate,
-                        _genomeData.Where(genome => genome.Tags.Any(tag => tag == currentVirus.GenomeTag)).ToList()
+                        genomeDatabase.GetByTag(currentVirus.GenomeTag)
                         ));
             }
         }

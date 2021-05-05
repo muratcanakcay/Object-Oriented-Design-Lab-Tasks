@@ -82,8 +82,9 @@ namespace Task3
             var overcomplicatedDatabase = Generators.PrepareOvercomplicatedDatabase(genomeDatabase);
             var mediaOutlet = new MediaOutlet();
 
+            //------------------------------------
+            
             // Create the Genome Repository to pass into IteratorFactory
-
             var genomeRepo = new GenomeRepo(genomeDatabase);
 
             // Part 1 - publishing each virus database

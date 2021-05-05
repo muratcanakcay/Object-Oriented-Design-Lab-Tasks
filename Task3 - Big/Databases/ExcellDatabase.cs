@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Task3.Iterators;
 
 namespace Task3
 {

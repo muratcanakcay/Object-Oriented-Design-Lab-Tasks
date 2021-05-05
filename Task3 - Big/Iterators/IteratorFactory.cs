@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Task3.Repository;
+﻿using Task3.Repository;
 
 namespace Task3.Iterators
 {
@@ -21,7 +18,7 @@ namespace Task3.Iterators
             return new ExcellDatabaseIterator(excellDatabase, genomeRepo);
         }
 
-        // excellDatabase
+        // overComplicatedDatabase
         public static IVirusDatabaseIterator GetIterator(OvercomplicatedDatabase overcomplicatedDatabase, IGenomeRepo genomeRepo)
         {
             return new OvercomplicatedDatabaseIterator(overcomplicatedDatabase, genomeRepo);

@@ -4,6 +4,12 @@ using System.Linq;
 
 namespace Task3.Repository
 {
+    public interface IGenomeRepo
+    {
+        public List<GenomeData> GetById(Guid id);
+        public List<GenomeData> GetByTag(string tag);
+    }
+    
     public class GenomeRepo : IGenomeRepo
     {
         private List<GenomeData> _genomeDatas;
@@ -21,7 +27,7 @@ namespace Task3.Repository
 
         public List<GenomeData> GetByTag(string tag)
         {
-            return _genomeDatas.Where(genome => genome.Tags.Any(_tag => _tag == tag)).ToList();
+            return _genomeDatas.Where(genome => genome.Tags.Any(genomeTag => genomeTag == tag)).ToList();
         }
     }
 }

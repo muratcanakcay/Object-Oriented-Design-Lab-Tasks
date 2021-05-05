@@ -3,7 +3,7 @@
     public class Concatenate : VirusDbIteratorDecorator
     {
         private readonly IVirusDatabaseIterator _it2;
-        private bool _secondDatabase = false;
+        private bool _secondDatabase;
 
         public Concatenate(IVirusDatabaseIterator iterator, IVirusDatabaseIterator iterator2) : base(iterator)
         {

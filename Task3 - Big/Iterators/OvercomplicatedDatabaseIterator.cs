@@ -24,9 +24,9 @@ namespace Task3.Iterators
                 var currentVirus = virusList.Dequeue();
                 AddToList(currentVirus, genomeRepo);
 
-                foreach (var virus in currentVirus.Children)
+                foreach (var child in currentVirus.Children)
                 {
-                    virusList.Enqueue(virus);
+                    virusList.Enqueue(child);
                 }
             }
         }

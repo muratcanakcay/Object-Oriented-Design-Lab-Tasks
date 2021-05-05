@@ -21,20 +21,20 @@ namespace Task3.Iterators
             var infectionRates = excellDatabase.InfectionRates.Split(';');
             var genomeIds = excellDatabase.GenomeIds.Split(';');
 
-            AddToList(virusNames, deathRates, infectionRates, genomeIds, genomeRepo);
-        }
-
-        private void AddToList(string[] virusNames, string[] deathRates, string[] infectionRates, string[] genomeIds, IGenomeRepo genomeRepo)
-        {
             for (int i = 0; i < virusNames.Length; i++)
             {
-                _data.Add(new VirusData(
-                    virusNames[i],
-                    double.Parse(deathRates[i]),
-                    double.Parse(infectionRates[i]),
-                    genomeRepo.GetById(Guid.Parse(genomeIds[i]))
-                ));
+                AddToList(i, virusNames, deathRates, infectionRates, genomeIds, genomeRepo);
             }
+        }
+
+        private void AddToList(int i, string[] virusNames, string[] deathRates, string[] infectionRates, string[] genomeIds, IGenomeRepo genomeRepo)
+        {
+            _data.Add(new VirusData(
+                virusNames[i],
+                double.Parse(deathRates[i]),
+                double.Parse(infectionRates[i]),
+                genomeRepo.GetById(Guid.Parse(genomeIds[i]))
+            ));
         }
 
         public bool HasNext()

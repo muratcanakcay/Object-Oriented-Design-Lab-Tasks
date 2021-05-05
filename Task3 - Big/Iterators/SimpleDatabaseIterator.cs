@@ -17,13 +17,18 @@ namespace Task3.Iterators
         {
             foreach (var row in simpleDatabase.Rows)
             {
-                _virusData.Add(new VirusData(
-                    row.VirusName,
-                    row.DeathRate,
-                    row.InfectionRate,
-                    genomeRepo.GetById(row.GenomeId)
-                ));
+                AddToList(row, genomeRepo);
             }
+        }
+
+        private void AddToList(SimpleDatabaseRow row, IGenomeRepo genomeRepo)
+        {
+            _virusData.Add(new VirusData(
+                row.VirusName,
+                row.DeathRate,
+                row.InfectionRate,
+                genomeRepo.GetById(row.GenomeId)
+            ));
         }
 
         public bool HasNext()

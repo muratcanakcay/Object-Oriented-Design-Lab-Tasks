@@ -27,8 +27,7 @@
         
         public override VirusData Current()
         {
-            if (_secondDatabase) return _it2.Current();
-            return _it.Current();
+            return _secondDatabase ? _it2.Current() : _it.Current();
         }
     }
 }

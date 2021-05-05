@@ -10,6 +10,11 @@ namespace Task3.Iterators
 
         public SimpleDatabaseIterator(SimpleDatabase simpleDatabase, IGenomeRepo genomeRepo)
         {
+            InitVirusDataList(simpleDatabase, genomeRepo);
+        }
+
+        private void InitVirusDataList(SimpleDatabase simpleDatabase, IGenomeRepo genomeRepo)
+        {
             foreach (var row in simpleDatabase.Rows)
             {
                 _virusData.Add(new VirusData(
@@ -17,10 +22,10 @@ namespace Task3.Iterators
                     row.DeathRate,
                     row.InfectionRate,
                     genomeRepo.GetById(row.GenomeId)
-                    ));
+                ));
             }
         }
-        
+
         public bool HasNext()
         {
             return _currentIndex + 1 < _virusData.Count;

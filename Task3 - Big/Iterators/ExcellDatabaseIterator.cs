@@ -11,22 +11,32 @@ namespace Task3.Iterators
 
         public ExcellDatabaseIterator(ExcellDatabase excellDatabase, IGenomeRepo genomeRepo)
         {
-            var virusNames=excellDatabase.Names.Split(';');
-            var deathRates=excellDatabase.DeathRates.Split(';');
-            var infectionRates=excellDatabase.InfectionRates.Split(';');
-            var genomeIds=excellDatabase.GenomeIds.Split(';');
-            
-            for(int i = 0; i < virusNames.Length; i++)
+            InitVirusDataList(excellDatabase, genomeRepo);
+        }
+
+        private void InitVirusDataList(ExcellDatabase excellDatabase, IGenomeRepo genomeRepo)
+        {
+            var virusNames = excellDatabase.Names.Split(';');
+            var deathRates = excellDatabase.DeathRates.Split(';');
+            var infectionRates = excellDatabase.InfectionRates.Split(';');
+            var genomeIds = excellDatabase.GenomeIds.Split(';');
+
+            AddToList(virusNames, deathRates, infectionRates, genomeIds, genomeRepo);
+        }
+
+        private void AddToList(string[] virusNames, string[] deathRates, string[] infectionRates, string[] genomeIds, IGenomeRepo genomeRepo)
+        {
+            for (int i = 0; i < virusNames.Length; i++)
             {
                 _data.Add(new VirusData(
                     virusNames[i],
-                    Double.Parse(deathRates[i]),
-                    Double.Parse(infectionRates[i]),
+                    double.Parse(deathRates[i]),
+                    double.Parse(infectionRates[i]),
                     genomeRepo.GetById(Guid.Parse(genomeIds[i]))
-                    ));
+                ));
             }
         }
-        
+
         public bool HasNext()
         {
             return _currentIndex + 1 < _data.Count;

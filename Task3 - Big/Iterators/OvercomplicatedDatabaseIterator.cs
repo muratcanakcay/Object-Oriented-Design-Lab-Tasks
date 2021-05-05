@@ -10,31 +10,37 @@ namespace Task3.Iterators
         
         public OvercomplicatedDatabaseIterator(OvercomplicatedDatabase overcomplicatedDatabase, IGenomeRepo genomeRepo)
         {
+            InitVirusDataList(overcomplicatedDatabase, genomeRepo);
+        }
+
+        private void InitVirusDataList(OvercomplicatedDatabase overcomplicatedDatabase, IGenomeRepo genomeRepo)
+        {
             // using bfs to traverse the database and create iterator data
             Queue<INode> virusList = new Queue<INode>();
             virusList.Enqueue(overcomplicatedDatabase.Root);
 
             while (virusList.Count > 0)
             {
-                // get the topmost virus from the queue
                 var currentVirus = virusList.Dequeue();
+                AddToList(currentVirus, genomeRepo);
 
-                // add the data from the currentVirus to internal database
-                _data.Add(new VirusData(
-                        currentVirus.VirusName,
-                        currentVirus.DeathRate,
-                        currentVirus.InfectionRate,
-                        genomeRepo.GetByTag(currentVirus.GenomeTag)
-                        ));
-
-                // add the children of the currentVirus to the queue (if it has any)
                 foreach (var virus in currentVirus.Children)
                 {
                     virusList.Enqueue(virus);
                 }
             }
         }
-        
+
+        private void AddToList(INode currentVirus, IGenomeRepo genomeRepo)
+        {
+            _data.Add(new VirusData(
+                currentVirus.VirusName,
+                currentVirus.DeathRate,
+                currentVirus.InfectionRate,
+                genomeRepo.GetByTag(currentVirus.GenomeTag)
+            ));
+        }
+
         public VirusData Current()
         {
             return _data[_currentIndex];

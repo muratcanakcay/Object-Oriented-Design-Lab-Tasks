@@ -21,7 +21,7 @@ namespace Task3.Vaccines
         public void Vaccinate(Dog dog)
         {
             dog.Immunity = new string(Immunity.Reverse().ToArray());
-            Console.WriteLine($"Dog [{dog.ID}] is now immune to {dog.Immunity}!");
+            Console.WriteLine($"Dog [{dog.ID}] previously had {dog.ReverseVaccineShots++} {this} shots and is now immune to {dog.Immunity}!");
         }
 
         public void Vaccinate(Cat cat) // kills the cat
@@ -35,12 +35,12 @@ namespace Task3.Vaccines
             if (randomElement.NextDouble() <= DeathRate * pig.ReverseVaccineShots) // death chance
             {
                 pig.Alive = false;
-                Console.WriteLine($"Pig [{pig.ID}] died by vaccination from {this}!");
+                Console.WriteLine($"Pig [{pig.ID}] previously had {pig.ReverseVaccineShots} {this} shots and died by vaccination from {this}!");
             }
             else
             {
                 pig.Immunity = Immunity + new string(Immunity.Reverse().ToArray());
-                Console.WriteLine($"Pig [{pig.ID}] had {++pig.ReverseVaccineShots} {this} shots and is now immune to {pig.Immunity}!");
+                Console.WriteLine($"Pig [{pig.ID}] previously had {pig.ReverseVaccineShots++} {this} shots and is now immune to {pig.Immunity}!");
             }
         }
     }

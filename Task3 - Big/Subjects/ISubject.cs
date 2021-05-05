@@ -12,7 +12,7 @@ namespace Task3.Subjects
 
         //-----
 
-        public int ReverseVaccineShots { get; set; }
+        public int ReverseVaccineShots { get; set; } // number of ReverseVaccineShots received
         public void GetVaccinatedBy(IVaccine vaccine);
     }
 }

@@ -16,19 +16,22 @@ namespace Task3.Iterators
 
             while (virusList.Count > 0)
             {
+                // get the topmost virus from the queue
                 var currentVirus = virusList.Dequeue();
 
-                foreach (var virus in currentVirus.Children)
-                {
-                    virusList.Enqueue(virus);
-                }
-
+                // add the data from the currentVirus to internal database
                 _data.Add(new VirusData(
                         currentVirus.VirusName,
                         currentVirus.DeathRate,
                         currentVirus.InfectionRate,
                         genomeRepo.GetByTag(currentVirus.GenomeTag)
                         ));
+
+                // add the children of the currentVirus to the queue (if it has any)
+                foreach (var virus in currentVirus.Children)
+                {
+                    virusList.Enqueue(virus);
+                }
             }
         }
         

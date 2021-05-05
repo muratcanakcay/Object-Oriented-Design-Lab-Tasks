@@ -2,7 +2,7 @@
 
 namespace Task3.Vaccines
 {
-    interface IVaccine
+    interface IVaccine // IVisitor will be accepted by the ISubject to "visit"
     {
         public string Immunity { get; }
         public double DeathRate { get; }

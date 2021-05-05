@@ -34,8 +34,10 @@ namespace Task3.Vaccines
                 }
 
                 dog.Immunity = sb.ToString();
-                // 3000 characters clutter the screen but you can uncomment to see the immunity
-                //Console.WriteLine($"Dog [{dog.ID}] is now immune to {dog.Immunity}!");
+                Console.Write($"Dog [{dog.ID}] is now immune ");
+                // 3000 characters clutter the screen but you can uncomment to see the immunity:
+                //Console.Write($"to {dog.Immunity}!");
+                Console.WriteLine();
             }
         }
 

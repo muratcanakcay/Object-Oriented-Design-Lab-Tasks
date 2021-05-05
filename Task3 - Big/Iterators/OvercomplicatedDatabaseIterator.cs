@@ -8,7 +8,7 @@ namespace Task3.Iterators
         private int _currentIndex = -1;
         private readonly List<VirusData> _data = new List<VirusData>();
         
-        public OvercomplicatedDatabaseIterator(OvercomplicatedDatabase overcomplicatedDatabase, IGenomeRepo genomeDatabase)
+        public OvercomplicatedDatabaseIterator(OvercomplicatedDatabase overcomplicatedDatabase, IGenomeRepo genomeRepo)
         {
             // using bfs to traverse the database and create iterator data
             Queue<INode> virusList = new Queue<INode>();
@@ -27,7 +27,7 @@ namespace Task3.Iterators
                         currentVirus.VirusName,
                         currentVirus.DeathRate,
                         currentVirus.InfectionRate,
-                        genomeDatabase.GetByTag(currentVirus.GenomeTag)
+                        genomeRepo.GetByTag(currentVirus.GenomeTag)
                         ));
             }
         }

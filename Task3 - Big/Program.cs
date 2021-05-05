@@ -4,6 +4,7 @@ using Task3.Subjects;
 using Task3.Vaccines;
 using Task3.Decorators;
 using Task3.Iterators;
+using Task3.Repository;
 
 namespace Task3
 {
@@ -50,8 +51,9 @@ namespace Task3
                     // iteration over SimpleGenomeDatabase using solution from 1)
                     // subjects should be tested here using GetTested function
 
-                    var simpleDatabaseIterator = IteratorFactory.GetIterator(simpleDatabase, genomeDatabase);
                     // iterating over simpleDatabase
+                    var genomeRepo = new GenomeRepo(genomeDatabase);
+                    var simpleDatabaseIterator = IteratorFactory.GetIterator(simpleDatabase, genomeRepo);
                     
                     while (simpleDatabaseIterator.HasNext())
                     {
@@ -80,34 +82,38 @@ namespace Task3
             var overcomplicatedDatabase = Generators.PrepareOvercomplicatedDatabase(genomeDatabase);
             var mediaOutlet = new MediaOutlet();
 
+            // Create the Genome Repository to pass into IteratorFactory
+
+            var genomeRepo = new GenomeRepo(genomeDatabase);
+
             // Part 1 - publishing each virus database
             Console.WriteLine("\n-------------simpleDatabase output ----------------\n");
-            var simpleIterator = IteratorFactory.GetIterator(simpleDatabase, genomeDatabase);
+            var simpleIterator = IteratorFactory.GetIterator(simpleDatabase, genomeRepo);
             mediaOutlet.Publish(simpleIterator);
             
             Console.WriteLine("\n-------------excellDatabase output ----------------\n");
-            var excellIterator = IteratorFactory.GetIterator(excellDatabase, genomeDatabase);
+            var excellIterator = IteratorFactory.GetIterator(excellDatabase, genomeRepo);
             mediaOutlet.Publish(excellIterator);
 
             Console.WriteLine("\n-------------overcomplicatedDatabase output -------\n");
-            var overcomplicatedIterator = IteratorFactory.GetIterator(overcomplicatedDatabase, genomeDatabase);
+            var overcomplicatedIterator = IteratorFactory.GetIterator(overcomplicatedDatabase, genomeRepo);
             mediaOutlet.Publish(overcomplicatedIterator);
 
             
             // Part 2 - decorators
             Console.WriteLine("\n-------------filtering DeathRate > 15 of data from the ExcellDatabase database -------\n");
-            var filteredIterator1 = new Filter((virus) => virus.DeathRate > 15, IteratorFactory.GetIterator(excellDatabase, genomeDatabase));
+            var filteredIterator1 = new Filter((virus) => virus.DeathRate > 15, IteratorFactory.GetIterator(excellDatabase, genomeRepo));
             mediaOutlet.Publish(filteredIterator1);
 
             Console.WriteLine("\n-------------mapping f => new VirusData(f.VirusName, f.DeathRate + 10, f.InfectionRate, f.Genomes) and the filter f => f.DeathRate > 15 simultaneously of data from the ExcellDatabase database -------\n");
             var filteredMappedIterator = new Filter(f => f.DeathRate > 15, 
                                   new Map(f => new VirusData(f.VirusName, f.DeathRate + 10, f.InfectionRate, f.Genomes), 
-                                         IteratorFactory.GetIterator(excellDatabase, genomeDatabase)));
+                                         IteratorFactory.GetIterator(excellDatabase, genomeRepo)));
             mediaOutlet.Publish(filteredMappedIterator);
 
             Console.WriteLine("\n-------------concatenation of data from the ExcellDatabase database and data from the OvercomplicatedDatabase database -------\n");
-            var concatonatedIterator = new Concatenate(IteratorFactory.GetIterator(excellDatabase, genomeDatabase),
-                                                       IteratorFactory.GetIterator(overcomplicatedDatabase, genomeDatabase));
+            var concatonatedIterator = new Concatenate(IteratorFactory.GetIterator(excellDatabase, genomeRepo),
+                                                       IteratorFactory.GetIterator(overcomplicatedDatabase, genomeRepo));
             mediaOutlet.Publish(concatonatedIterator);
 
             // Part 3 - visitor

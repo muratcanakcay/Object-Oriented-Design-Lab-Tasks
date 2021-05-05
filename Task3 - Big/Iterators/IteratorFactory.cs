@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Task3.Repository;
 
 namespace Task3.Iterators
 {
@@ -9,21 +10,21 @@ namespace Task3.Iterators
         // iterators for virus databases
         
         // simpleDatabase
-        public static IVirusDatabaseIterator GetIterator(SimpleDatabase simpleDatabase, SimpleGenomeDatabase simpleGenomeDatabase)
+        public static IVirusDatabaseIterator GetIterator(SimpleDatabase simpleDatabase, IGenomeRepo genomeRepo)
         {
-            return new SimpleDatabaseIterator(simpleDatabase, simpleGenomeDatabase);
+            return new SimpleDatabaseIterator(simpleDatabase, genomeRepo);
         }
 
         // excellDatabase
-        public static IVirusDatabaseIterator GetIterator(ExcellDatabase excellDatabase, SimpleGenomeDatabase simpleGenomeDatabase)
+        public static IVirusDatabaseIterator GetIterator(ExcellDatabase excellDatabase, IGenomeRepo genomeRepo)
         {
-            return new ExcellDatabaseIterator(excellDatabase, simpleGenomeDatabase);
+            return new ExcellDatabaseIterator(excellDatabase, genomeRepo);
         }
 
         // excellDatabase
-        public static IVirusDatabaseIterator GetIterator(OvercomplicatedDatabase overcomplicatedDatabase, SimpleGenomeDatabase simpleGenomeDatabase)
+        public static IVirusDatabaseIterator GetIterator(OvercomplicatedDatabase overcomplicatedDatabase, IGenomeRepo genomeRepo)
         {
-            return new OvercomplicatedDatabaseIterator(overcomplicatedDatabase, simpleGenomeDatabase);
+            return new OvercomplicatedDatabaseIterator(overcomplicatedDatabase, genomeRepo);
         }
     }
 }

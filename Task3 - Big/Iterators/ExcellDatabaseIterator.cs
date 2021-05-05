@@ -10,7 +10,7 @@ namespace Task3.Iterators
         private int _currentIndex = -1;
         private readonly List<VirusData> _data = new List<VirusData>();
 
-        public ExcellDatabaseIterator(ExcellDatabase excellDatabase, IGenomeRepo genomeDatabase)
+        public ExcellDatabaseIterator(ExcellDatabase excellDatabase, IGenomeRepo genomeRepo)
         {
             var virusNames=excellDatabase.Names.Split(';');
             var deathRates=excellDatabase.DeathRates.Split(';');
@@ -23,7 +23,7 @@ namespace Task3.Iterators
                     virusNames[i],
                     Double.Parse(deathRates[i]),
                     Double.Parse(infectionRates[i]),
-                    genomeDatabase.GetById(Guid.Parse(genomeIds[i]))
+                    genomeRepo.GetById(Guid.Parse(genomeIds[i]))
                     ));
             }
         }

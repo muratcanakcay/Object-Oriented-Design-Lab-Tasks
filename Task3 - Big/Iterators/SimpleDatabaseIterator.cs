@@ -9,7 +9,7 @@ namespace Task3.Iterators
         private int _currentIndex = -1;
         private readonly List<VirusData> _virusData = new List<VirusData>();
 
-        public SimpleDatabaseIterator(SimpleDatabase simpleDatabase, IGenomeRepo genomeDatabase)
+        public SimpleDatabaseIterator(SimpleDatabase simpleDatabase, IGenomeRepo genomeRepo)
         {
             foreach (var row in simpleDatabase.Rows)
             {
@@ -17,7 +17,7 @@ namespace Task3.Iterators
                     row.VirusName,
                     row.DeathRate,
                     row.InfectionRate,
-                    genomeDatabase.GetById(row.GenomeId)
+                    genomeRepo.GetById(row.GenomeId)
                     ));
             }
         }

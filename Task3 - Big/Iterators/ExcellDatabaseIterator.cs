@@ -23,17 +23,17 @@ namespace Task3.Iterators
 
             for (int i = 0; i < virusNames.Length; i++)
             {
-                AddToList(i, virusNames, deathRates, infectionRates, genomeIds, genomeRepo);
+                AddToList(virusNames[i], deathRates[i], infectionRates[i], genomeIds[i], genomeRepo);
             }
         }
 
-        private void AddToList(int i, string[] virusNames, string[] deathRates, string[] infectionRates, string[] genomeIds, IGenomeRepo genomeRepo)
+        private void AddToList(string virusName, string deathRate, string infectionRate, string genomeId, IGenomeRepo genomeRepo)
         {
             _data.Add(new VirusData(
-                virusNames[i],
-                double.Parse(deathRates[i]),
-                double.Parse(infectionRates[i]),
-                genomeRepo.GetById(Guid.Parse(genomeIds[i]))
+                virusName,
+                double.Parse(deathRate),
+                double.Parse(infectionRate),
+                genomeRepo.GetById(Guid.Parse(genomeId))
             ));
         }
 

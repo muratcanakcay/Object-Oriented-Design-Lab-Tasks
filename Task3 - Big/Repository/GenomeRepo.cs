@@ -12,7 +12,7 @@ namespace Task3.Repository
     
     public class GenomeRepo : IGenomeRepo
     {
-        private List<GenomeData> _genomeDatas;
+        private readonly List<GenomeData> _genomeDatas;
 
         // different constructors can be implemented for different Genome Database types which could be added in the future
         public GenomeRepo(SimpleGenomeDatabase simpleGenomeDatabase)

@@ -4,12 +4,6 @@ using System.Linq;
 
 namespace Task3.Repository
 {
-    public interface IGenomeRepo
-    {
-        public List<GenomeData> GetById(Guid id);
-        public List<GenomeData> GetByTag(string tag);
-    }
-    
     public class GenomeRepo : IGenomeRepo
     {
         private readonly List<GenomeData> _genomeDatas;

@@ -20,7 +20,7 @@ namespace Task3.Vaccines
         public void Vaccinate(Dog dog)
         {
             
-            if (randomElement.NextDouble() <= DeathRate) // death chance
+            if (IsLethalByFactor(1))
             {
                 dog.Alive = false;
                 Console.WriteLine($"Dog [{dog.ID}] died by vaccination from {this}!");
@@ -43,7 +43,7 @@ namespace Task3.Vaccines
 
         public void Vaccinate(Cat cat)
         {
-            if (randomElement.NextDouble() <= DeathRate) // death chance
+            if (IsLethalByFactor(1)) // death chance
             {
                 cat.Alive = false;
                 Console.WriteLine($"Cat [{cat.ID}] died by vaccination from {this}!");
@@ -64,7 +64,7 @@ namespace Task3.Vaccines
 
         public void Vaccinate(Pig pig)
         {
-            if (randomElement.NextDouble() <= 3 * DeathRate) // death chance
+            if (IsLethalByFactor(3)) // death chance
             {
                 pig.Alive = false;
                 Console.WriteLine($"Pig [{pig.ID}] died by vaccination from {this}!");
@@ -80,6 +80,11 @@ namespace Task3.Vaccines
                 pig.Immunity = sb.ToString();
                 Console.WriteLine($"Pig [{pig.ID}] is now immune to {pig.Immunity}!");
             }
+        }
+        
+        private bool IsLethalByFactor(int factor)
+        {
+            return randomElement.NextDouble() <= factor * DeathRate;
         }
     }
 }

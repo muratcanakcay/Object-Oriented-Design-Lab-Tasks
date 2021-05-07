@@ -32,7 +32,7 @@ namespace Task3.Vaccines
 
         public void Vaccinate(Pig pig)
         {
-            if (randomElement.NextDouble() <= DeathRate * pig.ReverseVaccineShots) // death chance
+            if (IsLethalByFactor(pig.ReverseVaccineShots)) // death chance
             {
                 pig.Alive = false;
                 Console.WriteLine($"Pig [{pig.ID}] previously had {pig.ReverseVaccineShots} {this} shots and died by vaccination from {this}!");
@@ -42,6 +42,11 @@ namespace Task3.Vaccines
                 pig.Immunity = Immunity + new string(Immunity.Reverse().ToArray());
                 Console.WriteLine($"Pig [{pig.ID}] previously had {pig.ReverseVaccineShots++} {this} shots and is now immune to {pig.Immunity}!");
             }
+        }
+        
+        private bool IsLethalByFactor(int factor)
+        {
+            return randomElement.NextDouble() <= factor * DeathRate;
         }
     }
 }

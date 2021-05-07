@@ -23,11 +23,7 @@ namespace Task3.Iterators
             {
                 var currentVirus = virusList.Dequeue();
                 AddToList(currentVirus, genomeRepo);
-
-                foreach (var child in currentVirus.Children)
-                {
-                    virusList.Enqueue(child);
-                }
+                EnqueueChildren(currentVirus, virusList);
             }
         }
 
@@ -40,6 +36,16 @@ namespace Task3.Iterators
                 genomeRepo.GetByTag(currentVirus.GenomeTag)
             ));
         }
+
+        private static void EnqueueChildren(INode currentVirus, Queue<INode> virusList)
+        {
+            foreach (var child in currentVirus.Children)
+            {
+                virusList.Enqueue(child);
+            }
+        }
+
+        //-----
 
         public VirusData Current()
         {
